@@ -67,6 +67,10 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: repeat-x;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
 }
 
 .main__layout__wrapper-content {
@@ -133,6 +137,9 @@ body {
   position: absolute;
   top: -150px;
   box-shadow: var(--NOT_ACTIVE_SHADOW_2);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .profile__name {
@@ -198,6 +205,11 @@ body {
 .profile__bio {
   overflow: hidden;
 }
+
+.profile__bio.profile__bio__settings {
+  margin-bottom: 30px;
+}
+
 /* 
 .profile__birthday {
   content: url('../img/birthday.png');
@@ -255,7 +267,7 @@ body {
 }
 
 .settings.active {
-  top: 325px;
+  top: 345px;
 }
 
 .active {
@@ -304,28 +316,21 @@ body {
   perspective: 1000px;
 }
 
-@keyframes shake {
-  10%,
-  90% {
-    transform: translate3d(0, -1px, 0);
-  }
-
-  20%,
-  80% {
-    transform: translate3d(0, 1px, 0);
-  }
-
-  30%,
-  50%,
-  70% {
-    transform: translate3d(0, -3px, 0);
-  }
-
-  40%,
-  60% {
-    transform: translate3d(0, 3px, 0);
-  }
+.change__avatar, .change__cover {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 10px; */
+  cursor: pointer;
+  opacity: .4;
 }
+
+.change__avatar {
+  margin-left: 10px;
+  margin-top: 80px;
+}
+
+
 
 /**** INPUT.JS ****/
 

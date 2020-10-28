@@ -14,6 +14,25 @@ const SettingsScreen = props => {
         cover: ''
     })
 
+    const onInputChange = e => {
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    // const encodeImageFileAsURL = (e) => {
+    //     var file = e.target.files[0];
+    //     var reader = new FileReader();
+    //     reader.onloadend = function () {
+    //         setItem({ ...item, img: reader.result })
+    //         setIsChanged(false)
+    //     }
+    //     reader.readAsDataURL(file);
+    // }
+
+    console.log(state);
+    
     return (
         <div className="main__layout__wrapper-content">
             <div className="main__layout__wrapper-content__left">
@@ -25,8 +44,9 @@ const SettingsScreen = props => {
                                 type='text'
                                 placeholder='Имя'
                                 isSetting={true}
-                                name='change_name'
+                                name='name'
                                 value={state.name}
+                                onChange={onInputChange}
                             />
                         </div>
                         <div className="profile__name-menu">
@@ -43,23 +63,27 @@ const SettingsScreen = props => {
                             type='text'
                             placeholder='@username'
                             isSetting={true}
-                            name='change_username'
+                            name='username'
+                            onChange={onInputChange}
+                            value={state.username}
                         />
                     </div>
-                    <div className="profile__bio">
+                    <div className="profile__bio profile__bio__settings">
                         <Input
                             type='textarea'
                             placeholder='bio'
                             isSetting={true}
-                            name='change_bio'
+                            name='bio'
+                            onChange={onInputChange}
                         />
                     </div>
                     <div className="profile__birthday">
                         <Input
-                            type='text'
+                            type='date'
                             placeholder='Дата рождения'
                             isSetting={true}
-                            name='change_birthday'
+                            name='birthday'
+                            onChange={onInputChange}
                         />
                     </div>
                 </div>
@@ -89,7 +113,7 @@ const SettingsScreen = props => {
             <div style={{ width: '20px', height: '20px' }}></div>
             <div className="main__layout__wrapper-content__main">
                 <div className="links">
-                    <div className='link__wrapper'>
+                    {/* <div className='link__wrapper'>
                         <div className='link__icon'>
                             <img src='img/github.png' />
                         </div>
@@ -97,17 +121,18 @@ const SettingsScreen = props => {
                             <div className='link__title'>Twitter</div>
                             <a className='link__href' href="">https://twitter.com/admin</a>
                         </div>
-                    </div>
+                    </div> */}
                     {
                         [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map(v => {
                             return (
-                                <div className='link__wrapper'>
+                                <div className='link__wrapper is_settings'>
                                     <div className='link__icon'>
                                         <img src='img/github.png' />
                                     </div>
                                     <div className='link__texts'>
                                         <div className='link__title'>Twitter {v}</div>
                                         <a className='link__href' href="">https://twitter.com/admin</a>
+                                        <div className='link__delete'>⛔</div>
                                     </div>
                                 </div>
                             )

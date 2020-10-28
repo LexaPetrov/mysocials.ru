@@ -13,6 +13,7 @@ body {
 :root {
   --border_radius: 10px;
   --shadow__main: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  --main_gray: rgba(0, 0, 0, 0.6);
 
   --NOT_ACTIVE_SHADOW: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
     -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
@@ -93,11 +94,13 @@ body {
 }
 
 .profile,
-.links {
+.settings {
+  /*links*/
   border-radius: var(--border_radius);
   box-shadow: var(--NOT_ACTIVE_SHADOW_2);
   background: white;
   padding: 10px;
+  margin-bottom: 20px;
 }
 
 .profile {
@@ -144,11 +147,11 @@ body {
 
 .profile__username {
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--main_gray);
 }
 
 .dropbtn {
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--main_gray);
   font-size: 16px;
   border: none;
   background: none;
@@ -171,7 +174,7 @@ body {
 }
 
 .dropdown-content a {
-  color: black;
+  color: var(--black);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -187,7 +190,6 @@ body {
   margin-bottom: 10px;
   max-width: 100%;
   height: 100%;
-  overflow: hidden;
   max-height: 3.2em;
   line-height: 1.6em;
 }
@@ -196,3 +198,174 @@ body {
   content: url('../img/birthday.png');
   height: 40px;
 } */
+
+.profile__birthday {
+  font-size: 12px;
+  color: var(--main_gray);
+}
+
+.link__icon {
+  height: 50px;
+}
+
+.link__icon img {
+  height: 100%;
+}
+
+.link__wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  background: white;
+  margin-bottom: 20px;
+  padding: 5px;
+  border-radius: var(--border_radius);
+  box-sizing: border-box;
+  box-shadow: var(--NOT_ACTIVE_SHADOW_2);
+}
+
+.link__texts {
+  margin-left: 20px;
+}
+
+.link__title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.link__texts {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.settings a {
+  color: var(--main_gray);
+  text-decoration: none;
+}
+
+.settings {
+  position: sticky;
+  top: 210px;
+}
+
+.settings.active {
+  top: 325px;
+}
+
+.active {
+  background: var(--gray);
+}
+
+.settings__save {
+  background: var(--green);
+  width: 40%;
+}
+
+
+.settings__cancel {
+  width: 40%;
+  background-color: var(--red);
+}
+
+.settings__save a, .settings__cancel a {
+  color: white;
+}
+
+.active a {
+  pointer-events: none;
+  color: white;
+}
+
+.settings__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: sticky;
+  top: 390px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**** INPUT.JS ****/
+
+.input__label {
+  margin: 15px 0;
+  position: relative;
+  display: inline-block;
+}
+
+.input__span {
+  padding: 10px;
+  margin-top: 2px;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  /* top: 0; */
+  transition: 0.2s;
+  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  opacity: 0.5;
+  font-weight: normal;
+  font-size: 18px;
+  width: 100%;
+}
+
+.input__input {
+  padding: 10px;
+  border: none;
+  border-radius: var(--border_radius);
+  font-size: 16px;
+  box-shadow: var(--NOT_ACTIVE_SHADOW_2);
+}
+
+.input__input:focus + .input__span,
+.input__input:not(:placeholder-shown) + .input__span {
+  opacity: 1;
+  transform: scale(0.75) translateY(-100%) translateX(-30px);
+}
+
+/* For IE Browsers*/
+.input__input:focus + .input__span,
+.input__input:not(:-ms-input-placeholder) + .input__span {
+  opacity: 1;
+  transform: scale(0.75) translateY(-100%) translateX(-30px);
+}
+
+.input__input:focus {
+  border: none;
+  border-width: 0;
+  outline: none;
+  box-shadow: var(--ACTIVE_SHADOW_2);
+}

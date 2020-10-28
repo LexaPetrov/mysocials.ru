@@ -1,14 +1,17 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import Input from './Input'
 
-const ProfileScreen = props => {
-    //props.canEdit??
-    useEffect(() => {
-        document.body.innerHTML +=
-            // '<style>.main__layout__wrapper-header { content:url("https://freehtmlthemes.ru/assets/images/articles/css-fon.jpg"); }</style>';
-            '<style>.main__layout__wrapper-header { background-image:url("https://freehtmlthemes.ru/assets/images/articles/css-fon.jpg"); }</style>';
-        document.body.innerHTML +=
-            '<style>.avatar { content:url("https://avatanplus.com/files/photos/original/5abb7079c84321626c2f5bdc.jpg"); }</style>';
+
+const SettingsScreen = props => {
+    const [state, setState] = useState({
+        name: '',
+        username: '',
+        bio: '',
+        birthday: '',
+        links: [],
+        avatar: '',
+        cover: ''
     })
 
     return (
@@ -18,9 +21,15 @@ const ProfileScreen = props => {
                 <div className="profile">
                     <div className="profile__name">
                         <div className="profile__name-name">
-                            Admin Admin
-                       </div>
-                        <div className="profile__name-menu edit">
+                            <Input
+                                type='text'
+                                placeholder='Имя'
+                                isSetting={true}
+                                name='change_name'
+                                value={state.name}
+                            />
+                        </div>
+                        <div className="profile__name-menu">
                             <button className="dropbtn">•••</button>
                             <div className="dropdown-content">
                                 <a href="#">копировать ссылку</a>
@@ -30,19 +39,46 @@ const ProfileScreen = props => {
                         </div>
                     </div>
                     <div className="profile__username">
-                        @admin
-                   </div>
+                        <Input
+                            type='text'
+                            placeholder='@username'
+                            isSetting={true}
+                            name='change_username'
+                        />
+                    </div>
                     <div className="profile__bio">
-                        Web-scraping (Node.js puppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profile__bioprofile__bioprofile__bioprofile__bioprofile__bioprofile__bio
-                   </div>
+                        <Input
+                            type='textarea'
+                            placeholder='bio'
+                            isSetting={true}
+                            name='change_bio'
+                        />
+                    </div>
                     <div className="profile__birthday">
-                        📅 01.01.1970
-                   </div>
+                        <Input
+                            type='text'
+                            placeholder='Дата рождения'
+                            isSetting={true}
+                            name='change_birthday'
+                        />
+                    </div>
                 </div>
 
-                <div className='settings'>
+                <div className='settings active'>
                     <NavLink to='/settings'>⚙ Настройки</NavLink>
                 </div>
+
+                <div className='settings__buttons'>
+                    <div className='settings settings__save'>
+                        <NavLink to='/gfg'>💾 Сохранить</NavLink>
+                    </div>
+
+                    <div className='settings settings__cancel'>
+                        <NavLink to='/dsxef'>❌ Отмена</NavLink>
+                    </div>
+                </div>
+
+
 
                 <div className="left-links">
                     <p><a href=''>Privacy Policy</a></p>
@@ -83,4 +119,4 @@ const ProfileScreen = props => {
     )
 }
 
-export default ProfileScreen
+export default SettingsScreen

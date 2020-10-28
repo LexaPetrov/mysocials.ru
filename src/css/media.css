@@ -1,0 +1,10 @@
+@media screen and (max-width: 769px){
+    .main__layout__wrapper-content {
+        flex-direction: column;
+    }
+
+    .main__layout__wrapper-content__left, .main__layout__wrapper-content__main {
+        width: 100%;
+        min-width: 100%;
+    }
+}

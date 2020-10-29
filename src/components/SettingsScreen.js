@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Icon from './Icon'
 import Input from './Input'
+import Loader from './Loader'
 
 
 const SettingsScreen = props => {
@@ -13,6 +14,7 @@ const SettingsScreen = props => {
         username: '',
         bio: '',
         birthday: '',
+        verified: false,
         links: {
             data: [
                 {
@@ -73,8 +75,6 @@ const SettingsScreen = props => {
         })
     }
 
-    console.log(state);
-
     const addLinkHandler = () => {
         let obj = { ...state.links }
         obj.data.push({
@@ -106,7 +106,7 @@ const SettingsScreen = props => {
         })
     }
 
-
+    if(state.isLoading) return <Loader />;
     return (
         <>
             <div className="main__layout__wrapper-header" style={{

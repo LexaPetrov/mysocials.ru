@@ -11,6 +11,7 @@ const Input = props => {
                 type={props.type}
                 value={props.value}
                 onChange={props.onChange}
+                {...props}
             />
             <span className='input__span'>{props.isSetting ? <Icon type='edit' size='16' /> : null} {props.placeholder}</span>
         </label>

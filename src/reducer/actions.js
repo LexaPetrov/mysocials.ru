@@ -1,15 +1,30 @@
 
-            //  import {
-            //     FETCH_LINK_DATA
-            // } from './actionType'
-            
-            // export const getLinkData = (link, dispatch, params) => {
-            //     fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${link}&key=AIzaSyDnICHbhs5jRfs_pxfWq26ZR9j32iZwedU`)
-            //         .then(res => {
-            //             if (!res.ok) throw Error(res.status)
-            //             return res.json()
-            //         })
-            //         .then((res) => {
-            //             dispatch({ type: FETCH_LINK_DATA, payload: { data: res, newParams: params } })
-            //         }).catch(err => { console.error('getLinkData ERROR - ', err)})
-            // }
+import {
+    REGISTER,
+    START_LOADING, STOP_LOADING
+} from './actiontypes'
+
+export const register = (username, email, password, dispatch) => {
+    dispatch({ type: START_LOADING })
+    fetch('http://localhost:4000/api/register', {
+        method: 'post',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username, email, password
+        })
+    }).then(r => {
+        return r.json()
+    }).then(r => {
+        dispatch({ type: REGISTER, payload: { username, email, password, data: r } })
+    }).catch(e => {
+        console.log('register error - ', e)
+        dispatch({ type: REGISTER, payload: { success: false, username, email, password } })
+    }).finally(() => {
+        dispatch({ type: STOP_LOADING })
+    })
+}
+
+

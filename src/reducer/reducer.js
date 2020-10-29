@@ -1,22 +1,64 @@
-// import {
-//     FETCH_LINK_DATA
-// } from './actionType'
+import {
+    STOP_LOADING,
+    START_LOADING,
+    REGISTER
+} from './actiontypes'
+
+const initialState = {
+    id: '',
+    password: '',
+    email: '',
+    name: '',
+    username: '',
+    bio: '',
+    birthday: '',
+    verified: false,
+    links: {
+        data: [
+            {
+                title: '',
+                link: '',
+                icon: '',
+                type: 'link'
+            }
+        ]
+    },
+    avatar: '',
+    cover: ''
+}
+
+export const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case REGISTER:
+            if (action.payload.data !== undefined && action.payload.data.errno) {
+                return {
+                    ...state,
+                    success: false
+                }
+            } else {
+                return {
+                    ...state,
+                    username: action.payload.username,
+                    email: action.payload.email,
+                    password: action.payload.password,
+                    success: true
+                }
+            }
 
 
-// export default (state = {}, action) => {
-//     switch (action.type) {
-//         case FETCH_LINK_DATA:
-//             let {data} = action.payload
-//             return { 
-//                 ...state, 
-//                 info: {
-//                     subscriberCount: data.items[0].statistics.subscriberCount,
-//                     videoCount: data.items[0].statistics.videoCount,
-//                     viewCount: data.items[0].statistics.viewCount
-//                 },
-//                 params: action.payload.newParams, 
-//             }
-//         default:
-//             return state
-//     }
-// } 
+        case START_LOADING:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case STOP_LOADING:
+            return {
+                ...state,
+                isLoading: false
+            }
+        default:
+            return state
+    }
+}
+
+export default reducer

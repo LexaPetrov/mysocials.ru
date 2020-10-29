@@ -10,7 +10,7 @@ const App = (props) => {
       <Switch>
         <Route path={process.env.PUBLIC_URL + '/settings'} exact component={SettingsScreen} />
         <Route path={process.env.PUBLIC_URL + '/'} exact component={MainScreen} />
-        <Route path={process.env.PUBLIC_URL + '/:publiclink'} component={ProfileScreen} />
+        <Route path={process.env.PUBLIC_URL + '/:username'} component={ProfileScreen} />
       </Switch>
     </Layout>
 

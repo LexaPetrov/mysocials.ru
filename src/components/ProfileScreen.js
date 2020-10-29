@@ -1,18 +1,23 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Icon from './Icon';
+import Loader from './Loader'
 
 const ProfileScreen = props => {
     const [state, setState] = useState({
+        id: '',
+        password: '',
+        email: '',
         name: '',
         username: '',
         bio: '',
         birthday: '',
+        verified: false,
         links: {
             data: [
                 {
-                    title: 'заголовок',
-                    link: 'вставь ссылку',
+                    title: '',
+                    link: '',
                     icon: '',
                     type: 'link'
                 }
@@ -81,15 +86,16 @@ const ProfileScreen = props => {
         })
     }
 
-    useEffect(() => {
+    useEffect(() => { // eslint-disable-next-line react-hooks/exhaustive-deps
         setState({
             ...state,
             links: {
                 data: dat
             }
         })
-    })
+    }, []) 
 
+    if(state.isLoading) return <Loader />;
     return (
         <>
             <div className="main__layout__wrapper-header"></div>

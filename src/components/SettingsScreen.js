@@ -6,12 +6,23 @@ import Input from './Input'
 
 const SettingsScreen = props => {
     const [state, setState] = useState({
+        id: '',
+        password: '',
+        email: '',
         name: '',
         username: '',
         bio: '',
         birthday: '',
-        links: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-        // links: [],
+        links: {
+            data: [
+                {
+                    title: 'заголовок',
+                    link: 'вставь ссылку',
+                    icon: '',
+                    type: 'link'
+                }
+            ]
+        },
         avatar: '',
         cover: ''
     })
@@ -25,7 +36,7 @@ const SettingsScreen = props => {
             alert('Размер изображения не должен превышать 600КБ.')
             setState({ ...state, avatar: '' })
         }
-    }, [state.cover, state.avatar])
+    }, [state, state.cover, state.avatar])
 
     const onInputChange = e => {
         setState({
@@ -54,21 +65,48 @@ const SettingsScreen = props => {
     }
 
     const deleteLinkHandler = (index) => {
-        let arr = [...state.links]
+        let arr = [...state.links.data]
         arr.splice(index, 1)
         setState({
             ...state,
-            links: arr
+            links: { data: arr }
         })
     }
 
     console.log(state);
 
+    const addLinkHandler = () => {
+        let obj = { ...state.links }
+        obj.data.push({
+            title: 'заголовок',
+            link: 'вставь ссылку',
+            icon: '',
+            type: 'link'
+        })
+        setState({
+            ...state,
+            links: obj
+        })
+    }
+
+    const changeLinkTitleAndLinkAndIcon = (e, index) => {
+        let obj = { ...state.links }
+        obj.data[index] = {
+            ...obj.data[index],
+            [e.target.name]: e.target.value
+        }
+        setState({
+            ...state,
+            links: obj
+        })
+    }
+
+
     return (
         <>
             <div className="main__layout__wrapper-header" style={{
-                backgroundImage: state.cover !== '' ? `url(${state.cover})` : '',
-                background: 'white'
+                backgroundImage: state.cover !== '' ? `url(${state.cover})` : null,
+                backgroundColor: 'white'
             }}>
                 <label className='change__cover' htmlFor='img__Cover'>
                     <Icon type='camera' size='40' />
@@ -84,11 +122,11 @@ const SettingsScreen = props => {
                 <div className="main__layout__wrapper-content__left">
                     <div className='avatar' style={{
                         backgroundImage: state.avatar !== '' ? `url(${state.avatar})` : '',
-                        background: 'white'
+                        backgroundColor: 'white'
                     }}>
                         <label className='change__avatar' htmlFor='img__avatar'>
                             <Icon type='camera' size='30' />
-                            <input type="file" name='img__avatar' id="img__avatar" name='img__avatar' style={{ display: 'none' }} onChange={(e) => encodeImageFileAsURL(e, 'avatar')} />
+                            <input type="file" id="img__avatar" name='img__avatar' style={{ display: 'none' }} onChange={(e) => encodeImageFileAsURL(e, 'avatar')} />
                             фото
                         </label>
                         <label className='change__avatar' onClick={() => setState({ ...state, avatar: '' })}>
@@ -96,7 +134,7 @@ const SettingsScreen = props => {
                         удалить
                         </label>
                     </div>
-                    <div className="profile">
+                    <div className="profile no__sticky">
                         <div className="profile__name">
                             <div className="profile__name-name">
                                 <Input
@@ -111,9 +149,7 @@ const SettingsScreen = props => {
                             <div className="profile__name-menu">
                                 <button className="dropbtn">•••</button>
                                 <div className="dropdown-content">
-                                    <a href="#">копировать ссылку</a>
-                                    {/* <a href="#">Link 2</a> */}
-                                    {/* <a href="#">Link 3</a> */}
+                                    <a href="https://www.google.com/">копировать ссылку</a>
                                 </div>
                             </div>
                         </div>
@@ -144,19 +180,28 @@ const SettingsScreen = props => {
                                 name='birthday'
                                 onChange={onInputChange}
                             />
+                              <Input
+                                type='text'
+                                placeholder='сменить пароль'
+                                isSetting={true}
+                                minlength='8'
+                                size='24'
+                                name='password'
+                                onChange={onInputChange}
+                            />
                         </div>
                     </div>
 
-                    <div className='settings active'>
+                    <div className='settings active no__sticky'>
                         <NavLink to='/settings'><Icon type='settings' size='17' /> Настройки</NavLink>
                     </div>
 
-                    <div className='settings__buttons'>
-                        <div className='settings settings__save'>
+                    <div className='settings__buttons no__sticky'>
+                        <div className='settings button button-success'>
                             <NavLink to='/gfg'><Icon type='save' size='17' /> Сохранить</NavLink>
                         </div>
 
-                        <div className='settings settings__cancel'>
+                        <div className='settings button button-danger'>
                             <NavLink to='/dsxef'><Icon type='cross' size='17' /> Отмена</NavLink>
                         </div>
                     </div>
@@ -164,33 +209,109 @@ const SettingsScreen = props => {
 
 
                     <div className="left-links">
-                        <p><a href=''>Privacy Policy</a></p>
-                        <p><a href=''>SeeMyLinks.ru</a></p>
+                        <p><a href='https://www.google.com/'>Privacy Policy</a></p>
+                        <p><a href='https://www.google.com/'>SeeMyLinks.ru</a></p>
                         {/* <p>1</p> */}
                     </div>
                 </div>
                 <div style={{ width: '20px', height: '20px' }}></div>
                 <div className="main__layout__wrapper-content__main">
                     <div className="links">
-                        {/* <div className='link__wrapper'>
-                        <div className='link__icon'>
-                            <img src='img/github.png' />
-                        </div>
-                        <div className='link__texts'>
-                            <div className='link__title'>Twitter</div>
-                            <a className='link__href' href="">https://twitter.com/admin</a>
-                        </div>
-                    </div> */}
+                        <Icon type='plus' className='button button-success' size='20' text='Добавить ссылку' style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            color: 'white'
+                        }}
+                            onClick={addLinkHandler}
+                        />
                         {
-                            state.links.map((val, index) => {
+                            state.links.data !== undefined && state.links.data.map((val, index) => {
                                 return (
                                     <div className='link__wrapper is_settings' key={index}>
-                                        <div className='link__icon'>
-                                            <img src='img/github.png' />
+                                        <div className='link__icon is_settings'>
+                                            <img  src={`img/${state.links.data[index].type}.png`} alt='icon' />
+                                            <select name='type' className='link__select' value='иконка' onChange={e => changeLinkTitleAndLinkAndIcon(e, index)}>
+                                                <option value='иконка' disabled="disabled">иконка</option>
+                                                <option value="phone">Телефон</option>
+                                                <option value="instagram">Instagram</option>
+                                                <option value="telegram">Telegram</option>
+                                                <option value="vk">VK</option>
+                                                <option value="facebook">Facebook</option>
+                                                <option value="viber">Viber</option>
+                                                <option value="twitter">Twitter</option>
+                                                <option value="whatsapp">WhatsApp</option>
+                                                <option value="f3cool">F3.cool</option>
+                                                <option value="youtube">YouTube</option>
+                                                <option value="github" >Github</option>
+                                                <option value="tiktok">TikTok</option>
+                                                <option value="pikabu">Pikabu</option>
+                                                <option value="snapchat">Snapchat</option>
+                                                <option value="askfm">Ask.fm</option>
+                                                <option value="ok">Одноклассники</option>
+                                                <option value="gitlab">Gitlab</option>
+                                                <option value="tinkoff">Tinkoff</option>
+                                                <option value="sberbank">Сбербанк</option>
+                                                <option value="yandexmoney">ЮMoney</option>
+                                                
+                                                <option value="hh">Head Hunter</option>
+                                                <option value="vc">VC.ru</option>
+                                                <option value="tj">tjournal</option>
+                                                <option value="dtf">dtf.ru</option>
+                                                <option value="habr">Habr</option>
+
+
+                                               
+                                                <option value="donationalerts">Donation Alerts</option>
+                                                <option value="linkedin">LinkedIn</option>
+                                                <option value="devianart">Devianart</option>
+                                                <option value="behance">Behance</option>
+                                                <option value="patreon">Patreon</option>
+
+
+
+                                                <option value='игры' disabled="disabled">Игры</option>
+                                                <option value="steam">Steam</option>
+                                                <option value="epicgames">Epic Games</option>
+                                                <option value="origin">Origin</option>
+                                                <option value="xboxlive">XBox Live</option>
+                                                <option value="psn">PSN</option>
+                                                <option value="battlenet">Battle.net</option>
+                                                <option value="rockstar">RockstarSocial Club</option>
+                                                <option value="uplay">Upla</option>
+                                                <option value="twitch">Twitch</option>
+                                                <option value="skype">Skype</option>
+                                                <option value="discord">Discord</option>
+
+
+                                                <option value='почта' disabled="disabled">Почта</option>
+                                                <option value="gmail">G-mail</option>
+                                                <option value="mailru">Mail.ru почта</option>
+                                                <option value="yandexmail">Yandex почта</option>
+                                                <option value="email">E-mail</option>
+
+                                                <option value='18+' disabled="disabled">18+</option>
+                                                <option value="pornhub">Pornhub</option>
+                                                <option value="onlyfans">Onlyfans</option>
+                                            </select>
                                         </div>
                                         <div className='link__texts'>
-                                            <div className='link__title'>Twitter {index}</div>
-                                            <a className='link__href' href="">https://twitter.com/admin</a>
+                                            <div className='link__title'>
+                                                <Input
+                                                    placeholder={val.title}
+                                                    isSetting={true}
+                                                    name={'title'}
+                                                    onChange={e => changeLinkTitleAndLinkAndIcon(e, index)}
+                                                />
+                                            </div>
+                                            <div className='link__href'>
+                                                <Input
+                                                    placeholder={val.link}
+                                                    isSetting={true}
+                                                    name={'link'}
+                                                    onChange={e => changeLinkTitleAndLinkAndIcon(e, index)}
+                                                />
+                                            </div>
                                             <Icon className='link__delete' size='24' type='stop' onClick={() => deleteLinkHandler(index)} />
                                         </div>
                                     </div>

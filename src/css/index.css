@@ -70,7 +70,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
 }
 
 .main__layout__wrapper-content {
@@ -98,7 +97,8 @@ body {
 }
 
 .profile,
-.settings {
+.settings,
+.button {
   /*links*/
   border-radius: var(--border_radius);
   box-shadow: var(--NOT_ACTIVE_SHADOW_2);
@@ -192,7 +192,8 @@ body {
   display: block;
 }
 
-.profile__bio, .profile__bio.profile__bio__settings  {
+.profile__bio,
+.profile__bio.profile__bio__settings {
   margin-top: 10px;
   margin-bottom: 10px;
   max-width: 100%;
@@ -210,12 +211,6 @@ body {
   margin-bottom: 30px;
 }
 
-/* 
-.profile__birthday {
-  content: url('../img/birthday.png');
-  height: 40px;
-} */
-
 .profile__birthday {
   font-size: 12px;
   color: var(--main_gray);
@@ -227,6 +222,10 @@ body {
 
 .link__icon img {
   height: 100%;
+  border-radius: var(--border_radius);
+  max-width: 50px;
+  overflow: hidden;
+  /* box-shadow: var(--NOT_ACTIVE_SHADOW_2); */
 }
 
 .link__wrapper {
@@ -251,7 +250,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
+  max-width: 100%;
   margin-left: 20px;
   position: relative;
 }
@@ -267,19 +266,22 @@ body {
 }
 
 .settings.active {
-  top: 345px;
 }
 
 .active {
   background: var(--gray);
 }
 
-.settings__save {
+.button a {
+  color: white;
+}
+
+.button-success {
   background: var(--green);
   width: 40%;
 }
 
-.settings__cancel {
+.button-danger {
   width: 40%;
   background-color: var(--red);
 }
@@ -298,8 +300,15 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
   position: sticky;
   top: 390px;
+}
+
+.no__sticky {
+  position: relative;
+  top: 0;
+  bottom: 0;
 }
 
 .link__delete {
@@ -310,27 +319,26 @@ body {
 }
 
 .is_settings {
-  animation: shake 5.82s cubic-bezier(.16,.07,.09,.47) infinite;
+  animation: shake 5.82s cubic-bezier(0.16, 0.07, 0.09, 0.47) infinite;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
 }
 
-.change__avatar, .change__cover {
+.change__avatar,
+.change__cover {
   text-align: center;
   display: flex;
   flex-direction: column;
   /* margin-top: 10px; */
   cursor: pointer;
-  opacity: .4;
+  opacity: 0.4;
 }
 
 .change__avatar {
   margin-left: 10px;
   margin-top: 80px;
 }
-
-
 
 /**** INPUT.JS ****/
 
@@ -382,4 +390,34 @@ body {
   border-width: 0;
   outline: none;
   box-shadow: var(--ACTIVE_SHADOW_2);
+}
+
+.link__icon.is_settings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.link__icon.is_settings img {
+  height: 50px;
+  width: 50px;
+}
+
+.link__select {
+  padding: 10px;
+  border: none;
+  border-radius: var(--border_radius);
+  font-size: 16px;
+  box-shadow: var(--NOT_ACTIVE_SHADOW_2);
+}
+
+.link__select:focus {
+  outline: none;
+}
+
+option[disabled] {
+  background-color: #343a40;
 }

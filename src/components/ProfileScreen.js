@@ -1,15 +1,93 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Icon from './Icon';
 
 const ProfileScreen = props => {
-    //props.canEdit??
+    const [state, setState] = useState({
+        name: '',
+        username: '',
+        bio: '',
+        birthday: '',
+        links: {
+            data: [
+                {
+                    title: 'заголовок',
+                    link: 'вставь ссылку',
+                    icon: '',
+                    type: 'link'
+                }
+            ]
+        },
+        avatar: '',
+        cover: ''
+    })
+
+    let arr = [
+        'phone',
+        'ok',
+        'gitlab',
+        'tinkoff',
+        'sberbank',
+        'yandexmoney',
+        'hh',
+        'vc',
+        'tj',
+        'dtf',
+        'habr',
+        'donationalerts',
+        'linkedin',
+        'devianart',
+        'behance',
+        'patreon',
+        'steam',
+        'twitch',
+        'skype',
+        'discord',
+        'gmail',
+        'mailru',
+        'yandexmail',
+        'email',
+        'pornhub',
+        'onlyfans',
+        'instagram',
+        'telegram',
+        'vk',
+        'facebook',
+        'viber',
+        'twitter',
+        'whatsapp',
+        'f3cool',
+        'youtube',
+        'github',
+        'tiktok',
+        'pikabu',
+        'snapchat',
+        'askfm',
+        'epicgames',
+        'origin',
+        'xboxlive',
+        'psn',
+        'battlenet',
+        'rockstar',
+        'uplay',
+    ]
+
+    let dat = []
+    for (let i in arr) {
+        dat.push({
+            title: 'zagolovok',
+            link: arr[i],
+            type: arr[i]
+        })
+    }
+
     useEffect(() => {
-        document.body.innerHTML +=
-            // '<style>.main__layout__wrapper-header { content:url("https://freehtmlthemes.ru/assets/images/articles/css-fon.jpg"); }</style>';
-            '<style>.main__layout__wrapper-header { background-image:url("https://freehtmlthemes.ru/assets/images/articles/css-fon.jpg"); }</style>';
-        document.body.innerHTML +=
-            '<style>.avatar { content:url("https://avatanplus.com/files/photos/original/5abb7079c84321626c2f5bdc.jpg"); }</style>';
+        setState({
+            ...state,
+            links: {
+                data: dat
+            }
+        })
     })
 
     return (
@@ -26,7 +104,7 @@ const ProfileScreen = props => {
                             <div className="profile__name-menu edit">
                                 <button className="dropbtn">•••</button>
                                 <div className="dropdown-content">
-                                    <a href="#">копировать ссылку</a>
+                                    <a href="https://twitter.com/admin">копировать ссылку</a>
                                     {/* <a href="#">Link 2</a> */}
                                     {/* <a href="#">Link 3</a> */}
                                 </div>
@@ -48,33 +126,24 @@ const ProfileScreen = props => {
                     </div>
 
                     <div className="left-links">
-                        <p><a href=''>Privacy Policy</a></p>
-                        <p><a href=''>SeeMyLinks.ru</a></p>
+                        <p><a href='https://twitter.com/admin'>Privacy Policy</a></p>
+                        <p><a href='https://twitter.com/admin'>SeeMyLinks.ru</a></p>
                         {/* <p>1</p> */}
                     </div>
                 </div>
                 <div style={{ width: '20px', height: '20px' }}></div>
                 <div className="main__layout__wrapper-content__main">
                     <div className="links">
-                        <div className='link__wrapper'>
-                            <div className='link__icon'>
-                                <img src='img/github.png' />
-                            </div>
-                            <div className='link__texts'>
-                                <div className='link__title'>Twitter</div>
-                                <a className='link__href' href="">https://twitter.com/admin</a>
-                            </div>
-                        </div>
                         {
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map(v => {
+                            state.links.data.map((v, index) => {
                                 return (
-                                    <div className='link__wrapper'>
+                                    <div className='link__wrapper' key={index}>
                                         <div className='link__icon'>
-                                            <img src='img/github.png' />
+                                            <img src={`img/${state.links.data[index].type}.png`} alt='icon' />
                                         </div>
                                         <div className='link__texts'>
-                                            <div className='link__title'>Twitter {v}</div>
-                                            <a className='link__href' href="">https://twitter.com/admin</a>
+                                            <div className='link__title'>{v.title}</div>
+                                            <a className='link__href' href={`${v.link}`}>{v.link}</a>
                                         </div>
                                     </div>
                                 )

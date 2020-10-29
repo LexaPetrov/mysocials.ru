@@ -7,7 +7,9 @@ const Icon = props => {
             type={props.type}
             style={{
                 'alignSelf': 'center',
-                verticalAlign: 'middle'
+                verticalAlign: 'middle',
+                cursor: 'pointer',
+                ...props.style
             }}
             onClick={props.onClick}
         >
@@ -19,6 +21,7 @@ const Icon = props => {
                 }}
                 alt='icon'
             />
+             { props.text}
         </span>
     )
 }

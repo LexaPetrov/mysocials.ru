@@ -1,3 +1,4 @@
+import Icon from "./Icon"
 
 const Input = props => {
 
@@ -11,7 +12,7 @@ const Input = props => {
                 value={props.value}
                 onChange={props.onChange}
             />
-            <span className='input__span'>{props.isSetting ? '✏' : null} {props.placeholder}</span>
+            <span className='input__span'>{props.isSetting ? <Icon type='edit' size='16' /> : null} {props.placeholder}</span>
         </label>
     )
 }

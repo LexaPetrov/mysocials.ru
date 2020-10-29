@@ -13,7 +13,7 @@ const Input = props => {
                 onChange={props.onChange}
                 {...props}
             />
-            <span className='input__span'>{props.isSetting ? <Icon type='edit' size='16' /> : null} {props.placeholder}</span>
+            <span className='input__span'>{props.issetting ? <Icon type='edit' size='16' /> : null} {props.inputplaceholder}</span>
         </label>
     )
 }

@@ -1,7 +1,9 @@
 import {
     STOP_LOADING,
     START_LOADING,
-    REGISTER
+    REGISTER,
+    SELECT_PROFILE,
+    LOGIN
 } from './actiontypes'
 
 const initialState = {
@@ -44,8 +46,24 @@ export const reducer = (state = initialState, action) => {
                     success: true
                 }
             }
-
-
+        case LOGIN:
+            console.log(action.payload.data.data[0]);
+            if (action.payload.data.data[0]) {
+                return {
+                    ...state,
+                    ...action.payload.data.data[0],
+                    success: true
+                }
+            } else {
+                return {
+                    ...state, success: false
+                }
+            }
+        case SELECT_PROFILE:
+            return {
+                ...state,
+                ...action.payload[0]
+            }
         case START_LOADING:
             return {
                 ...state,

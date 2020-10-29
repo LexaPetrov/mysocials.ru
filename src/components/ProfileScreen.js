@@ -1,100 +1,68 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer } from 'react'
 import { NavLink } from 'react-router-dom'
+import reducer from '../reducer/reducer';
 import Icon from './Icon';
 import Loader from './Loader'
+import * as actions from '../reducer/actions'
 
 const ProfileScreen = props => {
-    const [state, setState] = useState({
-        id: '',
-        password: '',
-        email: '',
-        name: '',
-        username: '',
-        bio: '',
-        birthday: '',
-        verified: false,
-        links: {
-            data: [
-                {
-                    title: '',
-                    link: '',
-                    icon: '',
-                    type: 'link'
-                }
-            ]
-        },
-        avatar: '',
-        cover: ''
-    })
+    const [state, dispatch] = useReducer(reducer, {})
 
-    let arr = [
-        'phone',
-        'ok',
-        'gitlab',
-        'tinkoff',
-        'sberbank',
-        'yandexmoney',
-        'hh',
-        'vc',
-        'tj',
-        'dtf',
-        'habr',
-        'donationalerts',
-        'linkedin',
-        'devianart',
-        'behance',
-        'patreon',
-        'steam',
-        'twitch',
-        'skype',
-        'discord',
-        'gmail',
-        'mailru',
-        'yandexmail',
-        'email',
-        'pornhub',
-        'onlyfans',
-        'instagram',
-        'telegram',
-        'vk',
-        'facebook',
-        'viber',
-        'twitter',
-        'whatsapp',
-        'f3cool',
-        'youtube',
-        'github',
-        'tiktok',
-        'pikabu',
-        'snapchat',
-        'askfm',
-        'epicgames',
-        'origin',
-        'xboxlive',
-        'psn',
-        'battlenet',
-        'rockstar',
-        'uplay',
-    ]
+    // let arr = [
+    //     'phone',
+    //     'ok',
+    //     'gitlab',
+    //     'tinkoff',
+    //     'sberbank',
+    //     'yandexmoney',
+    //     'hh',
+    //     'vc',
+    //     'tj',
+    //     'dtf',
+    //     'habr',
+    //     'donationalerts',
+    //     'linkedin',
+    //     'devianart',
+    //     'behance',
+    //     'patreon',
+    //     'steam',
+    //     'twitch',
+    //     'skype',
+    //     'discord',
+    //     'gmail',
+    //     'mailru',
+    //     'yandexmail',
+    //     'email',
+    //     'pornhub',
+    //     'onlyfans',
+    //     'instagram',
+    //     'telegram',
+    //     'vk',
+    //     'facebook',
+    //     'viber',
+    //     'twitter',
+    //     'whatsapp',
+    //     'f3cool',
+    //     'youtube',
+    //     'github',
+    //     'tiktok',
+    //     'pikabu',
+    //     'snapchat',
+    //     'askfm',
+    //     'epicgames',
+    //     'origin',
+    //     'xboxlive',
+    //     'psn',
+    //     'battlenet',
+    //     'rockstar',
+    //     'uplay',
+    // ]
 
-    let dat = []
-    for (let i in arr) {
-        dat.push({
-            title: 'zagolovok',
-            link: arr[i],
-            type: arr[i]
-        })
-    }
 
-    useEffect(() => { // eslint-disable-next-line react-hooks/exhaustive-deps
-        setState({
-            ...state,
-            links: {
-                data: dat
-            }
-        })
-    }, []) 
-
+    useEffect(() => {
+        let username = window.location.pathname.replace('/', '')
+        actions.select_profile(username, dispatch)
+    }, [])
     if(state.isLoading) return <Loader />;
     return (
         <>
@@ -141,7 +109,7 @@ const ProfileScreen = props => {
                 <div className="main__layout__wrapper-content__main">
                     <div className="links">
                         {
-                            state.links.data.map((v, index) => {
+                            state.links !== null && state.links !== undefined && state.links.data.map((v, index) => {
                                 return (
                                     <div className='link__wrapper' key={index}>
                                         <div className='link__icon'>

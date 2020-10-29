@@ -17,10 +17,8 @@ app.post('/api/register', (req, res) => {
         'username', 'email', 'password',
         `${req.body.username}`, `${req.body.email}`, `${req.body.password}`
     ]
-
-    const QUERY = `INSERT into users (??, ??, ??) VALUES (?,?,SHA1(?))`;
-
-    connection.query(QUERY, fields, (err, results) => {
+    const query = `INSERT into users (??, ??, ??) VALUES (?,?,SHA1(?))`;
+    connection.query(query, fields, (err, results) => {
         if (err) {
             return res.send(err)
         } else {
@@ -29,8 +27,66 @@ app.post('/api/register', (req, res) => {
     })
 })
 
+app.get('/api/login/:username_login/:password_login', (req, res) => {
+    console.log(req);
+    const fields = [
+        'username', `${req.params.username_login}`,
+        'password', `${req.params.password_login}`
+    ]
+    const query = `select * from users where ??=? and ??=SHA1(?)`;
+    connection.query(query, fields, (err, results) => {
+        if (err) {
+            return res.send(err)
+        } else {
+            return res.json({
+                data: results
+            })
+        }
+    })
+})
 
+app.get('/api/user/:username', (req, res) => {
+    const fields = [
+        'username', `${req.params.username}`
+    ]
+    const query = 'select * from users WHERE ??=?'
+    connection.query(query, fields, (err, results) => {
+        if (err) {
+            return res.send(err)
+        } else {
+            return res.json({
+                data: results
+            })
+        }
+    })
+})
 
+app.put('/api/save', (req, res) => {
+    const fields = [
+        'password', `${req.body.password}`,
+        'email', `${req.body.email}`,
+        'name', `${req.body.name}`,
+        'username', `${req.body.username}`,
+        'bio', `${req.body.bio}`,
+        'birthday', `${req.body.birthday}`,
+        'verified', `${req.body.verified}`,
+        'links', `${req.body.links}`,
+        'avatar', `${req.body.avatar}`,
+        'cover', `${req.body.cover}`,
+        'id', `${req.body.id}`
+    ]
+    const query = `UPDATE users SET
+                    ??=SHA1(?), ??=?, ??=?, ??=?,??=?
+                    ??=?, ??=?, ??=?, ??=?,??=?
+                    WHERE ??=?`
+    connection.query(query, fields, (err, results) => {
+        if (err) {
+            return res.send(err)
+        } else {
+            res.send('Saved')
+        }
+    })
+})
 
 
 

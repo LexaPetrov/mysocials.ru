@@ -30,15 +30,20 @@ const SettingsScreen = props => {
     })
 
     useEffect(() => {
-        if (state.cover.length > 666666) {
+        setState({
+            ...state,
+            ...props.location.state
+        })
+
+        if (state.cover !== null && state.cover.length > 666666) {
             alert('Размер изображения не должен превышать 600КБ.')
             setState({ ...state, cover: '' })
         }
-        else if (state.avatar.length > 666666) {
+        else if (state.avatar !== null && state.avatar.length > 666666) {
             alert('Размер изображения не должен превышать 600КБ.')
             setState({ ...state, avatar: '' })
         }
-    }, [state, state.cover, state.avatar])
+    }, [])
 
     const onInputChange = e => {
         setState({
@@ -76,7 +81,10 @@ const SettingsScreen = props => {
     }
 
     const addLinkHandler = () => {
-        let obj = { ...state.links }
+        let obj;
+        if (state.links === null) {
+            obj = { data: [] }
+        } else obj = { ...state.links }
         obj.data.push({
             title: '',
             link: '',
@@ -92,7 +100,7 @@ const SettingsScreen = props => {
     const changeLinkTitleAndLinkAndIcon = (e, index) => {
         let obj = { ...state.links }
         let _title = obj.data[index].title
-        if(e.target.name !== 'link'){
+        if (e.target.name !== 'link') {
             _title = e.target.value
         }
         obj.data[index] = {
@@ -105,8 +113,8 @@ const SettingsScreen = props => {
             links: obj
         })
     }
-
-    if(state.isLoading) return <Loader />;
+    console.log(state);
+    if (state.isLoading) return <Loader />;
     return (
         <>
             <div className="main__layout__wrapper-header" style={{
@@ -144,10 +152,10 @@ const SettingsScreen = props => {
                             <div className="profile__name-name">
                                 <Input
                                     type='text'
-                                    placeholder='Имя'
-                                    isSetting={true}
+                                    inputplaceholder='Имя'
+                                    issetting={"true"}
                                     name='name'
-                                    value={state.name}
+                                    value={state.name !== null ? state.name : ''}
                                     onChange={onInputChange}
                                 />
                             </div>
@@ -161,18 +169,18 @@ const SettingsScreen = props => {
                         <div className="profile__username">
                             <Input
                                 type='text'
-                                placeholder='@username'
-                                isSetting={true}
+                                inputplaceholder='@username'
+                                issetting={"true"}
                                 name='username'
                                 onChange={onInputChange}
-                                value={state.username}
+                                value={state.username !== null ? state.username : ''}
                             />
                         </div>
                         <div className="profile__bio profile__bio__settings">
                             <Input
                                 type='textarea'
-                                placeholder='bio'
-                                isSetting={true}
+                                inputplaceholder='bio'
+                                issetting={"true"}
                                 name='bio'
                                 onChange={onInputChange}
                             />
@@ -180,16 +188,16 @@ const SettingsScreen = props => {
                         <div className="profile__birthday">
                             <Input
                                 type='date'
-                                placeholder='Дата рождения'
-                                isSetting={true}
+                                inputplaceholder='Дата рождения'
+                                issetting={"true"}
                                 name='birthday'
                                 onChange={onInputChange}
                             />
                             <Input
                                 type='text'
-                                placeholder='сменить пароль'
-                                isSetting={true}
-                                minlength='8'
+                                inputplaceholder='сменить пароль'
+                                issetting={"true"}
+                                minLength='8'
                                 size='24'
                                 name='password'
                                 onChange={onInputChange}
@@ -203,7 +211,7 @@ const SettingsScreen = props => {
 
                     <div className='settings__buttons no__sticky'>
                         <div className='settings button button-success'>
-                            <NavLink to='/gfg'><Icon type='save' size='17' /> Сохранить</NavLink>
+                            <Icon type='save' size='17' /> Сохранить
                         </div>
 
                         <div className='settings button button-danger'>
@@ -231,7 +239,7 @@ const SettingsScreen = props => {
                             onClick={addLinkHandler}
                         />
                         {
-                            state.links.data !== undefined && state.links.data.map((val, index) => {
+                            state.links !== null && state.links.data !== undefined && state.links.data.map((val, index) => {
                                 return (
                                     <div className='link__wrapper is_settings' key={index}>
                                         <div className='link__icon is_settings'>
@@ -304,19 +312,19 @@ const SettingsScreen = props => {
                                         <div className='link__texts'>
                                             <div className='link__title'>
                                                 <Input
-                                                    placeholder={'заголовок'}
-                                                    isSetting={true}
+                                                    inputplaceholder={'заголовок'}
+                                                    issetting={"true"}
                                                     name={'title'}
-                                                    value={val.title}
+                                                    value={val.title !== null ? val.title : ''}
                                                     onChange={e => changeLinkTitleAndLinkAndIcon(e, index)}
                                                 />
                                             </div>
                                             <div className='link__href'>
                                                 <Input
-                                                    placeholder={'вставь ссылку'}
-                                                    isSetting={true}
+                                                    inputplaceholder={'вставь ссылку'}
+                                                    issetting={"true"}
                                                     name={'link'}
-                                                    value={val.link}
+                                                    value={val.link !== null ? val.link : ''}
                                                     onChange={e => changeLinkTitleAndLinkAndIcon(e, index)}
                                                 />
                                             </div>

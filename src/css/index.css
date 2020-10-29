@@ -265,9 +265,6 @@ body {
   top: 210px;
 }
 
-.settings.active {
-}
-
 .active {
   background: var(--gray);
 }
@@ -340,58 +337,6 @@ body {
   margin-top: 80px;
 }
 
-/**** INPUT.JS ****/
-
-.input__label {
-  margin: 15px 0;
-  position: relative;
-  display: inline-block;
-}
-
-.input__span {
-  padding: 10px;
-  margin-top: 2px;
-  pointer-events: none;
-  position: absolute;
-  left: 0;
-  /* top: 0; */
-  transition: 0.2s;
-  transition-timing-function: ease;
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-  opacity: 0.5;
-  font-weight: normal;
-  font-size: 18px;
-  width: 100%;
-}
-
-.input__input {
-  padding: 10px;
-  border: none;
-  border-radius: var(--border_radius);
-  font-size: 16px;
-  box-shadow: var(--NOT_ACTIVE_SHADOW_2);
-}
-
-.input__input:focus + .input__span,
-.input__input:not(:placeholder-shown) + .input__span {
-  opacity: 1;
-  transform: scale(0.75) translateY(-100%) translateX(-30px);
-}
-
-/* For IE Browsers*/
-.input__input:focus + .input__span,
-.input__input:not(:-ms-input-placeholder) + .input__span {
-  opacity: 1;
-  transform: scale(0.75) translateY(-100%) translateX(-30px);
-}
-
-.input__input:focus {
-  border: none;
-  border-width: 0;
-  outline: none;
-  box-shadow: var(--ACTIVE_SHADOW_2);
-}
-
 .link__icon.is_settings {
   display: flex;
   flex-direction: row;
@@ -420,4 +365,10 @@ body {
 
 option[disabled] {
   background-color: #343a40;
+  color: white;
+}
+
+option {
+  padding: 10px;
+  height: 50px;
 }

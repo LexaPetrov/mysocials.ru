@@ -16,8 +16,8 @@ const SettingsScreen = props => {
         links: {
             data: [
                 {
-                    title: 'заголовок',
-                    link: 'вставь ссылку',
+                    title: '',
+                    link: '',
                     icon: '',
                     type: 'link'
                 }
@@ -78,8 +78,8 @@ const SettingsScreen = props => {
     const addLinkHandler = () => {
         let obj = { ...state.links }
         obj.data.push({
-            title: 'заголовок',
-            link: 'вставь ссылку',
+            title: '',
+            link: '',
             icon: '',
             type: 'link'
         })
@@ -91,9 +91,14 @@ const SettingsScreen = props => {
 
     const changeLinkTitleAndLinkAndIcon = (e, index) => {
         let obj = { ...state.links }
+        let _title = obj.data[index].title
+        if(e.target.name !== 'link'){
+            _title = e.target.value
+        }
         obj.data[index] = {
             ...obj.data[index],
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            title: _title
         }
         setState({
             ...state,
@@ -180,7 +185,7 @@ const SettingsScreen = props => {
                                 name='birthday'
                                 onChange={onInputChange}
                             />
-                              <Input
+                            <Input
                                 type='text'
                                 placeholder='сменить пароль'
                                 isSetting={true}
@@ -230,47 +235,42 @@ const SettingsScreen = props => {
                                 return (
                                     <div className='link__wrapper is_settings' key={index}>
                                         <div className='link__icon is_settings'>
-                                            <img  src={`img/${state.links.data[index].type}.png`} alt='icon' />
+                                            <img src={`img/${state.links.data[index].type}.png`} alt='icon' />
                                             <select name='type' className='link__select' value='иконка' onChange={e => changeLinkTitleAndLinkAndIcon(e, index)}>
                                                 <option value='иконка' disabled="disabled">иконка</option>
                                                 <option value="phone">Телефон</option>
-                                                <option value="instagram">Instagram</option>
+                                                {/*  */}
+                                                <option value='мессенджеры' disabled="disabled">мессенджеры</option>
                                                 <option value="telegram">Telegram</option>
+                                                <option value="viber">Viber</option>
+                                                <option value="whatsapp">WhatsApp</option>
+                                                {/*  */}
+                                                <option value='соцсети' disabled="disabled">соцсети</option>
                                                 <option value="vk">VK</option>
                                                 <option value="facebook">Facebook</option>
-                                                <option value="viber">Viber</option>
-                                                <option value="twitter">Twitter</option>
-                                                <option value="whatsapp">WhatsApp</option>
-                                                <option value="f3cool">F3.cool</option>
-                                                <option value="youtube">YouTube</option>
-                                                <option value="github" >Github</option>
+                                                <option value="instagram">Instagram</option>
+                                                <option value="ok">Одноклассники</option>
                                                 <option value="tiktok">TikTok</option>
+                                                <option value="askfm">Ask.fm</option>
                                                 <option value="pikabu">Pikabu</option>
                                                 <option value="snapchat">Snapchat</option>
-                                                <option value="askfm">Ask.fm</option>
-                                                <option value="ok">Одноклассники</option>
-                                                <option value="gitlab">Gitlab</option>
-                                                <option value="tinkoff">Tinkoff</option>
-                                                <option value="sberbank">Сбербанк</option>
-                                                <option value="yandexmoney">ЮMoney</option>
-                                                
+                                                <option value="twitter">Twitter</option>
+                                                <option value="f3cool">F3.cool</option>
+                                                <option value="youtube">YouTube</option>
+                                                {/*  */}
+                                                <option value='соцсети' disabled="disabled">работа, новости, IT</option>
                                                 <option value="hh">Head Hunter</option>
                                                 <option value="vc">VC.ru</option>
                                                 <option value="tj">tjournal</option>
                                                 <option value="dtf">dtf.ru</option>
                                                 <option value="habr">Habr</option>
-
-
-                                               
-                                                <option value="donationalerts">Donation Alerts</option>
                                                 <option value="linkedin">LinkedIn</option>
+                                                <option value="github" >Github</option>
+                                                <option value="gitlab">Gitlab</option>
                                                 <option value="devianart">Devianart</option>
                                                 <option value="behance">Behance</option>
-                                                <option value="patreon">Patreon</option>
-
-
-
-                                                <option value='игры' disabled="disabled">Игры</option>
+                                                {/*  */}
+                                                <option value='игры' disabled="disabled">игры, стримы, связь</option>
                                                 <option value="steam">Steam</option>
                                                 <option value="epicgames">Epic Games</option>
                                                 <option value="origin">Origin</option>
@@ -278,18 +278,24 @@ const SettingsScreen = props => {
                                                 <option value="psn">PSN</option>
                                                 <option value="battlenet">Battle.net</option>
                                                 <option value="rockstar">RockstarSocial Club</option>
-                                                <option value="uplay">Upla</option>
+                                                <option value="uplay">Uplay</option>
                                                 <option value="twitch">Twitch</option>
                                                 <option value="skype">Skype</option>
                                                 <option value="discord">Discord</option>
-
-
-                                                <option value='почта' disabled="disabled">Почта</option>
+                                                {/*  */}
+                                                <option value='почта' disabled="disabled">почта</option>
                                                 <option value="gmail">G-mail</option>
                                                 <option value="mailru">Mail.ru почта</option>
                                                 <option value="yandexmail">Yandex почта</option>
                                                 <option value="email">E-mail</option>
-
+                                                {/*  */}
+                                                <option value='финансы' disabled="disabled">финансы</option>
+                                                <option value="tinkoff">Tinkoff</option>
+                                                <option value="sberbank">Сбербанк</option>
+                                                <option value="yandexmoney">ЮMoney</option>
+                                                <option value="donationalerts">Donation Alerts</option>
+                                                <option value="patreon">Patreon</option>
+                                                {/*  */}
                                                 <option value='18+' disabled="disabled">18+</option>
                                                 <option value="pornhub">Pornhub</option>
                                                 <option value="onlyfans">Onlyfans</option>
@@ -298,17 +304,19 @@ const SettingsScreen = props => {
                                         <div className='link__texts'>
                                             <div className='link__title'>
                                                 <Input
-                                                    placeholder={val.title}
+                                                    placeholder={'заголовок'}
                                                     isSetting={true}
                                                     name={'title'}
+                                                    value={val.title}
                                                     onChange={e => changeLinkTitleAndLinkAndIcon(e, index)}
                                                 />
                                             </div>
                                             <div className='link__href'>
                                                 <Input
-                                                    placeholder={val.link}
+                                                    placeholder={'вставь ссылку'}
                                                     isSetting={true}
                                                     name={'link'}
+                                                    value={val.link}
                                                     onChange={e => changeLinkTitleAndLinkAndIcon(e, index)}
                                                 />
                                             </div>

@@ -7,7 +7,6 @@ import {
 } from './actiontypes'
 
 const initialState = {
-    id: '',
     password: '',
     email: '',
     name: '',
@@ -20,7 +19,6 @@ const initialState = {
             {
                 title: '',
                 link: '',
-                icon: '',
                 type: 'link'
             }
         ]
@@ -47,7 +45,6 @@ export const reducer = (state = initialState, action) => {
                 }
             }
         case LOGIN:
-            console.log(action.payload.data.data[0]);
             if (action.payload.data.data[0]) {
                 return {
                     ...state,
@@ -62,7 +59,8 @@ export const reducer = (state = initialState, action) => {
         case SELECT_PROFILE:
             return {
                 ...state,
-                ...action.payload[0]
+                ...action.payload[0],
+                links: JSON.parse(action.payload[0].links)
             }
         case START_LOADING:
             return {

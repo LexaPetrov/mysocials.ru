@@ -1,5 +1,4 @@
 import { useEffect, useReducer } from 'react'
-import { NavLink } from 'react-router-dom'
 import reducer from '../reducer/reducer';
 import Icon from './Icon';
 import Loader from './Loader'
@@ -58,46 +57,63 @@ const ProfileScreen = props => {
     //     'uplay',
     // ]
 
-
     useEffect(() => {
         let username = window.location.pathname.replace('/', '')
         actions.select_profile(username, dispatch)
     }, [])
-    if(state.isLoading) return <Loader />;
+
+    const copyToClipboard = () => {
+        let textField = document.createElement('textarea')
+        textField.innerText = window.location.href
+        document.body.appendChild(textField)
+        textField.select()
+        document.execCommand('copy')
+        textField.remove()
+    }
+
+    console.log(state);
+
+    if (state.isLoading) return <Loader />;
     return (
         <>
-            <div className="main__layout__wrapper-header"></div>
+            <div className="main__layout__wrapper-header" style={{
+                background: state.cover !== null && state.cover !== undefined && state.cover.includes('data') && state.cover !== '' && state.cover !== 'null' ? `url(${state.cover})` : `${state.cover}`
+            }}></div>
             <div className="main__layout__wrapper-content">
                 <div className="main__layout__wrapper-content__left">
-                    <div className='avatar'></div>
+                    <div className='avatar' style={{
+                        background: state.avatar !== null && state.avatar !== undefined && state.avatar.includes('data') && state.avatar !== '' && state.avatar !== 'null' ? `url(${state.avatar})` : `${state.avatar}`,
+                    }}></div>
                     <div className="profile">
                         <div className="profile__name">
                             <div className="profile__name-name">
-                                Admin Admin
-                       </div>
+                                {state.name} {state.verified ? <Icon type='verified' size='20' /> : null}
+                            </div>
                             <div className="profile__name-menu edit">
                                 <button className="dropbtn">•••</button>
                                 <div className="dropdown-content">
-                                    <a href="https://twitter.com/admin">копировать ссылку</a>
-                                    {/* <a href="#">Link 2</a> */}
-                                    {/* <a href="#">Link 3</a> */}
+                                    <Icon onClick={copyToClipboard} text='Копировать ссылку' />
                                 </div>
                             </div>
                         </div>
                         <div className="profile__username">
-                            @admin
-                   </div>
-                        <div className="profile__bio">
-                            Web-scraping (Node.js puppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profpuppeteer/cheerio, Python beautifulsoup)profile__bioprofile__bioprofile__bioprofile__bioprofile__bioprofile__bio
-                   </div>
-                        <div className="profile__birthday">
-                            <Icon type='birthday' size='16' /> 01.01.1970
-                   </div>
+                            {'@' + state.username}
+                        </div>
+                        {
+                            state.bio !== null && state.bio !== 'null' && <div className="profile__bio">
+                                {state.bio}
+                            </div>
+                        }
+                        {
+                            state.birthday !== null && state.birthday !== 'null' && <div className="profile__birthday">
+                                <Icon type='birthday' size='16' /> {state.birthday}
+                            </div>
+                        }
                     </div>
 
-                    <div className='settings'>
+                    {/* <div className='settings'>
                         <NavLink to='/settings'><Icon type='settings' size='17' /> Настройки</NavLink>
-                    </div>
+                    </div> */}
 
                     <div className="left-links">
                         <p><a href='https://twitter.com/admin'>Privacy Policy</a></p>
@@ -109,7 +125,7 @@ const ProfileScreen = props => {
                 <div className="main__layout__wrapper-content__main">
                     <div className="links">
                         {
-                            state.links !== null && state.links !== undefined && state.links.data.map((v, index) => {
+                            state.links !== 'null' && state.links !== null && state.links !== undefined && state.links.data.map((v, index) => {
                                 return (
                                     <div className='link__wrapper' key={index}>
                                         <div className='link__icon'>

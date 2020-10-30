@@ -11,15 +11,12 @@
     .link__wrapper.is_settings {
       flex-direction: column;
     }
+}
 
-    /* .link__delete {
-      right: 20px;
-      top: -5px;
-    } */
-
-    /* .link__href, .link__title {
-      width: 200px;
-    } */
+@media screen and (max-width: 321px){
+ .link__texts {
+   overflow: hidden;
+ }
 }
 
 @keyframes shake {

@@ -13,15 +13,17 @@ const Icon = props => {
             }}
             onClick={props.onClick}
         >
-            <img
-                src={'/img/' + props.type + '.png'}
-                style={{
-                    width: props.size + 'px',
-                    height: props.size + 'px'
-                }}
-                alt='icon'
-            />
-             { props.text}
+            {
+                props.type && <img
+                    src={'/img/' + props.type + '.png'}
+                    style={{
+                        width: props.size + 'px',
+                        height: props.size + 'px'
+                    }}
+                    alt='icon'
+                />
+            }
+            <span style={{ marginLeft: '10px' }}>{props.text}</span>
         </span>
     )
 }

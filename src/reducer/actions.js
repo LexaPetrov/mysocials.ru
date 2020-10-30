@@ -2,7 +2,7 @@
 import {
     REGISTER, LOGIN,
     START_LOADING, STOP_LOADING,
-    SELECT_PROFILE, SAVE_PROFILE
+    SELECT_PROFILE, //SAVE_PROFILE
 } from './actiontypes'
 
 export const register = (username, email, password, dispatch) => {
@@ -62,15 +62,19 @@ export const select_profile = (username, dispatch) => {
 }
 
 export const save_profile = (data, dispatch) => {
+    console.log('data', JSON.stringify(data));
     dispatch({ type: START_LOADING })
     fetch('http://localhost:4000/api/save', {
         mode: 'cors',
         method: 'put',
-        body: JSON.stringify(data)
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ data })
     }).then(res => {
         return res.json()
     }).then(res => {
-        console.log(res);
+        console.log(1, res);
         // dispatch({type: SAVE_PROFILE, payload: res.data})
     }).finally(() => {
         dispatch({ type: STOP_LOADING })

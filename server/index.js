@@ -28,7 +28,6 @@ app.post('/api/register', (req, res) => {
 })
 
 app.get('/api/login/:username_login/:password_login', (req, res) => {
-    console.log(req);
     const fields = [
         'username', `${req.params.username_login}`,
         'password', `${req.params.password_login}`
@@ -63,22 +62,25 @@ app.get('/api/user/:username', (req, res) => {
 
 app.put('/api/save', (req, res) => {
     const fields = [
-        'password', `${req.body.password}`,
-        'email', `${req.body.email}`,
-        'name', `${req.body.name}`,
-        'username', `${req.body.username}`,
-        'bio', `${req.body.bio}`,
-        'birthday', `${req.body.birthday}`,
-        'verified', `${req.body.verified}`,
-        'links', `${req.body.links}`,
-        'avatar', `${req.body.avatar}`,
-        'cover', `${req.body.cover}`,
-        'id', `${req.body.id}`
+        'password', `${req.body.data.password}`,
+        'email', `${req.body.data.email}`,
+        'name', `${req.body.data.name}`,
+        'username', `${req.body.data.username}`,
+        'bio', `${req.body.data.bio}`,
+        'birthday', `${req.body.data.birthday}`,
+        'verified', `${req.body.data.verified}`,
+        'links', JSON.stringify(req.body.data.links),
+        'avatar', `${req.body.data.avatar}`,
+        'cover', `${req.body.data.cover}`,
+        'id', `${req.body.data.id}`
     ]
-    const query = `UPDATE users SET
-                    ??=SHA1(?), ??=?, ??=?, ??=?,??=?
-                    ??=?, ??=?, ??=?, ??=?,??=?
-                    WHERE ??=?`
+    let regex = new RegExp(/^[a-fA-F0-9]{40}$/g)
+    let query = ''
+    if (regex.test(`${req.body.data.password}`)) {
+        query = `UPDATE users SET ??=?, ??=?, ??=?, ??=?,??=?, ??=?, ??=?, ??=?, ??=?,??=? WHERE ??=?`
+    } else {
+        query = `UPDATE users SET ??=SHA1(?), ??=?, ??=?, ??=?,??=?, ??=?, ??=?, ??=?, ??=?,??=? WHERE ??=?`
+    }
     connection.query(query, fields, (err, results) => {
         if (err) {
             return res.send(err)

@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Icon from './Icon'
 import Input from './Input'
 import Loader from './Loader'
+import * as actions from '../reducer/actions'
+import reducer from '../reducer/reducer'
+import { backgrounds } from '../utils/backgrounds.js'
 
 
 const SettingsScreen = props => {
-    const [state, setState] = useState({
-        id: '',
+    const [state, dispatch] = useReducer(reducer, { ...props.location.state })
+    const [settings, setSettings] = useState({
         password: '',
         email: '',
         name: '',
@@ -20,7 +23,6 @@ const SettingsScreen = props => {
                 {
                     title: '',
                     link: '',
-                    icon: '',
                     type: 'link'
                 }
             ]
@@ -30,24 +32,29 @@ const SettingsScreen = props => {
     })
 
     useEffect(() => {
-        setState({
-            ...state,
-            ...props.location.state
-        })
-
-        if (state.cover !== null && state.cover.length > 666666) {
-            alert('Размер изображения не должен превышать 600КБ.')
-            setState({ ...state, cover: '' })
+        try {
+            setSettings({
+                ...settings,
+                ...props.location.state,
+                links: props.location.state.links !== undefined && JSON.parse(props.location.state.links),
+            })
+        } catch {
+            window.location = '/'
         }
-        else if (state.avatar !== null && state.avatar.length > 666666) {
+
+        if (settings.cover !== null && settings.cover.length > 666666) {
             alert('Размер изображения не должен превышать 600КБ.')
-            setState({ ...state, avatar: '' })
+            setSettings({ ...settings, cover: '' })
+        }
+        else if (settings.avatar !== null && settings.avatar.length > 666666) {
+            alert('Размер изображения не должен превышать 600КБ.')
+            setSettings({ ...settings, avatar: '' })
         }
     }, [])
 
     const onInputChange = e => {
-        setState({
-            ...state,
+        setSettings({
+            ...settings,
             [e.target.name]: e.target.value
         })
     }
@@ -58,11 +65,11 @@ const SettingsScreen = props => {
 
         if (param === 'cover') {
             reader.onloadend = function () {
-                setState({ ...state, cover: reader.result })
+                setSettings({ ...settings, cover: reader.result })
             }
         } else {
             reader.onloadend = function () {
-                setState({ ...state, avatar: reader.result })
+                setSettings({ ...settings, avatar: reader.result })
             }
         }
 
@@ -72,33 +79,38 @@ const SettingsScreen = props => {
     }
 
     const deleteLinkHandler = (index) => {
-        let arr = [...state.links.data]
+        let arr = [...settings.links.data]
         arr.splice(index, 1)
-        setState({
-            ...state,
+        setSettings({
+            ...settings,
             links: { data: arr }
         })
     }
 
+    console.log(settings);
+
     const addLinkHandler = () => {
-        let obj;
-        if (state.links === null) {
+        let obj = { data: [] }
+        if (settings.links === null || settings.links === 'null') {
             obj = { data: [] }
-        } else obj = { ...state.links }
+        } else obj = { ...settings.links }
+        if (!obj.data) {
+            obj = { data: [] }
+        }
+        console.log('obj - ', obj);
         obj.data.push({
             title: '',
             link: '',
-            icon: '',
             type: 'link'
         })
-        setState({
-            ...state,
+        setSettings({
+            ...settings,
             links: obj
         })
     }
 
     const changeLinkTitleAndLinkAndIcon = (e, index) => {
-        let obj = { ...state.links }
+        let obj = { ...settings.links }
         let _title = obj.data[index].title
         if (e.target.name !== 'link') {
             _title = e.target.value
@@ -108,25 +120,44 @@ const SettingsScreen = props => {
             [e.target.name]: e.target.value,
             title: _title
         }
-        setState({
-            ...state,
+        setSettings({
+            ...settings,
             links: obj
         })
     }
-    console.log(state);
+
+    const onSaveClickHandler = (e) => {
+        e.preventDefault()
+        actions.save_profile(settings, dispatch)
+    }
+    const changeBackground = e => {
+        setSettings({
+            ...settings,
+            [e.target.name]: e.target.value
+        })
+    }
     if (state.isLoading) return <Loader />;
     return (
         <>
             <div className="main__layout__wrapper-header" style={{
-                backgroundImage: state.cover !== '' ? `url(${state.cover})` : null,
-                backgroundColor: 'white'
+                background: settings.cover !== null && settings.cover.includes('data') && settings.cover !== '' && settings.cover !== 'null' ? `center / contain url(${settings.cover})` : `${settings.cover}`,
             }}>
                 <label className='change__cover' htmlFor='img__Cover'>
                     <Icon type='camera' size='40' />
                     <input type="file" id="img__Cover" name='img__Cover' style={{ display: 'none' }} onChange={(e) => encodeImageFileAsURL(e, 'cover')} />
                 обложка
                 </label>
-                <label className='change__cover' onClick={() => setState({ ...state, cover: '' })}>
+                <select className='cover__background__select' name='cover' value='цвет' onChange={e => changeBackground(e)}>
+                    <option value='цвет' disabled="disabled">цвет</option>
+                    {
+                        backgrounds.map((v, i) => {
+                            return (
+                                <option value={v} key={i}>Цвет {i + 1}</option>
+                            )
+                        })
+                    }
+                </select>
+                <label className='change__cover' onClick={() => setSettings({ ...settings, cover: '' })}>
                     <Icon type='stop' size='40' />
                 удалить обложку
                 </label>
@@ -134,15 +165,25 @@ const SettingsScreen = props => {
             <div className="main__layout__wrapper-content">
                 <div className="main__layout__wrapper-content__left">
                     <div className='avatar' style={{
-                        backgroundImage: state.avatar !== '' ? `url(${state.avatar})` : '',
-                        backgroundColor: 'white'
+                        background: settings.avatar !== null && settings.avatar.includes('data') && settings.avatar !== '' && settings.avatar !== 'null' ? `url(${settings.avatar})` : `${settings.avatar}`,
                     }}>
+                        <select className='avatar__background__select' name='avatar' value='цвет' onChange={e => changeBackground(e)}>
+                            <option value='цвет' disabled="disabled">цвет</option>
+                            {
+                                backgrounds.map((v, i) => {
+                                    return (
+                                        <option value={v} key={i}>Цвет {i + 1}</option>
+                                    )
+                                })
+                            }
+                        </select>
                         <label className='change__avatar' htmlFor='img__avatar'>
                             <Icon type='camera' size='30' />
                             <input type="file" id="img__avatar" name='img__avatar' style={{ display: 'none' }} onChange={(e) => encodeImageFileAsURL(e, 'avatar')} />
                             фото
                         </label>
-                        <label className='change__avatar' onClick={() => setState({ ...state, avatar: '' })}>
+
+                        <label className='change__avatar' onClick={() => setSettings({ ...settings, avatar: '' })}>
                             <Icon type='stop' size='30' />
                         удалить
                         </label>
@@ -155,7 +196,7 @@ const SettingsScreen = props => {
                                     inputplaceholder='Имя'
                                     issetting={"true"}
                                     name='name'
-                                    value={state.name !== null ? state.name : ''}
+                                    value={settings.name !== null ? settings.name : ''}
                                     onChange={onInputChange}
                                 />
                             </div>
@@ -173,8 +214,9 @@ const SettingsScreen = props => {
                                 issetting={"true"}
                                 name='username'
                                 onChange={onInputChange}
-                                value={state.username !== null ? state.username : ''}
+                                value={settings.username !== null ? settings.username : ''}
                             />
+                            <a href={'https://seemylinks.ru/' + settings.username}>{'https://seemylinks.ru/' + settings.username}</a>
                         </div>
                         <div className="profile__bio profile__bio__settings">
                             <Input
@@ -211,11 +253,21 @@ const SettingsScreen = props => {
 
                     <div className='settings__buttons no__sticky'>
                         <div className='settings button button-success'>
-                            <Icon type='save' size='17' /> Сохранить
+                            <Icon type='save' size='17' text='Сохранить' onClick={e => onSaveClickHandler(e)} style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                color: 'white'
+                            }} />
                         </div>
 
                         <div className='settings button button-danger'>
-                            <NavLink to='/dsxef'><Icon type='cross' size='17' /> Отмена</NavLink>
+                            <Icon type='cross' size='17' text='Отмена' style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                color: 'white'
+                            }} />
                         </div>
                     </div>
 
@@ -239,11 +291,11 @@ const SettingsScreen = props => {
                             onClick={addLinkHandler}
                         />
                         {
-                            state.links !== null && state.links.data !== undefined && state.links.data.map((val, index) => {
+                            settings.links !== null && settings.links.data !== undefined && settings.links.data.map((val, index) => {
                                 return (
                                     <div className='link__wrapper is_settings' key={index}>
                                         <div className='link__icon is_settings'>
-                                            <img src={`img/${state.links.data[index].type}.png`} alt='icon' />
+                                            <img src={`img/${settings.links.data[index].type}.png`} alt='icon' />
                                             <select name='type' className='link__select' value='иконка' onChange={e => changeLinkTitleAndLinkAndIcon(e, index)}>
                                                 <option value='иконка' disabled="disabled">иконка</option>
                                                 <option value="phone">Телефон</option>

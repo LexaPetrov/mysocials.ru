@@ -44,6 +44,20 @@ app.get('/api/login/:username_login/:password_login', (req, res) => {
     })
 })
 
+app.get('/api/getcount', (req, res) => {
+    connection.query('SELECT COUNT(*) FROM users;', (err, results) => {
+        if (err) {
+            return res.send(err)
+        } else {
+            return res.json(
+                results
+            )
+        }
+    })
+})
+
+
+
 app.get('/api/user/:username', (req, res) => {
     const fields = [
         'username', `${req.params.username}`

@@ -73,6 +73,35 @@ const ProfileScreen = props => {
 
     console.log(state);
 
+    const formatLink = (type, link) => {
+        switch (type) {
+            case 'gmail': case 'mailru': case 'email': case 'yandexmail':
+                return (
+                    <a className='link__href' href={`mailto:${link}`}>{link}</a>
+                )
+            case 'viber':
+                return (
+                    <a className='link__href' href={`viber://add?number=${link}`}>{link}</a>
+                )
+            case 'whatsapp':
+                return (
+                    <a className='link__href' href={`https://api.whatsapp.com/send?phone=${link}`}>{link}</a>
+                )
+            case 'skype':
+                return (
+                    <a className='link__href' href={`skype:${link}?chat`}>{link}</a>
+                )
+            case 'phone':
+                return (
+                    <a className='link__href' href={`tel:${link}`}>{link}</a>
+                )
+            default:
+                return (
+                    <a className='link__href' href={`${link}`}>{link}</a>
+                )
+        }
+    }
+
     if (state.isLoading) return <Loader />;
     return (
         <>
@@ -133,7 +162,7 @@ const ProfileScreen = props => {
                                         </div>
                                         <div className='link__texts'>
                                             <div className='link__title'>{v.title}</div>
-                                            <a className='link__href' href={`${v.link}`}>{v.link}</a>
+                                            {formatLink(v.type, v.link)}
                                         </div>
                                     </div>
                                 )

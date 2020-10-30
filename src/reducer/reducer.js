@@ -3,7 +3,8 @@ import {
     START_LOADING,
     REGISTER,
     SELECT_PROFILE,
-    LOGIN
+    LOGIN,
+    GET_COUNT
 } from './actiontypes'
 
 const initialState = {
@@ -61,6 +62,11 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload[0],
                 links: JSON.parse(action.payload[0].links)
+            }
+        case GET_COUNT:
+            return {
+                ...state,
+                count: action.payload[0]
             }
         case START_LOADING:
             return {

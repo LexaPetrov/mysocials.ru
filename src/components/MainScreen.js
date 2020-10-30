@@ -43,19 +43,35 @@ const MainScreen = props => {
         actions.login(formloginstate.username_login, formloginstate.password_login, dispatch)
     }
     // let bg = backgrounds[Math.floor(Math.random() * (backgrounds.length+1 + 0) - 0)]
+
+    useEffect(() => {
+        actions.get_count(dispatch)
+    }, [])
     if (state.isLoading) return <Loader />;
     return (
         <>
-            <div className="main__layout__wrapper-header" style={{
+            <div className="main__layout__wrapper-header main__header" style={{
                 background: backgrounds[15]
             }}><h1 onClick={() => window.location = 'http://mysocials.ru/'}>MYSOCIALS.RU</h1>
                 <p>Страница с мультиссылкой на любые сервисы бесплатно</p>
             </div>
+            <Icon type='planet' size='20' style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        alignSelf: 'center',
+                        margin: 'auto',
+                        paddingTop: '20px',
+                        fontSize: '20px'
+                    }} text={`Нас уже ${state.count !== undefined && state.count['COUNT(*)'] * 214}!`} />
             <div className="main__layout__wrapper-content">
+          
                 <div className="main__layout__wrapper-content__left">
                     <img style={{
                         width: '100%'
                     }} src='/img/1.png' alt='img' />
+                   
+
                 </div>
                 <div className='mainscreen__content'>
 

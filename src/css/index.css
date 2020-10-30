@@ -68,8 +68,12 @@ body {
   background-position: center;
   background-repeat: repeat-x;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
+}
+
+.main__header {
+  flex-direction: column;
 }
 
 .main__layout__wrapper-content {

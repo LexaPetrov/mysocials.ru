@@ -136,6 +136,17 @@ const SettingsScreen = props => {
             [e.target.name]: e.target.value
         })
     }
+
+    const generatePlaceholder = (type) => {
+        switch (type) {
+            case 'gmail': case 'mailru': case 'email': case 'yandexmail': return 'адрес почты'
+            case 'viber': case 'whatsapp': case 'phone': return 'номер телефона'
+            case 'skype': return 'логин skype'
+            default:
+                return 'вставь ссылку'
+        }
+    }
+
     if (state.isLoading) return <Loader />;
     return (
         <>
@@ -373,7 +384,7 @@ const SettingsScreen = props => {
                                             </div>
                                             <div className='link__href'>
                                                 <Input
-                                                    inputplaceholder={'вставь ссылку'}
+                                                    inputplaceholder={generatePlaceholder(val.type)}
                                                     issetting={"true"}
                                                     name={'link'}
                                                     value={val.link !== null ? val.link : ''}

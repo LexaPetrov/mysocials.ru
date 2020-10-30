@@ -2,7 +2,7 @@
 import {
     REGISTER, LOGIN,
     START_LOADING, STOP_LOADING,
-    SELECT_PROFILE, //SAVE_PROFILE
+    SELECT_PROFILE, GET_COUNT
 } from './actiontypes'
 
 export const register = (username, email, password, dispatch) => {
@@ -74,9 +74,17 @@ export const save_profile = (data, dispatch) => {
     }).then(res => {
         return res.json()
     }).then(res => {
-        console.log(1, res);
         // dispatch({type: SAVE_PROFILE, payload: res.data})
     }).finally(() => {
         dispatch({ type: STOP_LOADING })
     })
+}
+
+export const get_count = (dispatch) => {
+    fetch('http://localhost:4000/api/getcount')
+        .then(res => res.json())
+        .then((res) => {
+            dispatch({type: GET_COUNT, payload: res})
+        })
+        .catch(err => console.log(err))
 }

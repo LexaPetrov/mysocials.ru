@@ -69,18 +69,18 @@ const MainScreen = props => {
                 <div className="main__layout__wrapper-content__left">
                     <img style={{
                         width: '100%'
-                    }} src='/img/1.png' alt='img' />
+                    }} src={`/img/${window.matchMedia('(prefers-color-scheme: dark)').matches ? '2' : '1'}.png`} alt='img' />
                    
 
                 </div>
                 <div className='mainscreen__content'>
-
+                    <p style={{textAlign: 'center'}}>{!loginBtn ? 'Регистрация' : 'Авторизация'}</p>
                     {
                         !loginBtn && <form onSubmit={onSubmitRegister}>
                             <Input inputplaceholder='username' type='text' required value={formstate.username} onChange={e => onFormChange(e)} name='username' />
                             <Input inputplaceholder='email' type='email' required value={formstate.email} onChange={e => onFormChange(e)} name='email' />
                             <Input inputplaceholder='password' type='password' required value={formstate.password} onChange={e => onFormChange(e)} name='password' minLength='8' />
-                            <button type='submit' className='button button-success register_login' disabled={[formstate.username, formstate.email, formstate.password].some(v => v.length === 0)} >register</button>
+                            <button type='submit' className='button button-success register_login' disabled={[formstate.username, formstate.email, formstate.password].some(v => v.length === 0)} >Создать аккаунт</button>
                             {
                                 state.success !== undefined && !state.success && <Icon size='14' style={{
                                     display: 'flex',
@@ -116,7 +116,7 @@ const MainScreen = props => {
                         flexDirection: 'row',
                         alignItems: 'center',
                         alignSelf: 'center'
-                    }} onClick={() => setLoginBtn(!loginBtn)} text={loginBtn ? 'Register new acount' : 'Have an accout? Login'} />
+                    }} onClick={() => setLoginBtn(!loginBtn)} text={loginBtn ? 'Нет аккаунта? Создать' : 'Есть аккаунт? Войти'} />
                     <div className="left-links">
                         <p><a href='/privacy'>Конфиденциальность</a></p>
                         {/* <p><a href='https://twitter.com/admin'>mysocials.ru</a></p> */}

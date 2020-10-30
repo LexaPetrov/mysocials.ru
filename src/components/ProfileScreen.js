@@ -71,7 +71,6 @@ const ProfileScreen = props => {
         textField.remove()
     }
 
-    console.log(state);
 
     const formatLink = (type, link) => {
         switch (type) {

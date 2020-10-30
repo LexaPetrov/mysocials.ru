@@ -332,7 +332,7 @@ body {
 
 .link__delete {
   position: absolute;
-  right: -15px;
+  right: -80px;
   top: -15px;
   cursor: pointer;
 }

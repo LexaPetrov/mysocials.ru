@@ -11,12 +11,26 @@
     .link__wrapper.is_settings {
       flex-direction: column;
     }
+
+    .link__delete {
+      position: absolute;
+      right: -15px;
+      top: -65px;
+      cursor: pointer;
+    }
 }
 
 @media screen and (max-width: 321px){
  .link__texts {
    overflow: hidden;
  }
+
+ .link__delete {
+  position: absolute;
+  right: -1px;
+  top: 100px;
+  cursor: pointer;
+}
 }
 
 @keyframes shake {

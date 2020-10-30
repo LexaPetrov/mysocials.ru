@@ -3,7 +3,7 @@ const mysql = require('mysql')
 const connection = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'antutu09',
     database: 'mylinks_table',
     charset : 'utf8mb4'
 })
@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) engine=myisam DEFAULT CHARSET=utf8; SET NAMES 'utf8mb4';
+ALTER TABLE users MODIFY links LONGTEXT CHARACTER SET utf8mb4;
 */
 
 //show columns from users

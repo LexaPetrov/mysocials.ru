@@ -149,7 +149,7 @@ const ProfileScreen = props => {
                         {/* <p>1</p> */}
                     </div>
                 </div>
-                <div style={{ width: '20px', height: '20px' }}></div>
+                <div style={{ marginRight: '20px', height: '20px'}}></div>
                 <div className="main__layout__wrapper-content__main">
                     <div className="links">
                         {

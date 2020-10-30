@@ -67,6 +67,10 @@ app.get('/api/user/:username', (req, res) => {
         if (err) {
             return res.send(err)
         } else {
+            delete results[0]['password']
+            delete results[0]['email']
+            delete results[0]['verified']
+            delete results[0]['id']
             return res.json({
                 data: results
             })

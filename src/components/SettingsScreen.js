@@ -87,8 +87,6 @@ const SettingsScreen = props => {
         })
     }
 
-    console.log(settings);
-
     const addLinkHandler = () => {
         let obj = { data: [] }
         if (settings.links === null || settings.links === 'null') {
@@ -236,6 +234,7 @@ const SettingsScreen = props => {
                                 issetting={"true"}
                                 name='bio'
                                 onChange={onInputChange}
+                                value={settings.bio}
                             />
                         </div>
                         <div className="profile__birthday">
@@ -245,6 +244,7 @@ const SettingsScreen = props => {
                                 issetting={"true"}
                                 name='birthday'
                                 onChange={onInputChange}
+                                value={settings.birthday}
                             />
                             <Input
                                 type='text'

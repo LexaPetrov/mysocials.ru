@@ -5,9 +5,11 @@ import {
     SELECT_PROFILE, GET_COUNT
 } from './actiontypes'
 
+import { BACKEND_HOST } from '../utils/env'
+
 export const register = (username, email, password, dispatch) => {
     dispatch({ type: START_LOADING })
-    fetch('http://localhost:4000/api/register', {
+    fetch(`http://${BACKEND_HOST}/api/register`, {
         method: 'post',
         mode: 'cors',
         headers: {
@@ -19,6 +21,7 @@ export const register = (username, email, password, dispatch) => {
     }).then(r => {
         return r.json()
     }).then(r => {
+        console.log(r);
         dispatch({ type: REGISTER, payload: { username, email, password, data: r } })
     }).catch(e => {
         console.log('register error - ', e)
@@ -30,7 +33,7 @@ export const register = (username, email, password, dispatch) => {
 
 export const login = (username, password, dispatch) => {
     dispatch({ type: START_LOADING })
-    fetch(`http://localhost:4000/api/login/${username}/${password}`, {
+    fetch(`http://${BACKEND_HOST}/api/login/${username}/${password}`, {
         method: 'get',
         mode: 'cors',
         headers: {
@@ -50,7 +53,7 @@ export const login = (username, password, dispatch) => {
 
 export const select_profile = (username, dispatch) => {
     dispatch({ type: START_LOADING })
-    fetch('http://localhost:4000/api/user/' + username, {
+    fetch(`http://${BACKEND_HOST}/api/user/` + username, {
         mode: 'cors'
     }).then(res => {
         return res.json()
@@ -62,9 +65,9 @@ export const select_profile = (username, dispatch) => {
 }
 
 export const save_profile = (data, dispatch) => {
-    console.log('data', JSON.stringify(data));
+    // console.log('data', JSON.stringify(data));
     dispatch({ type: START_LOADING })
-    fetch('http://localhost:4000/api/save', {
+    fetch(`http://${BACKEND_HOST}/api/save`, {
         mode: 'cors',
         method: 'put',
         headers: {
@@ -81,10 +84,10 @@ export const save_profile = (data, dispatch) => {
 }
 
 export const get_count = (dispatch) => {
-    fetch('http://localhost:4000/api/getcount')
+    fetch(`http://${BACKEND_HOST}/api/getcount`)
         .then(res => res.json())
         .then((res) => {
-            dispatch({type: GET_COUNT, payload: res})
+            dispatch({ type: GET_COUNT, payload: res })
         })
         .catch(err => console.log(err))
 }

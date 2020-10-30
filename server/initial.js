@@ -3,7 +3,7 @@ const mysql = require('mysql')
 const connection = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'antutu09',
+    password: '',
     database: 'mylinks_table',
     charset : 'utf8mb4'
 })
@@ -41,3 +41,15 @@ CREATE TABLE IF NOT EXISTS users (
 
 //где 25 - это следующий номер после реально занятого
 //т.е. если SELECT MAX(id) FROM users вернул 24, вы укажете 25.
+
+
+
+// I had a similar problem. The solution was as simple as:
+
+// 1) Make sure to have a Procfile correctly written. It should look like:
+
+// web: node index.js
+// 2) After pushing the code to heroku, try to run the following command:
+
+// heroku ps:scale web=1
+// Hope that helps!

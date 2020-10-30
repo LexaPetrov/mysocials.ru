@@ -20,7 +20,10 @@ const MainScreen = props => {
     const onSubmitRegister = async (e) => {
         e.preventDefault();
         await actions.register(formstate.username, formstate.email, formstate.password, dispatch)
-        await actions.login(formstate.username, formstate.password, dispatch)
+        // setTimeout(async () => {
+        //     await actions.login(formstate.username, formstate.password, dispatch)
+        // }, 5000)
+        setLoginBtn(!loginBtn)
     }
 
 
@@ -56,25 +59,25 @@ const MainScreen = props => {
                 <p>Страница с мультиссылкой на любые сервисы бесплатно</p>
             </div>
             <Icon type='planet' size='20' style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        alignSelf: 'center',
-                        margin: 'auto',
-                        paddingTop: '20px',
-                        fontSize: '20px'
-                    }} text={`Нас уже ${state.count !== undefined && state.count['COUNT(*)'] * 214}!`} />
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                alignSelf: 'center',
+                margin: 'auto',
+                paddingTop: '20px',
+                fontSize: '20px'
+            }} text={`Нас уже ${state.count !== undefined && state.count['COUNT(*)']}!`} />
             <div className="main__layout__wrapper-content">
-          
+
                 <div className="main__layout__wrapper-content__left">
                     <img style={{
                         width: '100%'
                     }} src={`/img/${window.matchMedia('(prefers-color-scheme: dark)').matches ? '2' : '1'}.png`} alt='img' />
-                   
+
 
                 </div>
                 <div className='mainscreen__content'>
-                    <p style={{textAlign: 'center'}}>{!loginBtn ? 'Регистрация' : 'Авторизация'}</p>
+                    <p style={{ textAlign: 'center' }}>{!loginBtn ? 'Регистрация' : 'Авторизация'}</p>
                     {
                         !loginBtn && <form onSubmit={onSubmitRegister}>
                             <Input inputplaceholder='username' type='text' required value={formstate.username} onChange={e => onFormChange(e)} name='username' />
@@ -94,7 +97,7 @@ const MainScreen = props => {
                         loginBtn && <form onSubmit={onSubmitLogin}>
                             <Input inputplaceholder='username' type='text' required value={formloginstate.username_login} onChange={e => onFormLoginChange(e)} name='username_login' />
                             <Input inputplaceholder='password' type='password' required value={formloginstate.password_login} onChange={e => onFormLoginChange(e)} name='password_login' minLength='8' />
-                            <button type='submit' className='button button-success register_login' disabled={[formloginstate.username_login, formloginstate.password_login].some(v => v.length === 0)} >login</button>
+                            <button type='submit' className='button button-success register_login' disabled={[formloginstate.username_login, formloginstate.password_login].some(v => v.length === 0)} >Войти</button>
                             {
                                 state.success !== undefined && !state.success && <Icon size='14' style={{
                                     display: 'flex',

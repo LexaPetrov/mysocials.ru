@@ -68,7 +68,7 @@ body {
   background-position: center;
   background-repeat: repeat-x;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
 }
 
@@ -186,7 +186,7 @@ body {
   z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-content span {
   color: var(--black);
   padding: 12px 16px;
   text-decoration: none;
@@ -429,4 +429,15 @@ option {
   width: 100%;
   font-size: 16px;
   color: white;
+}
+
+.main__layout__wrapper-header h1,
+.main__layout__wrapper-header p,
+.main__layout__wrapper-header h2 {
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  align-self: center;
 }

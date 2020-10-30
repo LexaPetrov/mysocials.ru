@@ -116,8 +116,8 @@ const ProfileScreen = props => {
                     </div> */}
 
                     <div className="left-links">
-                        <p><a href='https://twitter.com/admin'>Privacy Policy</a></p>
-                        <p><a href='https://twitter.com/admin'>SeeMyLinks.ru</a></p>
+                        <p><a href='https://twitter.com/admin'>Конфиденциальность</a></p>
+                        <p><a href='https://mysocials.ru/'>mysocials.ru</a></p>
                         {/* <p>1</p> */}
                     </div>
                 </div>

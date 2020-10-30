@@ -216,7 +216,7 @@ const SettingsScreen = props => {
                                 onChange={onInputChange}
                                 value={settings.username !== null ? settings.username : ''}
                             />
-                            <a href={'https://seemylinks.ru/' + settings.username}>{'https://seemylinks.ru/' + settings.username}</a>
+                            <a href={'https://mysocials.ru/' + settings.username}>{'https://mysocials.ru/' + settings.username}</a>
                         </div>
                         <div className="profile__bio profile__bio__settings">
                             <Input
@@ -248,7 +248,7 @@ const SettingsScreen = props => {
                     </div>
 
                     <div className='settings active no__sticky'>
-                        <NavLink to='/settings'><Icon type='settings' size='17' /> Настройки</NavLink>
+                        <NavLink to='/'><Icon type='settings' size='17' /> Настройки</NavLink>
                     </div>
 
                     <div className='settings__buttons no__sticky'>
@@ -262,7 +262,7 @@ const SettingsScreen = props => {
                         </div>
 
                         <div className='settings button button-danger'>
-                            <Icon type='cross' size='17' text='Отмена' style={{
+                            <Icon type='cross' size='17' text='Отмена' onClick={() => window.location = `/${settings.username}`} style={{
                                 display: 'flex',
                                 flexDirection: 'row',
                                 alignItems: 'center',
@@ -274,8 +274,8 @@ const SettingsScreen = props => {
 
 
                     <div className="left-links">
-                        <p><a href='https://www.google.com/'>Privacy Policy</a></p>
-                        <p><a href='https://www.google.com/'>SeeMyLinks.ru</a></p>
+                        <p><a href='/privacy'>Конфиденциальность</a></p>
+                        <p><a href='http://mysocials.ru/'>mysocials.ru</a></p>
                         {/* <p>1</p> */}
                     </div>
                 </div>

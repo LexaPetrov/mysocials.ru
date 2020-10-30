@@ -48,14 +48,15 @@ const MainScreen = props => {
         <>
             <div className="main__layout__wrapper-header" style={{
                 background: backgrounds[15]
-            }}>[logo-name-link -сюда]</div>
+            }}><h1 onClick={() => window.location = 'http://mysocials.ru/'}>MYSOCIALS.RU</h1>
+                <p>Страница с мультиссылкой на любые сервисы бесплатно</p>
+            </div>
             <div className="main__layout__wrapper-content">
                 <div className="main__layout__wrapper-content__left">
                     <img style={{
                         width: '100%'
                     }} src='/img/1.png' alt='img' />
                 </div>
-                {/* <div className="main__layout__wrapper-content__main"> */}
                 <div className='mainscreen__content'>
 
                     {
@@ -100,8 +101,11 @@ const MainScreen = props => {
                         alignItems: 'center',
                         alignSelf: 'center'
                     }} onClick={() => setLoginBtn(!loginBtn)} text={loginBtn ? 'Register new acount' : 'Have an accout? Login'} />
+                    <div className="left-links">
+                        <p><a href='/privacy'>Конфиденциальность</a></p>
+                        {/* <p><a href='https://twitter.com/admin'>mysocials.ru</a></p> */}
+                    </div>
                 </div>
-                {/* </div> */}
 
             </div>
         </>

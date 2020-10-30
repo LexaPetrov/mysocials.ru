@@ -1,4 +1,4 @@
-@media screen and (max-width: 769px){
+@media screen and (max-width: 1025px){
     .main__layout__wrapper-content {
         flex-direction: column;
     }
@@ -17,6 +17,10 @@
       right: -15px;
       top: -65px;
       cursor: pointer;
+    }
+
+    form label{
+      align-self: center;
     }
 }
 

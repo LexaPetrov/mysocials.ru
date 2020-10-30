@@ -120,8 +120,14 @@ const MainScreen = props => {
                         alignItems: 'center',
                         alignSelf: 'center'
                     }} onClick={() => setLoginBtn(!loginBtn)} text={loginBtn ? 'Нет аккаунта? Создать' : 'Есть аккаунт? Войти'} />
-                    <div className="left-links">
+                    <div className="left-links main__screen">
                         <p><a href='/privacy'>Конфиденциальность</a></p>
+                        <p><a href='/'>v1.0.5</a></p>
+                        {/* <p><a href='/'><img style={{ width: '170px', height: '50px' }} src='https://www.centrinvest.ru/images/mirpay/mp-gp.png' alt='img' /></a></p> */}
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <p><a href='https://heroku.com'>powered by Heroku</a></p>
                         {/* <p><a href='https://twitter.com/admin'>mysocials.ru</a></p> */}
                     </div>
                 </div>

@@ -21,10 +21,10 @@ export const register = (username, email, password, dispatch) => {
     }).then(r => {
         return r.json()
     }).then(r => {
-        console.log(r);
+        // console.log(r);
         dispatch({ type: REGISTER, payload: { username, email, password, data: r } })
     }).catch(e => {
-        console.log('register error - ', e)
+        // console.log('register error - ', e)
         dispatch({ type: REGISTER, payload: { success: false, username, email, password } })
     }).finally(() => {
         dispatch({ type: STOP_LOADING })
@@ -44,7 +44,7 @@ export const login = (username, password, dispatch) => {
     }).then(r => {
         dispatch({ type: LOGIN, payload: { username, password, data: r } })
     }).catch(e => {
-        console.log('register error - ', e)
+        // console.log('register error - ', e)
         dispatch({ type: LOGIN, payload: { success: false, username, password } })
     }).finally(() => {
         dispatch({ type: STOP_LOADING })
@@ -65,7 +65,6 @@ export const select_profile = (username, dispatch) => {
 }
 
 export const save_profile = (data, dispatch) => {
-    // console.log('data', JSON.stringify(data));
     dispatch({ type: START_LOADING })
     fetch(`https://${BACKEND_HOST}/api/save`, {
         mode: 'cors',
@@ -89,5 +88,7 @@ export const get_count = (dispatch) => {
         .then((res) => {
             dispatch({ type: GET_COUNT, payload: res })
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            // console.log(err)
+        })
 }

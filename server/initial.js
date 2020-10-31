@@ -1,10 +1,10 @@
 const mysql = require('mysql')
 
 const connection = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'antutu09',
-    database: 'mylinks_table',
+    host: '',
+    user: '',
+    password: '',
+    database: '',
     charset : 'utf8mb4'
 })
 

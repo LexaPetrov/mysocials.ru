@@ -11,7 +11,12 @@ body {
   overflow-x: hidden;
 }
 
-a, a:visited {
+html {
+  overflow-x: hidden;
+}
+
+a,
+a:visited {
   color: #3391ff;
   text-decoration: none;
 }
@@ -467,5 +472,5 @@ form {
 }
 
 button:disabled {
-  filter: grayscale(100%)
+  filter: grayscale(100%);
 }

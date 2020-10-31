@@ -181,4 +181,9 @@
       box-shadow: none;
       border: none;
   }
+
+  form {
+    box-shadow: none;
+    background-color: #343434;
+  }
 }

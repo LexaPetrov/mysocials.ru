@@ -456,3 +456,16 @@ option {
   flex-direction: column;
   align-items: center;
 }
+
+form {
+  border-radius: var(--border_radius);
+  box-shadow: var(--NOT_ACTIVE_SHADOW_2);
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  padding: 20px;
+  background-color: white;
+}
+
+button:disabled {
+  filter: grayscale(100%)
+}

@@ -9,6 +9,9 @@ const Icon = props => {
                 'alignSelf': 'center',
                 verticalAlign: 'middle',
                 cursor: 'pointer',
+                // display: 'flex',
+                // flexDirection: 'row',
+                // alignItems: 'center',
                 ...props.style
             }}
             onClick={props.onClick}

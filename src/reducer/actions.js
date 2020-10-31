@@ -9,7 +9,7 @@ import { BACKEND_HOST } from '../utils/env'
 
 export const register = (username, email, password, dispatch) => {
     dispatch({ type: START_LOADING })
-    fetch(`https://${BACKEND_HOST}/api/register`, {
+    fetch(`http://${BACKEND_HOST}/api/register`, {
         method: 'post',
         mode: 'cors',
         headers: {
@@ -33,7 +33,7 @@ export const register = (username, email, password, dispatch) => {
 
 export const login = (username, password, dispatch) => {
     dispatch({ type: START_LOADING })
-    fetch(`https://${BACKEND_HOST}/api/login/${username}/${password}`, {
+    fetch(`http://${BACKEND_HOST}/api/login/${username}/${password}`, {
         method: 'get',
         mode: 'cors',
         headers: {
@@ -53,7 +53,7 @@ export const login = (username, password, dispatch) => {
 
 export const select_profile = (username, dispatch) => {
     dispatch({ type: START_LOADING })
-    fetch(`https://${BACKEND_HOST}/api/user/` + username, {
+    fetch(`http://${BACKEND_HOST}/api/user/` + username, {
         mode: 'cors'
     }).then(res => {
         return res.json()
@@ -66,7 +66,7 @@ export const select_profile = (username, dispatch) => {
 
 export const save_profile = (data, dispatch) => {
     dispatch({ type: START_LOADING })
-    fetch(`https://${BACKEND_HOST}/api/save`, {
+    fetch(`http://${BACKEND_HOST}/api/save`, {
         mode: 'cors',
         method: 'put',
         headers: {
@@ -83,10 +83,21 @@ export const save_profile = (data, dispatch) => {
 }
 
 export const get_count = (dispatch) => {
-    fetch(`https://${BACKEND_HOST}/api/getcount`)
+    fetch(`http://${BACKEND_HOST}/api/getcount`)
         .then(res => res.json())
         .then((res) => {
             dispatch({ type: GET_COUNT, payload: res })
+        })
+        .catch(err => {
+            // console.log(err)
+        })
+}
+
+export const delete_user = (username, dispatch) => {
+    fetch(`http://${BACKEND_HOST}/api/delete?username=` + username)
+        .then(res => res.json())
+        .then((res) => {
+           
         })
         .catch(err => {
             // console.log(err)

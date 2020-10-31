@@ -10,6 +10,12 @@ import { backgrounds } from '../utils/backgrounds.js'
 
 const SettingsScreen = props => {
     const [state, dispatch] = useReducer(reducer, { ...props.location.state })
+    const [tabs, setTabs] = useState({
+        tabs: [
+            'settings', 'links'
+        ],
+        active: 'links'
+    })
     const [settings, setSettings] = useState({
         password: '',
         email: '',
@@ -145,6 +151,14 @@ const SettingsScreen = props => {
         }
     }
 
+    const onDeleteClickHandler = async () => {
+        if (window.confirm(`Удалить аккаунт ${settings.username}? Действие нельзя отменить.`)) {
+            await actions.delete_user(settings.username, dispatch);
+            window.location = '/';
+        }
+    }
+
+
     if (state.isLoading) return <Loader />;
     return (
         <>
@@ -246,20 +260,36 @@ const SettingsScreen = props => {
                                 onChange={onInputChange}
                                 value={settings.birthday}
                             />
-                            <Input
-                                type='text'
-                                inputplaceholder='сменить пароль'
-                                issetting={"true"}
-                                minLength='8'
-                                size='24'
-                                name='password'
-                                onChange={onInputChange}
-                            />
                         </div>
                     </div>
 
-                    <div className='settings active no__sticky'>
-                        <NavLink to='/'><Icon type='settings' size='17' /> Настройки</NavLink>
+                    <div className={`settings ${tabs.active === 'links' ? 'active' : null} no__sticky`}>
+                        <Icon
+                            type='link' size='17' text='Ссылки' style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                            }}
+                            onClick={() => {
+                                setTabs({
+                                    ...tabs, active: 'links'
+                                })
+                            }}
+                        />
+                    </div>
+                    <div className={`settings ${tabs.active === 'settings' ? 'active' : null} no__sticky`}>
+                        <Icon
+                            type='settings' size='17' text='Настройки' style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                            }}
+                            onClick={() => {
+                                setTabs({
+                                    ...tabs, active: 'settings'
+                                })
+                            }}
+                        />
                     </div>
 
                     <div className='settings__buttons no__sticky'>
@@ -287,12 +317,34 @@ const SettingsScreen = props => {
                     <div className="left-links">
                         <p><a href='/privacy'>Конфиденциальность</a></p>
                         <p><a href='http://mysocials.ru/'>mysocials.ru</a></p>
-                        {/* <p>1</p> */}
                     </div>
                 </div>
                 <div style={{ width: '20px', height: '20px' }}></div>
                 <div className="main__layout__wrapper-content__main">
-                    <div className="links">
+                    <div className={`settings_tab-settings ${tabs.active === 'settings' ? 'active-tab' : 'not-active-tab'}`}>
+                        <h4>Сменить пароль</h4>
+                        <p><small>не забудьте сохранить изменения</small></p>
+                        <Input
+                            type='text'
+                            inputplaceholder='сменить пароль'
+                            issetting={"true"}
+                            minLength='8'
+                            size='24'
+                            name='password'
+                            onChange={onInputChange}
+                        />
+                        <hr></hr>
+                        <h4>Удалить страницу</h4>
+                        <div className='settings button button-danger'>
+                            <Icon type='cross' size='17' text='Удалить страницу' onClick={onDeleteClickHandler} style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                color: 'white'
+                            }} />
+                        </div>
+                    </div>
+                    <div className={`links settings_tab-links ${tabs.active === 'links' ? 'active-tab' : 'not-active-tab'}`}>
                         <Icon type='plus' className='button button-success' size='20' text='Добавить ссылку' style={{
                             display: 'flex',
                             flexDirection: 'row',

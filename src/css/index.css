@@ -299,7 +299,8 @@ a:visited {
 }
 
 .active {
-  background: var(--gray);
+  box-shadow: var(--ACTIVE_SHADOW_2);
+  border: 1px solid #3391ff;
 }
 
 .button a {
@@ -473,4 +474,32 @@ form {
 
 button:disabled {
   filter: grayscale(100%);
+}
+
+.not-active-tab {
+  display: none;
+}
+
+.active-tab {
+  display: block;
+}
+
+.settings_tab-settings {
+  max-width: 100%;
+  background-color: white;
+  padding: 10px;
+  border-radius: var(--border_radius);
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+h4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

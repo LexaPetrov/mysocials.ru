@@ -147,8 +147,7 @@ const MainScreen = props => {
                             {
                                 state.success && state.id !== undefined && <Redirect to={{
                                     pathname: "/settings",
-                                    state,
-                                    dispatch
+                                    state
                                 }} />
                             }
                         </form>

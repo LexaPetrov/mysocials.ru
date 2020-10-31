@@ -5,7 +5,7 @@
   input,
   textarea,
   select,
-  button {
+  button, .settings_tab-settings {
     background-color: #343434;
   }
   html,

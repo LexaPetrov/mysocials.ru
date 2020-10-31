@@ -108,8 +108,18 @@ app.put('/api/save', (req, res) => {
     })
 })
 
-
-
+app.get('/api/delete', (req, res) => {
+    const fields = ['username', `${req.query.username}`]
+    let query = 'DELETE FROM users WHERE ??=?'
+   
+    connection.query(query, fields, (err, results) => {
+        if (err) {
+            return res.send(err)
+        } else {
+            res.send('Deleted')
+        }
+    })
+})
 
 
 

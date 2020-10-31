@@ -72,7 +72,7 @@ const MainScreen = props => {
             }}><h1 onClick={() => window.location = 'http://mysocials.ru/'}>MYSOCIALS.RU</h1>
                 <p>Страница с мультиссылкой на любые сервисы бесплатно</p>
             </div>
-            <Icon type='planet' size='20' style={{
+            {/* <Icon type='planet' size='20' style={{
                 display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -80,7 +80,7 @@ const MainScreen = props => {
                 margin: 'auto',
                 paddingTop: '20px',
                 fontSize: '20px'
-            }} text={state.count !== undefined ? `Нас уже ${state.count['COUNT(*)']}!` : null} />
+            }} text={state.count !== undefined ? `Нас уже ${state.count['COUNT(*)']}!` : null} /> */}
             <div className="main__layout__wrapper-content">
 
                 <div className="main__layout__wrapper-content__left">

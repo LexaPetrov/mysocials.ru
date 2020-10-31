@@ -182,6 +182,10 @@
       border: none;
   }
 
+  .settings_tab-settings {
+    box-shadow: none;
+  }
+
   form {
     box-shadow: none;
     background-color: #343434;

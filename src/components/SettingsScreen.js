@@ -323,6 +323,7 @@ const SettingsScreen = props => {
                 <div className="main__layout__wrapper-content__main">
                     <div className={`settings_tab-settings ${tabs.active === 'settings' ? 'active-tab' : 'not-active-tab'}`}>
                         <h4>Сменить пароль</h4>
+                        <hr></hr>
                         <p><small>не забудьте сохранить изменения</small></p>
                         <Input
                             type='text'
@@ -333,8 +334,8 @@ const SettingsScreen = props => {
                             name='password'
                             onChange={onInputChange}
                         />
-                        <hr></hr>
                         <h4>Удалить страницу</h4>
+                        <hr></hr>
                         <div className='settings button button-danger'>
                             <Icon type='cross' size='17' text='Удалить страницу' onClick={onDeleteClickHandler} style={{
                                 display: 'flex',

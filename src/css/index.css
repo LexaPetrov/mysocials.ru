@@ -489,6 +489,7 @@ button:disabled {
   background-color: white;
   padding: 10px;
   border-radius: var(--border_radius);
+  box-shadow: var(--NOT_ACTIVE_SHADOW_2);
 }
 
 hr {

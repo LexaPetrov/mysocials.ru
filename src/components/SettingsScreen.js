@@ -240,6 +240,8 @@ const SettingsScreen = props => {
                                 onChange={onInputChange}
                                 value={settings.username !== null ? settings.username : ''}
                             />
+                        </div>
+                        <div className='button'>
                             <a href={'https://mysocials.ru/' + settings.username}>{'https://mysocials.ru/' + settings.username}</a>
                         </div>
                         <div className="profile__bio profile__bio__settings">
@@ -347,7 +349,7 @@ const SettingsScreen = props => {
                         />
                         <div className='settings button button-danger'>
 
-                            <Icon type='cross' size='17'  text='Удалить страницу' onClick={onDeleteClickHandler} style={{
+                            <Icon type='cross' size='17' text='Удалить страницу' onClick={onDeleteClickHandler} style={{
                                 display: 'flex',
                                 flexDirection: 'row',
                                 alignItems: 'center',

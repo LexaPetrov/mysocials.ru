@@ -34,7 +34,8 @@ const SettingsScreen = props => {
             ]
         },
         avatar: '',
-        cover: ''
+        cover: '',
+        password_delete: ''
     })
 
     useEffect(() => {
@@ -152,8 +153,8 @@ const SettingsScreen = props => {
     }
 
     const onDeleteClickHandler = async () => {
-        if (window.confirm(`Удалить аккаунт ${settings.username}? Действие нельзя отменить.`)) {
-            await actions.delete_user(settings.username, dispatch);
+        if (settings.password_delete.length >= 8 && window.confirm(`Удалить аккаунт ${settings.username}? Действие нельзя отменить.`)) {
+            await actions.delete_user(settings.username, settings.password_delete, dispatch);
             window.location = '/';
         }
     }
@@ -336,8 +337,17 @@ const SettingsScreen = props => {
                         />
                         <h4>Удалить страницу</h4>
                         <hr></hr>
+                        <Input
+                            type='text'
+                            inputplaceholder='введите текущий пароль'
+                            minLength='8'
+                            size='24'
+                            name='password_delete'
+                            onChange={onInputChange}
+                        />
                         <div className='settings button button-danger'>
-                            <Icon type='cross' size='17' text='Удалить страницу' onClick={onDeleteClickHandler} style={{
+
+                            <Icon type='cross' size='17'  text='Удалить страницу' onClick={onDeleteClickHandler} style={{
                                 display: 'flex',
                                 flexDirection: 'row',
                                 alignItems: 'center',

@@ -2,11 +2,25 @@ const express = require('express'),
     cors = require('cors'),
     bodyParser = require('body-parser'),
     connection = require('./initial'),
+    mailer = require('./mailer'),
     app = express();
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors())
+
+app.use(function (req, res, next) {
+    var allowedOrigins = ['http://mysocials.ru', 'https://mysocials.ru'];
+    var origin = req.headers.origin;
+    if (allowedOrigins.indexOf(origin) > -1) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    //res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8020');
+    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS, POST, PUT');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', true);
+    return next();
+});
 
 app.get('/', (req, res) => {
     res.send('hi')
@@ -22,6 +36,19 @@ app.post('/api/register', (req, res) => {
         if (err) {
             return res.send(err)
         } else {
+            const message = {
+                to: req.body.email,
+                subject: 'Регистрация на mysocials.ru',
+                html: `
+                <div style="width: 100%; height: 180px; padding: 10px; text-align: center; background: linear-gradient(rgba(135, 60, 255, 0.4), rgba(135, 60, 255, 0.0) 80%), linear-gradient(-45deg, rgba(120, 155, 255, 0.9) 25%, rgba(255, 160, 65, 0.9) 75%);">
+                <h2 style="color: white;">Поздравляем, Вы успешно зарегистрировались на https://mysocials.ru!</h2>
+                <p style="color: white;">Ссылка на вашу страницу: https://mysocials.ru/${req.body.username}</p>
+                <p style="color: white;">Авторизоваться для редактирования: https://mysocials.ru/#login</p>
+                <p style="color: white;">Зарегистрировать другую страницу: https://mysocials.ru/#register</p>
+                </div>
+            `
+            }
+            mailer(message)
             return res.send('Successfully registered')
         }
     })
@@ -69,7 +96,7 @@ app.get('/api/user/:username', (req, res) => {
         } else {
             delete results[0]['password']
             delete results[0]['email']
-            delete results[0]['verified']
+            // delete results[0]['verified']
             delete results[0]['id']
             return res.json({
                 data: results
@@ -109,9 +136,9 @@ app.put('/api/save', (req, res) => {
 })
 
 app.get('/api/delete', (req, res) => {
-    const fields = ['username', `${req.query.username}`]
-    let query = 'DELETE FROM users WHERE ??=?'
-   
+    const fields = ['username', `${req.query.username}`, 'password', `${req.query.password}`]
+    let query = 'DELETE FROM users WHERE ??=? AND ??=SHA1(?)'
+
     connection.query(query, fields, (err, results) => {
         if (err) {
             return res.send(err)

@@ -22,9 +22,9 @@ const MainScreen = props => {
     const onSubmitRegister = async (e) => {
         e.preventDefault();
         await actions.register(formstate.username, formstate.email, formstate.password, dispatch)
-        // setTimeout(async () => {
-        //     await actions.login(formstate.username, formstate.password, dispatch)
-        // }, 5000)
+        
+        
+        
         setLoginBtn(!loginBtn)
     }
 
@@ -51,7 +51,11 @@ const MainScreen = props => {
 
     useEffect(() => {
         actions.get_count(dispatch)
-
+        if(window.location.hash === '#login'){
+            setLoginBtn(true)
+        } else if (window.location.hash === '#register') {
+            setLoginBtn(false)
+        }
     }, [])
 
     const onLoadCaptcha = () => {

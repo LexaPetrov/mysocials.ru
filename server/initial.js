@@ -26,13 +26,15 @@ CREATE TABLE IF NOT EXISTS users (
     verified BOOLEAN DEFAULT 0,
     birthday TINYTEXT,
     bio VARCHAR(255) CHARACTER SET utf8mb4,  
-    links json DEFAULT NULL,
+    links LONGTEXT CHARACTER SET utf8mb4,
     UNIQUE KEY username (username),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) engine=myisam DEFAULT CHARSET=utf8; SET NAMES 'utf8mb4';
+) engine=innoDB DEFAULT CHARSET=utf8; SET NAMES 'utf8mb4'; AUTO_INCREMENT=1;
+
 ALTER TABLE users MODIFY links LONGTEXT CHARACTER SET utf8mb4;
 */
+// links json DEFAULT NULL,
 
 //show columns from users
 //mysqldump -h 127.0.0.1 -u db_user -psecretpassword db_name > import_file.sql 
@@ -54,3 +56,16 @@ ALTER TABLE users MODIFY links LONGTEXT CHARACTER SET utf8mb4;
 
 // heroku ps:scale web=1
 // Hope that helps!
+
+//set @i := 0;update users set id = (@i := @i+1 ) order by id;
+// SELECT MAX(id)+1 FROM users;
+// ALTER TABLE users AUTO_INCREMENT = $RESULT;
+// ALTER TABLE users AUTO_INCREMENT_OFFSET = 1
+
+
+
+// set @i := 0;update users set id = (@i := @i+1 ) order by id;
+// SELECT @max := MAX(id)+1 FROM users;
+// SET @sql = CONCAT('ALTER TABLE `users` AUTO_INCREMENT = ', @max);
+// PREPARE st FROM @sql;
+// EXECUTE st;

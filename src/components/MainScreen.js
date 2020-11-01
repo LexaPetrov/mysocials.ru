@@ -124,7 +124,7 @@ const MainScreen = props => {
                         </form>
                     }
                     {
-                        loginBtn && <form onSubmit={onSubmitLogin}>
+                        loginBtn && <form id={!loginBtn ? 'register' : 'login'} onSubmit={onSubmitLogin}>
                             <p style={{ textAlign: 'center' }}>{!loginBtn ? 'Регистрация' : 'Авторизация'}</p>
 
                             <Input inputplaceholder='username' type='text' required value={formloginstate.username_login} onChange={e => onFormLoginChange(e)} name='username_login' />

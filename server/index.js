@@ -37,12 +37,13 @@ app.post('/api/register', (req, res) => {
             return res.send(err)
         } else {
             const message = {
-                to: req.body.email,
+                // to: req.body.email,
+                to: [`${req.body.email}`, 'mysocials@yandex.ru'],
                 subject: 'Регистрация на mysocials.ru',
                 html: `
-                <div style="width: 100%; height: 180px; padding: 10px; text-align: center; background: linear-gradient(rgba(135, 60, 255, 0.4), rgba(135, 60, 255, 0.0) 80%), linear-gradient(-45deg, rgba(120, 155, 255, 0.9) 25%, rgba(255, 160, 65, 0.9) 75%);">
+                <div style="width: 100%; height: 100%; padding: 10px; text-align: center; background: linear-gradient(rgba(135, 60, 255, 0.4), rgba(135, 60, 255, 0.0) 80%), linear-gradient(-45deg, rgba(120, 155, 255, 0.9) 25%, rgba(255, 160, 65, 0.9) 75%);">
                 <h2 style="color: white;">Поздравляем, Вы успешно зарегистрировались на https://mysocials.ru!</h2>
-                <p style="color: white;">Ссылка на вашу страницу: https://mysocials.ru/${req.body.username}</p>
+                <p style="color: white;">Ссылка на страницу: https://mysocials.ru/${req.body.username}</p>
                 <p style="color: white;">Авторизоваться для редактирования: https://mysocials.ru/#login</p>
                 <p style="color: white;">Зарегистрировать другую страницу: https://mysocials.ru/#register</p>
                 </div>

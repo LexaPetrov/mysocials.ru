@@ -241,7 +241,7 @@ const SettingsScreen = props => {
                                 value={settings.username !== null ? settings.username : ''}
                             />
                         </div>
-                        <div className='button'>
+                        <div className='button settings_link'>
                             <a href={'https://mysocials.ru/' + settings.username}>{'https://mysocials.ru/' + settings.username}</a>
                         </div>
                         <div className="profile__bio profile__bio__settings">

@@ -1,5 +1,4 @@
 import { useEffect, useReducer, useState } from 'react'
-import { NavLink } from 'react-router-dom'
 import Icon from './Icon'
 import Input from './Input'
 import Loader from './Loader'
@@ -429,6 +428,7 @@ const SettingsScreen = props => {
                                                 <option value="tinkoff">Tinkoff</option>
                                                 <option value="sberbank">Сбербанк</option>
                                                 <option value="yandexmoney">ЮMoney</option>
+                                                <option value="qiwi">QIWI</option>
                                                 <option value="donationalerts">Donation Alerts</option>
                                                 <option value="patreon">Patreon</option>
                                                 {/*  */}

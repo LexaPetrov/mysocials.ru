@@ -1,11 +1,12 @@
 @media (prefers-color-scheme: dark) {
- 
   html,
   body,
   input,
   textarea,
   select,
-  button, .settings_tab-settings {
+  button,
+  .settings_tab-settings,
+  .settings_tab-appearance {
     background-color: #343434;
   }
   html,
@@ -57,7 +58,8 @@
   }
 
   /* Modified CSS */
-  body, html {
+  body,
+  html {
     background-image: initial;
     background-color: #242424;
   }
@@ -71,13 +73,13 @@
     box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 2px 0px,
       rgba(24, 26, 27, 0.3) -1px -1px 2px 0px;
     background-image: initial;
-    background-color:#343434;
+    background-color: #343434;
   }
   .left-links p a {
     color: rgba(232, 230, 227, 0.15);
   }
   .avatar {
-    background-color:#343434;
+    background-color: #343434;
     border-color: rgb(48, 52, 54);
     box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 2px 0px,
       rgba(24, 26, 27, 0.3) -1px -1px 2px 0px;
@@ -104,7 +106,7 @@
   }
   .link__wrapper {
     background-image: initial;
-    background-color:#343434;
+    background-color: #343434;
     box-shadow: rgba(0, 0, 0, 0.25) 1px 1px 2px 0px,
       rgba(24, 26, 27, 0.3) -1px -1px 2px 0px;
   }
@@ -178,11 +180,12 @@
     opacity: 0.5 !important;
   }
   .register_login {
-      box-shadow: none;
-      border: none;
+    box-shadow: none;
+    border: none;
   }
 
-  .settings_tab-settings {
+  .settings_tab-settings,
+  .settings_tab-appearance {
     box-shadow: none;
   }
 

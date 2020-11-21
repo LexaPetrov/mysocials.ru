@@ -11,9 +11,9 @@ const SettingsScreen = props => {
     const [state, dispatch] = useReducer(reducer, { ...props.location.state })
     const [tabs, setTabs] = useState({
         tabs: [
-            'settings', 'links'
+            'settings', 'links', 'appearance'
         ],
-        active: 'links'
+        active: 'appearance'
     })
     const [settings, setSettings] = useState({
         password: '',
@@ -48,15 +48,15 @@ const SettingsScreen = props => {
             window.location = '/'
         }
 
-        if (settings.cover !== null && settings.cover.length > 666666) {
+        if (settings.cover !== null && settings.cover.length > 800000) {
             alert('Размер изображения не должен превышать 600КБ.')
             setSettings({ ...settings, cover: '' })
         }
-        else if (settings.avatar !== null && settings.avatar.length > 666666) {
+        else if (settings.avatar !== null && settings.avatar.length > 800000) {
             alert('Размер изображения не должен превышать 600КБ.')
             setSettings({ ...settings, avatar: '' })
-        }
-    }, [])
+        }// eslint-disable-next-line
+    }, []) 
 
     const onInputChange = e => {
         setSettings({
@@ -158,6 +158,7 @@ const SettingsScreen = props => {
         }
     }
 
+    console.log(state);
 
     if (state.isLoading) return <Loader />;
     return (
@@ -165,51 +166,12 @@ const SettingsScreen = props => {
             <div className="main__layout__wrapper-header" style={{
                 background: settings.cover !== null && settings.cover.includes('data') && settings.cover !== '' && settings.cover !== 'null' ? `center / contain url(${settings.cover})` : `${settings.cover}`,
             }}>
-                <label className='change__cover' htmlFor='img__Cover'>
-                    <Icon type='camera' size='40' />
-                    <input type="file" id="img__Cover" name='img__Cover' style={{ display: 'none' }} onChange={(e) => encodeImageFileAsURL(e, 'cover')} />
-                обложка
-                </label>
-                <select className='cover__background__select' name='cover' value='цвет' onChange={e => changeBackground(e)}>
-                    <option value='цвет' disabled="disabled">цвет</option>
-                    {
-                        backgrounds.map((v, i) => {
-                            return (
-                                <option value={v} key={i}>Цвет {i + 1}</option>
-                            )
-                        })
-                    }
-                </select>
-                <label className='change__cover' onClick={() => setSettings({ ...settings, cover: '' })}>
-                    <Icon type='stop' size='40' />
-                удалить обложку
-                </label>
             </div>
             <div className="main__layout__wrapper-content">
                 <div className="main__layout__wrapper-content__left">
                     <div className='avatar' style={{
                         background: settings.avatar !== null && settings.avatar.includes('data') && settings.avatar !== '' && settings.avatar !== 'null' ? `url(${settings.avatar})` : `${settings.avatar}`,
                     }}>
-                        <select className='avatar__background__select' name='avatar' value='цвет' onChange={e => changeBackground(e)}>
-                            <option value='цвет' disabled="disabled">цвет</option>
-                            {
-                                backgrounds.map((v, i) => {
-                                    return (
-                                        <option value={v} key={i}>Цвет {i + 1}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <label className='change__avatar' htmlFor='img__avatar'>
-                            <Icon type='camera' size='30' />
-                            <input type="file" id="img__avatar" name='img__avatar' style={{ display: 'none' }} onChange={(e) => encodeImageFileAsURL(e, 'avatar')} />
-                            фото
-                        </label>
-
-                        <label className='change__avatar' onClick={() => setSettings({ ...settings, avatar: '' })}>
-                            <Icon type='stop' size='30' />
-                        удалить
-                        </label>
                     </div>
                     <div className="profile no__sticky">
                         <div className="profile__name">
@@ -253,8 +215,7 @@ const SettingsScreen = props => {
                                 rows='7'
                                 style={{
                                     boxSizing: 'border-box',
-                                    minWidth: '260px',
-                                    // minWidth: '280px'
+                                    minWidth: '260px'
                                 }}
                                 onChange={onInputChange}
                                 value={settings.bio}
@@ -272,6 +233,20 @@ const SettingsScreen = props => {
                         </div>
                     </div>
 
+                    <div className={`settings ${tabs.active === 'appearance' ? 'active' : null} no__sticky`}>
+                        <Icon
+                            type='picture' size='17' text='Внешний вид' style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                            }}
+                            onClick={() => {
+                                setTabs({
+                                    ...tabs, active: 'appearance'
+                                })
+                            }}
+                        />
+                    </div>
                     <div className={`settings ${tabs.active === 'links' ? 'active' : null} no__sticky`}>
                         <Icon
                             type='link' size='17' text='Ссылки' style={{
@@ -330,7 +305,73 @@ const SettingsScreen = props => {
                 </div>
                 <div style={{ width: '20px', height: '20px' }}></div>
                 <div className="main__layout__wrapper-content__main">
+                    <div className={`settings_tab-appearance ${tabs.active === 'appearance' ? 'active-tab' : 'not-active-tab'}`}>
+                        <h3>Внешний вид</h3>
+                        <h4>Обложка</h4>
+                        <hr />
+                        <div className='appearance-wrapper'>
+                            <label className='change__cover' htmlFor='img__Cover'>
+                                <Icon style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'center'
+                                }} type='camera' size='20' text='загрузить фото' />
+                                <input type="file" id="img__Cover" name='img__Cover' style={{ display: 'none' }} onChange={(e) => encodeImageFileAsURL(e, 'cover')} />
+                            </label>
+                            <small>(рекомендуемый размер: высота 180px, ширина 1920px и выше)</small>
+                            <select className='cover__background__select' name='cover' value='цвет' onChange={e => changeBackground(e)}>
+                                <option value='цвет' disabled="disabled">цвет</option>
+                                {
+                                    backgrounds.map((v, i) => {
+                                        return (
+                                            <option value={v} key={i}>Цвет {i + 1}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                            <label className='change__cover' onClick={() => setSettings({ ...settings, cover: '' })}>
+                                <Icon style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'center'
+                                }} type='stop' size='20' text='удалить обложку' />
+                            </label>
+                        </div>
+
+                        <h4>Аватар</h4>
+                        <hr />
+                        <div className='appearance-wrapper'>
+
+                            <label className='change__avatar' htmlFor='img__avatar'>
+                                <Icon style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'center'
+                                }} type='camera' size='20' text='загрузить фото' />
+                                <input type="file" id="img__avatar" name='img__avatar' style={{ display: 'none' }} onChange={(e) => encodeImageFileAsURL(e, 'avatar')} />
+                            </label>
+                            <select className='avatar__background__select' name='avatar' value='цвет' onChange={e => changeBackground(e)}>
+                                <option value='цвет' disabled="disabled">цвет</option>
+                                {
+                                    backgrounds.map((v, i) => {
+                                        return (
+                                            <option value={v} key={i}>Цвет {i + 1}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                            <label className='change__avatar' onClick={() => setSettings({ ...settings, avatar: '' })}>
+                                <Icon style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'center'
+                                }} type='stop' size='20' text='удалить аватар' />
+                            </label>
+                        </div>
+
+                    </div>
                     <div className={`settings_tab-settings ${tabs.active === 'settings' ? 'active-tab' : 'not-active-tab'}`}>
+                        <h3>Настройки</h3>
                         <h4>Сменить пароль</h4>
                         <hr></hr>
                         <p><small>не забудьте сохранить изменения</small></p>
@@ -364,6 +405,8 @@ const SettingsScreen = props => {
                         </div>
                     </div>
                     <div className={`links settings_tab-links ${tabs.active === 'links' ? 'active-tab' : 'not-active-tab'}`}>
+                        <h3>Ссылки</h3>
+
                         <Icon type='plus' className='button button-success' size='20' text='Добавить ссылку' style={{
                             display: 'flex',
                             flexDirection: 'row',

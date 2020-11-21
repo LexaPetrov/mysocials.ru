@@ -101,13 +101,11 @@ const ProfileScreen = props => {
         }
     }
 
-    console.log(state);
-
     if (state.isLoading) return <Loader />;
     return (
         <>
             <div className="main__layout__wrapper-header" style={{
-                background: state.cover !== null && state.cover !== undefined && state.cover.includes('data') && state.cover !== '' && state.cover !== 'null' ? `url(${state.cover})` : `${state.cover}`
+                background: state.cover !== null && state.cover !== undefined && state.cover.includes('data') && state.cover !== '' && state.cover !== 'null' ? `center / contain url(${state.cover})` : `${state.cover}`
             }}></div>
             
             <div className="main__layout__wrapper-content">

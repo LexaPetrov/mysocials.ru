@@ -76,9 +76,10 @@ a:visited {
   box-sizing: border-box;
   min-height: 180px;
   max-height: 180px;
-  background-size: cover;
+  background-size: cover !important;
   background-position: center;
   background-repeat: repeat-x;
+  /* background-repeat: no-repeat !important; */
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -113,7 +114,7 @@ a:visited {
 }
 
 .profile,
-.settings,
+.settings,/* .links,*/
 .button {
   /*links*/
   border-radius: var(--border_radius);
@@ -364,12 +365,12 @@ a:visited {
   flex-direction: column;
   /* margin-top: 10px; */
   cursor: pointer;
-  opacity: 0.4;
+  /* opacity: 0.4; */
 }
 
 .change__avatar {
-  margin-left: 100px;
-  margin-top: -10px;
+  /* margin-left: 100px;
+  margin-top: -10px; */
 }
 
 .link__icon.is_settings {
@@ -409,10 +410,10 @@ option {
 }
 
 .cover__background__select {
-  height: 50px;
-  margin-top: 10px;
+  /* height: 50px; */
+  /* margin-top: 10px; */
   background: none;
-  padding: 10px;
+  padding: 5px;
   border: none;
   border-radius: var(--border_radius);
   font-size: 16px;
@@ -420,14 +421,16 @@ option {
 }
 
 .avatar__background__select {
-  height: 30px;
+  /* height: 30px; */
   background: none;
-  margin-left: 100px;
+  /* margin-left: 100px; */
+  /* padding: 5px; */
   padding: 5px;
   border: none;
   border-radius: var(--border_radius);
-  font-size: 14px;
-  margin-bottom: 20px;
+  /* font-size: 14px; */
+  font-size: 16px;
+  /* margin-bottom: 20px; */
   box-shadow: var(--NOT_ACTIVE_SHADOW_2);
 }
 
@@ -493,6 +496,14 @@ button:disabled {
   box-shadow: var(--NOT_ACTIVE_SHADOW_2);
 }
 
+.settings_tab-appearance {
+  max-width: 100%;
+  background-color: white;
+  padding: 10px;
+  border-radius: var(--border_radius);
+  box-shadow: var(--NOT_ACTIVE_SHADOW_2);
+}
+
 hr {
   border: 0;
   height: 1px;
@@ -508,4 +519,21 @@ h4 {
 
 .settings_link a{
   color: black;
+}
+
+.appearance-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.appearance-wrapper label {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.appearance-wrapper small {
+  margin-top: -20px;
+  margin-bottom: 20px;
 }

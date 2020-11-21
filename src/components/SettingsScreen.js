@@ -249,6 +249,13 @@ const SettingsScreen = props => {
                                 inputplaceholder='bio'
                                 issetting={"true"}
                                 name='bio'
+                                wrap='hard'
+                                rows='7'
+                                style={{
+                                    boxSizing: 'border-box',
+                                    minWidth: '260px',
+                                    // minWidth: '280px'
+                                }}
                                 onChange={onInputChange}
                                 value={settings.bio}
                             />

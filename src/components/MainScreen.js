@@ -98,6 +98,7 @@ const MainScreen = props => {
                     {
                         !loginBtn && <form onSubmit={onSubmitRegister}>
                             <p style={{ textAlign: 'center' }}>{!loginBtn ? 'Регистрация' : 'Авторизация'}</p>
+                            <hr></hr>
 
                             <Input inputplaceholder='username' type='text' required value={formstate.username} onChange={e => onFormChange(e)} name='username' />
                             <Input inputplaceholder='email' type='email' required value={formstate.email} onChange={e => onFormChange(e)} name='email' />
@@ -126,6 +127,7 @@ const MainScreen = props => {
                     {
                         loginBtn && <form id={!loginBtn ? 'register' : 'login'} onSubmit={onSubmitLogin}>
                             <p style={{ textAlign: 'center' }}>{!loginBtn ? 'Регистрация' : 'Авторизация'}</p>
+                            <hr></hr>
 
                             <Input inputplaceholder='username' type='text' required value={formloginstate.username_login} onChange={e => onFormLoginChange(e)} name='username_login' />
                             <Input inputplaceholder='password' type='password' required value={formloginstate.password_login} onChange={e => onFormLoginChange(e)} name='password_login' minLength='8' />

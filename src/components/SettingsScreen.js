@@ -47,15 +47,7 @@ const SettingsScreen = props => {
         } catch {
             window.location = '/'
         }
-
-        if (settings.cover !== null && settings.cover.length > 800000) {
-            alert('Размер изображения не должен превышать 600КБ.')
-            setSettings({ ...settings, cover: '' })
-        }
-        else if (settings.avatar !== null && settings.avatar.length > 800000) {
-            alert('Размер изображения не должен превышать 600КБ.')
-            setSettings({ ...settings, avatar: '' })
-        }// eslint-disable-next-line
+        // eslint-disable-next-line
     }, []) 
 
     const onInputChange = e => {
@@ -68,7 +60,7 @@ const SettingsScreen = props => {
     const encodeImageFileAsURL = (e, param) => {
         var file = e.target.files[0];
         var reader = new FileReader();
-
+        let sizeKB = e.target.files[0].size / 1024
         if (param === 'cover') {
             reader.onloadend = function () {
                 setSettings({ ...settings, cover: reader.result })
@@ -80,7 +72,11 @@ const SettingsScreen = props => {
         }
 
         try {
-            reader.readAsDataURL(file);
+            if (sizeKB < 601) {
+                reader.readAsDataURL(file);
+            } else {
+                alert('Размер не должен превышать 600 KB')
+            }
         } catch { }
     }
 
@@ -101,7 +97,6 @@ const SettingsScreen = props => {
         if (!obj.data) {
             obj = { data: [] }
         }
-        console.log('obj - ', obj);
         obj.data.push({
             title: '',
             link: '',
@@ -158,7 +153,6 @@ const SettingsScreen = props => {
         }
     }
 
-    console.log(state);
 
     if (state.isLoading) return <Loader />;
     return (
@@ -215,7 +209,8 @@ const SettingsScreen = props => {
                                 rows='7'
                                 style={{
                                     boxSizing: 'border-box',
-                                    minWidth: '260px'
+                                    minWidth: '260px',
+                                    resize: 'none'
                                 }}
                                 onChange={onInputChange}
                                 value={settings.bio}

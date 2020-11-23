@@ -107,7 +107,7 @@ const ProfileScreen = props => {
             <div className="main__layout__wrapper-header" style={{
                 background: state.cover !== null && state.cover !== undefined && state.cover.includes('data') && state.cover !== '' && state.cover !== 'null' ? `center / contain url(${state.cover})` : `${state.cover}`
             }}></div>
-            
+
             <div className="main__layout__wrapper-content">
                 <div className="main__layout__wrapper-content__left">
                     <div className='avatar' style={{
@@ -135,7 +135,11 @@ const ProfileScreen = props => {
                         }
                         {
                             state.birthday !== null && state.birthday !== 'null' && <div className="profile__birthday">
-                                <Icon type='birthday' size='16' /> {state.birthday}
+                                <Icon type='birthday' size='16' text={state.birthday} style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'center'
+                                }} />
                             </div>
                         }
                     </div>
@@ -150,7 +154,7 @@ const ProfileScreen = props => {
                         {/* <p>1</p> */}
                     </div>
                 </div>
-                <div style={{ marginRight: '20px', height: '20px'}}></div>
+                <div style={{ marginRight: '20px', height: '20px' }}></div>
                 <div className="main__layout__wrapper-content__main">
                     <div className="links">
                         {

@@ -33,12 +33,15 @@ export const register = async (username, email, password, dispatch) => {
 
 export const login = (username, password, dispatch) => {
     dispatch({ type: START_LOADING })
-    fetch(`${BACKEND_HOST}/api/login/${username}/${password}`, {
-        method: 'get',
+    fetch(`${BACKEND_HOST}/api/login/`, {
+        method: 'post',
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({
+            username, password
+        })
     }).then(r => {
         return r.json()
     }).then(r => {

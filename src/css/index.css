@@ -237,6 +237,7 @@ a:visited {
 .profile__birthday {
   font-size: 12px;
   color: var(--main_gray);
+  margin-top: 10px;
 }
 
 .link__icon {

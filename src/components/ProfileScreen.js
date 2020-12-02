@@ -76,29 +76,45 @@ const ProfileScreen = props => {
         switch (type) {
             case 'gmail': case 'mailru': case 'email': case 'yandexmail':
                 return (
-                    <a className='link__href' href={`mailto:${link}`}>{link}</a>
+                    <a className='link__href' href={`mailto:${link}`}>{formatHref(link)}</a>
                 )
             case 'viber':
                 return (
-                    <a className='link__href' href={`viber://add?number=${link}`}>{link}</a>
+                    <a className='link__href' href={`viber://add?number=${link}`}>{formatHref(link)}</a>
                 )
             case 'whatsapp':
                 return (
-                    <a className='link__href' href={`https://api.whatsapp.com/send?phone=${link}`}>{link}</a>
+                    <a className='link__href' href={`https://api.whatsapp.com/send?phone=${link}`}>{formatHref(link)}</a>
                 )
             case 'skype':
                 return (
-                    <a className='link__href' href={`skype:${link}?chat`}>{link}</a>
+                    <a className='link__href' href={`skype:${link}?chat`}>{formatHref(link)}</a>
                 )
             case 'phone':
                 return (
-                    <a className='link__href' href={`tel:${link}`}>{link}</a>
+                    <a className='link__href' href={`tel:${link}`}>{formatHref(link)}</a>
                 )
             default:
                 return (
-                    <a className='link__href' href={`${link}`}>{link}</a>
+                    <a className='link__href' href={`${link}`}>{formatHref(link)}</a>
                 )
         }
+    }
+
+    const formatHref = link => {
+        if (link.includes('http://')) {
+            link = link.replace('http://', '')
+        }
+        if (link.includes('https://')) {
+            link = link.replace('https://', '')
+        }
+        if (link.includes('www.')) {
+            link = link.replace('www.', '')
+        }
+
+        console.log(link);
+
+        return link
     }
 
     if (state.isLoading) return <Loader />;
@@ -144,15 +160,11 @@ const ProfileScreen = props => {
                         }
                     </div>
 
-                    {/* <div className='settings'>
-                        <NavLink to='/settings'><Icon type='settings' size='17' /> Настройки</NavLink>
-                    </div> */}
 
-                    <div className="left-links">
+                    {/* <div className="left-links">
                         <p><a href='https://mysocials.ru/privacy'>Конфиденциальность</a></p>
                         <p><a href='https://mysocials.ru/'>mysocials.ru</a></p>
-                        {/* <p>1</p> */}
-                    </div>
+                    </div> */}
                 </div>
                 <div style={{ marginRight: '20px', height: '20px' }}></div>
                 <div className="main__layout__wrapper-content__main">
@@ -160,11 +172,11 @@ const ProfileScreen = props => {
                         {
                             state.links !== 'null' && state.links !== null && state.links !== undefined && state.links.data.map((v, index) => {
                                 return (
-                                    <div className='link__wrapper' key={index}>
-                                        <div className='link__icon'>
+                                    <div className='link__wrapper profile__link__wrapper' key={index}>
+                                        <div className='link__icon profile__link__icon'>
                                             <img src={`img/${state.links.data[index].type}.png`} alt='icon' />
                                         </div>
-                                        <div className='link__texts'>
+                                        <div className='link__texts profile__link__texts'>
                                             <div className='link__title'>{v.title}</div>
                                             {formatLink(v.type, v.link)}
                                         </div>
@@ -174,6 +186,11 @@ const ProfileScreen = props => {
                         }
                     </div>
                 </div>
+
+            </div>
+            <div className="left-links">
+                <p><a href='https://mysocials.ru/privacy'>Конфиденциальность</a></p>
+                <p><a href='https://mysocials.ru/'>mysocials.ru</a></p>
             </div>
         </>
     )

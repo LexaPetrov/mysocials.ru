@@ -22,9 +22,6 @@ const MainScreen = props => {
     const onSubmitRegister = async (e) => {
         e.preventDefault();
         await actions.register(formstate.username, formstate.email, formstate.password, dispatch)
-        
-        
-        
         setLoginBtn(!loginBtn)
     }
 
@@ -86,7 +83,6 @@ const MainScreen = props => {
                 fontSize: '20px'
             }} text={state.count !== undefined ? `Нас уже ${state.count['COUNT(*)']}!` : null} /> */}
             <div className="main__layout__wrapper-content">
-
                 <div className="main__layout__wrapper-content__left">
                     <img style={{
                         width: '100%'

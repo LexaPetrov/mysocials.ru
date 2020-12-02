@@ -1,62 +1,63 @@
-@media screen and (max-width: 1025px){
-    .main__layout__wrapper-content {
-        flex-direction: column;
-    }
+@media screen and (max-width: 1025px) {
+  .main__layout__wrapper-content {
+    flex-direction: column;
+  }
 
-    .main__layout__wrapper-content__left, .main__layout__wrapper-content__main {
-        width: 100%;
-        min-width: 100%;
-    }
+  .main__layout__wrapper-content__left,
+  .main__layout__wrapper-content__main {
+    width: 100%;
+    min-width: 100%;
+  }
 
-    .link__wrapper.is_settings {
-      flex-direction: column;
-    }
+  .link__wrapper.is_settings {
+    flex-direction: column;
+  }
 
-    .link__delete {
-      position: absolute;
-      right: -15px;
-      top: -65px;
-      cursor: pointer;
-    }
+  .link__delete {
+    position: absolute;
+    right: -15px;
+    top: -65px;
+    cursor: pointer;
+  }
 
-    form label{
-      align-self: center;
-    }
+  form label {
+    align-self: center;
+  }
 }
 
-@media screen and (max-width: 321px){
- .link__texts {
-   overflow: hidden;
- }
 
- .link__delete {
-  position: absolute;
-  right: -1px;
-  top: 100px;
-  cursor: pointer;
-}
+@media screen and (max-width: 321px) {
+  .link__texts {
+    overflow: hidden;
+  }
+
+  .link__delete {
+    position: absolute;
+    right: -1px;
+    top: 100px;
+    cursor: pointer;
+  }
 }
 
 @keyframes shake {
-    10%,
-    90% {
-      transform: translate3d(0, -1px, 0);
-    }
-  
-    20%,
-    80% {
-      transform: translate3d(0, 1px, 0);
-    }
-  
-    30%,
-    50%,
-    70% {
-      transform: translate3d(0, -3px, 0);
-    }
-  
-    40%,
-    60% {
-      transform: translate3d(0, 3px, 0);
-    }
+  10%,
+  90% {
+    transform: translate3d(0, -1px, 0);
   }
-  
+
+  20%,
+  80% {
+    transform: translate3d(0, 1px, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(0, -3px, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(0, 3px, 0);
+  }
+}

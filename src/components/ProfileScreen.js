@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import reducer from '../reducer/reducer';
 import Icon from './Icon';
 import Loader from './Loader'
@@ -6,56 +6,7 @@ import * as actions from '../reducer/actions'
 
 const ProfileScreen = props => {
     const [state, dispatch] = useReducer(reducer, {})
-
-    // let arr = [
-    //     'phone',
-    //     'ok',
-    //     'gitlab',
-    //     'tinkoff',
-    //     'sberbank',
-    //     'yandexmoney',
-    //     'hh',
-    //     'vc',
-    //     'tj',
-    //     'dtf',
-    //     'habr',
-    //     'donationalerts',
-    //     'linkedin',
-    //     'devianart',
-    //     'behance',
-    //     'patreon',
-    //     'steam',
-    //     'twitch',
-    //     'skype',
-    //     'discord',
-    //     'gmail',
-    //     'mailru',
-    //     'yandexmail',
-    //     'email',
-    //     'pornhub',
-    //     'onlyfans',
-    //     'instagram',
-    //     'telegram',
-    //     'vk',
-    //     'facebook',
-    //     'viber',
-    //     'twitter',
-    //     'whatsapp',
-    //     'f3cool',
-    //     'youtube',
-    //     'github',
-    //     'tiktok',
-    //     'pikabu',
-    //     'snapchat',
-    //     'askfm',
-    //     'epicgames',
-    //     'origin',
-    //     'xboxlive',
-    //     'psn',
-    //     'battlenet',
-    //     'rockstar',
-    //     'uplay',
-    // ]
+    const [menu, setMenu] = useState(false)
 
     useEffect(() => {
         let username = window.location.pathname.replace('/', '')
@@ -112,17 +63,44 @@ const ProfileScreen = props => {
             link = link.replace('www.', '')
         }
 
-        console.log(link);
-
         return link
     }
 
     if (state.isLoading) return <Loader />;
     return (
         <>
-            <div className="main__layout__wrapper-header" style={{
+            <div className="main__layout__wrapper-header " style={{
                 background: state.cover !== null && state.cover !== undefined && state.cover.includes('data') && state.cover !== '' && state.cover !== 'null' ? `center / contain url(${state.cover})` : `${state.cover}`
-            }}></div>
+            }}>
+
+                <Icon text='☰' style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    fontSize: '20px',
+                    fontWeight: 'bold',
+                    width: '20px', height: '20px'
+                }} className='button menu-button' onClick={() => setMenu(!menu)} />
+                {
+                    menu && <div className="dropdown-content visible">
+                        <Icon size='17' type='sparkles' style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center'
+                        }} onClick={() => window.open('https://mysocials.ru', '_self')} text='mysocials.ru - на главную' />
+                         <Icon type='darts' size='17' style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                        }} onClick={() => window.open('https://mysocials.ru/#register', '_self')} text='создать профиль' />
+                         <Icon type='edit' size='17' style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                        }} onClick={() => window.open('https://mysocials.ru/#login', '_self')} text='редактировать профиль' />
+                    </div>
+                }
+            </div>
 
             <div className="main__layout__wrapper-content">
                 <div className="main__layout__wrapper-content__left">

@@ -179,12 +179,6 @@ const SettingsScreen = props => {
                                     onChange={onInputChange}
                                 />
                             </div>
-                            <div className="profile__name-menu">
-                                <button className="dropbtn">•••</button>
-                                <div className="dropdown-content">
-                                    <a href="https://www.google.com/">копировать ссылку</a>
-                                </div>
-                            </div>
                         </div>
                         <div className="profile__username">
                             <Input

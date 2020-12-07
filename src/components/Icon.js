@@ -26,7 +26,7 @@ const Icon = props => {
                     alt='icon'
                 />
             }
-            <span style={{ marginLeft: '10px' }}>{props.text}</span>
+            <span style={{ marginLeft:  props.type && '10px' }}>{props.text}</span>
         </span>
     )
 }

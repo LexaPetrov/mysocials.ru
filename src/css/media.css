@@ -24,8 +24,11 @@
     align-self: center;
   }
 }
-
-
+@media screen and (max-width: 691px) {
+  .profile__link__wrapper {
+    max-width: 100%;
+  }
+}
 @media screen and (max-width: 321px) {
   .link__texts {
     overflow: hidden;

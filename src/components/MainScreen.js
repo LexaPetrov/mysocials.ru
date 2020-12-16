@@ -7,6 +7,7 @@ import { Redirect } from "react-router-dom"
 import Icon from "./Icon"
 import { backgrounds } from '../utils/backgrounds'
 import Recaptcha from 'react-recaptcha'
+import Logo from "./Logo"
 
 const MainScreen = props => {
     const [state, dispatch] = useReducer(reducer, {})
@@ -69,11 +70,9 @@ const MainScreen = props => {
     return (
         <>
             <div className="main__layout__wrapper-header main__header" style={{
-                background: backgrounds[15]
-            }}><h1 onClick={() => window.location = 'http://mysocials.ru/'}>
-                <Icon type='smartphone' size ='37'/> 
-                MYSOCIALS.RU</h1>
-                <p>Страница с мультиссылкой на любые сервисы бесплатно</p>
+                background: backgrounds[12]
+            }}>
+                <Logo onClick={() => window.location = 'http://mysocials.ru/'} />
             </div>
             {/* <Icon type='planet' size='20' style={{
                 display: 'flex',

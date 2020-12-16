@@ -1,3 +1,8 @@
+@media screen and (max-width: 1200px) {
+  .logo {
+    flex-direction: row;
+  }
+}
 @media screen and (max-width: 1025px) {
   .main__layout__wrapper-content {
     flex-direction: column;

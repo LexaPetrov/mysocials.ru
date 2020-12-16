@@ -1,12 +1,15 @@
 import { backgrounds } from '../utils/backgrounds'
-import Icon from './Icon'
+import Logo from './Logo'
 
 const PrivacyScreen = props => {
     return (
         <>
-            <div className="main__layout__wrapper-header" style={{
-                background: backgrounds[15]
-            }}><h2 onClick={() => window.location = 'http://mysocials.ru/'}> <Icon type='smartphone' size ='37'/>  MYSOCIALS.RU | КОНФИДЕНЦИАЛЬНОСТЬ</h2></div>
+            <div className="main__layout__wrapper-header main__header" style={{
+                background: backgrounds[12]
+            }}
+            >
+                <Logo onClick={() => window.location = 'http://mysocials.ru/'} />
+            </div>
             <div className="main__layout__wrapper-content" style={{ flexDirection: 'column' }}>
                 <h2> Политика в отношении обработки персональных данных</h2>
                 <p>

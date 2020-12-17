@@ -10,7 +10,7 @@ export const backgrounds = [
     'linear-gradient(85deg, #fb63f9, #c2e534)',
     'linear-gradient(21deg, #dd03e4, #5611ec)',
     'linear-gradient(4deg, #5462c3, #ba872c)',
-    'background: linear-gradient(81deg, #ddb35f, #7409c7)',
+    'linear-gradient(81deg, #ddb35f, #7409c7)',
     'linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%)',
     'linear-gradient(3deg, #e6d16c, #16014c)',
     'linear-gradient(66deg, #e38010, #1535bf)',

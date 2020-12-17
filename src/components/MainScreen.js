@@ -66,6 +66,18 @@ const MainScreen = props => {
         }
     }
 
+    const list = [
+        { type: 'free', text: 'полностью бесплатно' },
+        { type: 'infinity', text: 'любое количество ссылок' },
+        { type: 'like', text: 'удобный редактор профиля' },
+        { type: 'phone_off', text: 'нет рекламы' },
+        { type: 'moon', text: 'светлая и тёмная тема' },
+        { type: 'wow', text: '50+ вариантов иконок' },
+        { type: 'paint', text: '20+ градиентов для профиля' },
+        { type: 'new', text: 'частые обновления' },
+        // { type: 'planet', text: state.count !== undefined ? `Нас уже ${state.count['COUNT(*)']}!` : null }
+    ]
+
     if (state.isLoading) return <Loader />;
     return (
         <>
@@ -83,11 +95,26 @@ const MainScreen = props => {
                 paddingTop: '20px',
                 fontSize: '20px'
             }} text={state.count !== undefined ? `Нас уже ${state.count['COUNT(*)']}!` : null} /> */}
-            <div className="main__layout__wrapper-content">
-                <div className="main__layout__wrapper-content__left">
-                    <img style={{
+            <div className="main__layout__wrapper-content" >
+                <div className="main__layout__wrapper-content__left" >
+                    {/* <img style={{
                         width: '100%'
-                    }} src={`/img/${window.matchMedia('(prefers-color-scheme: dark)').matches ? '2' : '1'}.png`} alt='img' />
+                    }} src={`/img/${window.matchMedia('(prefers-color-scheme: dark)').matches ? '2' : '1'}.png`} alt='img' /> */}
+                    <div style={{ alignItems: 'center', padding: '20px' }}>
+                        <h1>Добро пожаловать на MYSOCIALS.RU!</h1>
+                        <br />
+                        <p>Создай страницу с мультиссылкой на свои соцсети для инстаграма (и не только) совершенно бесплатно!</p>
+                        <br />
+                        <br />
+                        {
+                            list.map((v, k) => <Icon key={k} type={v.type} size='26' style={{
+                                fontSize: '16px', display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                marginTop: '10px', pointerEvents: 'none'
+                            }} text={v.text} />)
+                        }
+                    </div>
 
 
                 </div>

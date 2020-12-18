@@ -25,6 +25,10 @@
     cursor: pointer;
   }
 
+  .link__up, .link__down {
+    right: -15px;
+  }
+
   form label {
     align-self: center;
   }

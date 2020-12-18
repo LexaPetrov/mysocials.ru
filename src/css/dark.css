@@ -6,6 +6,7 @@
   select,
   button,
   .settings_tab-settings,
+  .settings_tab-statistics,
   .settings_tab-appearance {
     background-color: #343434;
   }
@@ -185,6 +186,7 @@
   }
 
   .settings_tab-settings,
+  .settings_tab-statistics,
   .settings_tab-appearance {
     box-shadow: none;
   }

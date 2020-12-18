@@ -11,7 +11,7 @@ const SettingsScreen = props => {
     const [state, dispatch] = useReducer(reducer, { ...props.location.state })
     const [tabs, setTabs] = useState({
         tabs: [
-            'settings', 'links', 'appearance'
+            'settings', 'links', 'appearance', 'statistics'
         ],
         active: 'appearance'
     })
@@ -288,6 +288,20 @@ const SettingsScreen = props => {
                             }}
                         />
                     </div>
+                    <div className={`settings ${tabs.active === 'statistics' ? 'active' : null} no__sticky`}>
+                        <Icon
+                            type='chart' size='17' text='Статистика' style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                            }}
+                            onClick={() => {
+                                setTabs({
+                                    ...tabs, active: 'statistics'
+                                })
+                            }}
+                        />
+                    </div>
                     <div className={`settings ${tabs.active === 'settings' ? 'active' : null} no__sticky`}>
                         <Icon
                             type='settings' size='17' text='Настройки' style={{
@@ -395,7 +409,10 @@ const SettingsScreen = props => {
                                 }} type='stop' size='20' text='удалить аватар' />
                             </label>
                         </div>
+                    </div>
 
+                    <div className={`settings_tab-statistics ${tabs.active === 'statistics' ? 'active-tab' : 'not-active-tab'}`}>
+                        <h3>Статистика</h3>
                     </div>
                     <div className={`settings_tab-settings ${tabs.active === 'settings' ? 'active-tab' : 'not-active-tab'}`}>
                         <h3>Настройки</h3>

@@ -48,7 +48,7 @@ const SettingsScreen = props => {
             window.location = '/'
         }
         // eslint-disable-next-line
-    }, []) 
+    }, [])
 
     const onInputChange = e => {
         setSettings({
@@ -153,6 +153,44 @@ const SettingsScreen = props => {
         }
     }
 
+    const upLinkHandler = index => {
+        let arr = [...settings.links.data]
+        let val = arr[index]
+        let nextval = arr[index - 1]
+        let temp = ''
+        temp = val
+        arr[index] = nextval
+        arr[index - 1] = temp
+
+        setSettings({
+            ...settings,
+            links: {
+                ...settings.links,
+                data: [
+                    ...arr
+                ]
+            }
+        })
+    }
+    const downLinkHandler = index => {
+        let arr = [...settings.links.data]
+        let val = arr[index]
+        let nextval = arr[index + 1]
+        let temp = ''
+        temp = val
+        arr[index] = nextval
+        arr[index + 1] = temp
+
+        setSettings({
+            ...settings,
+            links: {
+                ...settings.links,
+                data: [
+                    ...arr
+                ]
+            }
+        })
+    }
 
     if (state.isLoading) return <Loader />;
     return (
@@ -496,6 +534,16 @@ const SettingsScreen = props => {
                                                 />
                                             </div>
                                             <Icon className='link__delete' size='24' type='stop' onClick={() => deleteLinkHandler(index)} />
+                                            {
+                                                index !== 0 && index <= settings.links.data.length - 1 ? (
+                                                    <Icon className='link__up' size='24' type='top' onClick={() => upLinkHandler(index)} />
+                                                ) : null
+                                            }
+                                            {
+                                                index >= 0 && index !== settings.links.data.length - 1 ? (
+                                                    <Icon className='link__down' size='24' type='down' onClick={() => downLinkHandler(index)} />
+                                                ) : null
+                                            }
                                         </div>
                                     </div>
                                 )

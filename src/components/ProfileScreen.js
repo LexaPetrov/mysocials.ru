@@ -4,10 +4,11 @@ import Icon from './Icon';
 import Loader from './Loader'
 import * as actions from '../reducer/actions'
 import Logo from './Logo';
+import Header from './Header';
 
 const ProfileScreen = props => {
     const [state, dispatch] = useReducer(reducer, {})
-    const [menu, setMenu] = useState(false)
+    
 
     useEffect(() => {
         let username = window.location.pathname.replace('/', '')
@@ -70,38 +71,8 @@ const ProfileScreen = props => {
     if (state.isLoading) return <Loader />;
     return (
         <>
-            <div className="main__layout__wrapper-header main__header" style={{
-                background: state.cover !== null && state.cover !== undefined && state.cover.includes('data') && state.cover !== '' && state.cover !== 'null' ? `center / contain url(${state.cover})` : `${state.cover}`
-            }}>
-                <Logo onClick={() => window.location = 'http://mysocials.ru/'} />
-                <Icon text='☰' style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    fontSize: '20px',
-                    fontWeight: 'bold',
-                    width: '20px', height: '20px'
-                }} className='button menu-button' onClick={() => setMenu(!menu)} />
-                {
-                    menu && <div className="dropdown-content visible">
-                        <Icon size='17' type='sparkles' style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center'
-                        }} onClick={() => window.open('https://mysocials.ru', '_self')} text='mysocials.ru - на главную' />
-                        <Icon type='darts' size='17' style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                        }} onClick={() => window.open('https://mysocials.ru/#register', '_self')} text='создать профиль' />
-                        <Icon type='edit' size='17' style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                        }} onClick={() => window.open('https://mysocials.ru/#login', '_self')} text='редактировать профиль' />
-                    </div>
-                }
-            </div>
+
+            <Header menubutton profilebg={state.cover !== null && state.cover !== undefined && state.cover.includes('data') && state.cover !== '' && state.cover !== 'null' ? `center / contain url(${state.cover})` : `${state.cover}`} />
 
             <div className="main__layout__wrapper-content">
                 <div className="main__layout__wrapper-content__left">

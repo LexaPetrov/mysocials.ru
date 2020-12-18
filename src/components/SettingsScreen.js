@@ -5,6 +5,7 @@ import Loader from './Loader'
 import * as actions from '../reducer/actions'
 import reducer from '../reducer/reducer'
 import { backgrounds } from '../utils/backgrounds.js'
+import Header from './Header';
 
 
 const SettingsScreen = props => {
@@ -195,10 +196,7 @@ const SettingsScreen = props => {
     if (state.isLoading) return <Loader />;
     return (
         <>
-            <div className="main__layout__wrapper-header" style={{
-                background: settings.cover !== null && settings.cover.includes('data') && settings.cover !== '' && settings.cover !== 'null' ? `center / contain url(${settings.cover})` : `${settings.cover}`,
-            }}>
-            </div>
+            <Header profilebg={settings.cover !== null && settings.cover.includes('data') && settings.cover !== '' && settings.cover !== 'null' ? `center / contain url(${settings.cover})` : `${settings.cover}`}/>
             <div className="main__layout__wrapper-content">
                 <div className="main__layout__wrapper-content__left">
                     <div className='avatar' style={{

@@ -5,9 +5,8 @@ import Loader from './Loader'
 import Input from './Input'
 import { Redirect } from "react-router-dom"
 import Icon from "./Icon"
-import { backgrounds } from '../utils/backgrounds'
 import Recaptcha from 'react-recaptcha'
-import Logo from "./Logo"
+import Header from "./Header"
 
 const MainScreen = props => {
     const [state, dispatch] = useReducer(reducer, {})
@@ -81,20 +80,7 @@ const MainScreen = props => {
     if (state.isLoading) return <Loader />;
     return (
         <>
-            <div className="main__layout__wrapper-header main__header" style={{
-                background: backgrounds[12]
-            }}>
-                <Logo onClick={() => window.location = 'http://mysocials.ru/'} />
-            </div>
-            {/* <Icon type='planet' size='20' style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                alignSelf: 'center',
-                margin: 'auto',
-                paddingTop: '20px',
-                fontSize: '20px'
-            }} text={state.count !== undefined ? `Нас уже ${state.count['COUNT(*)']}!` : null} /> */}
+            <Header />
             <div className="main__layout__wrapper-content" >
                 <div className="main__layout__wrapper-content__left" >
                     {/* <img style={{

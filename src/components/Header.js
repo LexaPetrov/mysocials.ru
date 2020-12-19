@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { backgrounds } from "../utils/backgrounds"
 import Logo from "./Logo"
 import Icon from './Icon';
+import Modal from './Modal';
 
 const Header = props => {
     const [menu, setMenu] = useState(false)
@@ -25,8 +26,8 @@ const Header = props => {
 
                 )
             }
-            {
-                menu && <div className="dropdown-content visible">
+            <Modal title='Меню' isOpened={menu} onModalClose={() => setMenu(false)}>
+                <div className="header__menu__modal">
                     <Icon size='17' type='sparkles' style={{
                         display: 'flex',
                         flexDirection: 'row',
@@ -43,7 +44,7 @@ const Header = props => {
                         alignItems: 'center',
                     }} onClick={() => window.open('https://mysocials.ru/#login', '_self')} text='редактировать профиль' />
                 </div>
-            }
+            </Modal>
         </div>
     )
 }

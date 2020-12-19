@@ -25,7 +25,8 @@ const initialState = {
         ]
     },
     avatar: '',
-    cover: ''
+    cover: '',
+    success: false
 }
 
 export const reducer = (state = initialState, action) => {

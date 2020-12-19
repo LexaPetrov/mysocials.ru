@@ -1,9 +1,8 @@
-import { useEffect, useReducer, useState } from 'react'
+import { useEffect, useReducer } from 'react'
 import reducer from '../reducer/reducer';
 import Icon from './Icon';
 import Loader from './Loader'
 import * as actions from '../reducer/actions'
-import Logo from './Logo';
 import Header from './Header';
 
 const ProfileScreen = props => {
@@ -109,8 +108,6 @@ const ProfileScreen = props => {
                             </div>
                         }
                     </div>
-
-
                     {/* <div className="left-links">
                         <p><a href='https://mysocials.ru/privacy'>Конфиденциальность</a></p>
                         <p><a href='https://mysocials.ru/'>mysocials.ru</a></p>

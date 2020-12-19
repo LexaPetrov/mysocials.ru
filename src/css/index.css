@@ -484,14 +484,10 @@ option {
   box-shadow: var(--NOT_ACTIVE_SHADOW_2);
 }
 
-.mainscreen__content form {
+.mainscreen__content  {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: auto;
-}
-
-.mainscreen__content {
   margin: auto;
 }
 
@@ -622,4 +618,44 @@ h4 {
 .profile__name-name {
   width: 100%;
   box-sizing: border-box;
+}
+
+.modal__form > form{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal__form > form > label{
+  display: flex;
+}
+
+.modal__form > form > button {
+  max-width: 210px;
+}
+
+.register_login__wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 40px;
+}
+
+.register_login__wrapper * + * {
+  margin-left: 10px;
+}
+
+.header__menu__modal {
+  color: #000;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+.header__menu__modal * + * {
+  margin-top: 20px;
 }

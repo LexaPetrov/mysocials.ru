@@ -51,14 +51,15 @@ const MainScreen = props => {
     useEffect(() => {
         actions.get_count(dispatch)
         if (window.location.hash === '#login') {
-            setModal({ login: true })
+            setModal({ ...modal, login: true })
         } else if (window.location.hash === '#register') {
-            setModal({ register: true })
-        }
+            setModal({ ...modal, register: true })
+        }// eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     useEffect(() => {
-        if (state.success) setModal({ login: true })
-        if (!state.success && state.success !== undefined) setModal({ register: true })
+        if (state.success) setModal({ ...modal, login: true })
+        if (!state.success && state.success !== undefined) setModal({ ...modal, register: true })
+   // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.success])
 
     const onLoadCaptcha = () => {
@@ -117,16 +118,20 @@ const MainScreen = props => {
                             flexDirection: 'row',
                             alignItems: 'center',
                             alignSelf: 'center',
-                            background: 'var(--green)'
-                        }} onClick={() => { setModal({ register: true }) }}
+                            background: 'var(--green)',
+                            color: 'white',
+                            fontWeight: 'bold'
+                        }} onClick={() => { setModal({ ...modal, register: true }) }}
                             text={'Создать страницу'} />
                         <Icon size='14' className='button' style={{
                             display: 'flex',
                             flexDirection: 'row',
                             alignItems: 'center',
                             alignSelf: 'center',
-                            background: 'var(--info)'
-                        }} onClick={() => { setModal({ login: true }) }}
+                            background: 'var(--info)',
+                            color: 'white',
+                            fontWeight: 'bold'
+                        }} onClick={() => { setModal({ ...modal, login: true }) }}
                             text={'Войти'} />
                     </div>
                     <div style={{ textAlign: 'center' }}>
@@ -145,7 +150,7 @@ const MainScreen = props => {
                 </div>
 
             </div>
-            <Modal title='Регистрация' isOpened={modal.register} onModalClose={() => setModal({ register: false })}>
+            <Modal title='Регистрация' isOpened={modal.register} onModalClose={() => setModal({ ...modal, register: false })}>
                 <div className='modal__form'>
                     <form onSubmit={onSubmitRegister}>
                         <Input inputplaceholder='username' type='text' required value={formstate.username} onChange={e => onFormChange(e)} name='username' />
@@ -177,7 +182,7 @@ const MainScreen = props => {
                     </form>
                 </div>
             </Modal>
-            <Modal title='Авторизация' isOpened={modal.login} onModalClose={() => setModal({ login: false })}>
+            <Modal title='Авторизация' isOpened={modal.login} onModalClose={() => setModal({ ...modal, login: false })}>
                 <div className='modal__form'>
                     <form onSubmit={onSubmitLogin}>
                         <Input inputplaceholder='username' type='text' required value={formloginstate.username_login} onChange={e => onFormLoginChange(e)} name='username_login' />

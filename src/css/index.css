@@ -459,6 +459,8 @@ option {
   width: 100%;
   font-size: 16px;
   color: white;
+  border: none;
+  font-weight: bold;
 }
 
 .main__layout__wrapper-header h1,
@@ -568,12 +570,6 @@ h4 {
 
 .menu-button span {
   margin-left: 1px;
-}
-
-.menu-button ~ .dropdown-content.visible {
-  display: block;
-  margin-top: 50px;
-  color: #343a40;
 }
 
 .profile.no__sticky label,

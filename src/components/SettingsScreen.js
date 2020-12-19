@@ -321,7 +321,8 @@ const SettingsScreen = props => {
                                 display: 'flex',
                                 flexDirection: 'row',
                                 alignItems: 'center',
-                                color: 'white'
+                                color: 'white',
+                                fontWeight: 'bold'
                             }} />
                         </div>
 
@@ -330,7 +331,8 @@ const SettingsScreen = props => {
                                 display: 'flex',
                                 flexDirection: 'row',
                                 alignItems: 'center',
-                                color: 'white'
+                                color: 'white',
+                                fontWeight: 'bold'
                             }} />
                         </div>
                     </div>
@@ -442,7 +444,8 @@ const SettingsScreen = props => {
                                 display: 'flex',
                                 flexDirection: 'row',
                                 alignItems: 'center',
-                                color: 'white'
+                                color: 'white',
+                                fontWeight: 'bold'
                             }} />
                         </div>
                     </div>
@@ -453,7 +456,8 @@ const SettingsScreen = props => {
                             display: 'flex',
                             flexDirection: 'row',
                             alignItems: 'center',
-                            color: 'white'
+                            color: 'white',
+                            fontWeight: 'bold'
                         }}
                             onClick={addLinkHandler}
                         />

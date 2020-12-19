@@ -10,7 +10,6 @@
   z-index: 100;
 }
 
-
 .modal__wrapper.open {
   height: 100%;
   transition: all 0.3s ease;
@@ -46,6 +45,6 @@
 }
 
 .modal__body h2 {
-    color: #000;
-    text-align: left;
+  color: #000;
+  text-align: left;
 }

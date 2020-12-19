@@ -31,16 +31,19 @@ const Header = props => {
                     <Icon size='17' type='sparkles' style={{
                         display: 'flex',
                         flexDirection: 'row',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        marginTop: '20px'
                     }} onClick={() => window.open('https://mysocials.ru', '_self')} text='mysocials.ru - на главную' />
                     <Icon type='darts' size='17' style={{
                         display: 'flex',
                         flexDirection: 'row',
+                        marginTop: '20px',
                         alignItems: 'center',
                     }} onClick={() => window.open('https://mysocials.ru/#register', '_self')} text='создать профиль' />
                     <Icon type='edit' size='17' style={{
                         display: 'flex',
                         flexDirection: 'row',
+                        marginTop: '20px',
                         alignItems: 'center',
                     }} onClick={() => window.open('https://mysocials.ru/#login', '_self')} text='редактировать профиль' />
                 </div>

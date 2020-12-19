@@ -650,12 +650,8 @@ h4 {
 
 .header__menu__modal {
   color: #000;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  flex-direction: column;
-
+  flex-direction: column; */
 }
 
-.header__menu__modal * + * {
-  margin-top: 20px;
-}

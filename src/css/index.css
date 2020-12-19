@@ -17,21 +17,6 @@ body {
   src: url("../fonts/Golos_Text_Regular.ttf");
 }
 
-@font-face {
-  font-family: "GolosTextMedium";
-  src: url("../fonts/Golos_Text_Medium.ttf");
-}
-
-@font-face {
-  font-family: "GolosTextDemibold";
-  src: url("../fonts/Golos_Text_DemiBold.ttf");
-}
-
-@font-face {
-  font-family: "GolosTextBold";
-  src: url("../fonts/Golos\ Text_Bold.ttf");
-}
-
 * {
   font-family: GolosTextRegular;
 }
@@ -48,42 +33,21 @@ a:visited {
 
 :root {
   --border_radius: 10px;
-  --shadow__main: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   --main_gray: rgba(0, 0, 0, 0.6);
-
-  --NOT_ACTIVE_SHADOW: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
-    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
   --NOT_ACTIVE_SHADOW_2: 1px 1px 2px 0 rgba(0, 0, 0, 0.25),
     -1px -1px 2px 0 rgba(255, 255, 255, 0.3);
-  --ACTIVE_SHADOW: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2),
-    inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
   --ACTIVE_SHADOW_2: inset 1px 1px 2px 0 rgba(0, 0, 0, 0.2),
     inset -1px -1px 2px 0 rgba(255, 255, 255, 0.5);
   --border_raduis: 5px;
-  --blue: #556ee6;
-  --indigo: #564ab1;
-  --purple: #6f42c1;
   --red: #f46a6a;
-  --orange: #f1734f;
-  --yellow: #f1b44c;
   --green: #34c38f;
   --teal: #050505;
-  --cyan: #50a5f1;
   --white: #fff;
-  --gray: #74788d;
-  --gray-dark: #343a40;
-  --primary: #556ee6;
-  --secondary: #74788d;
   --success: #34c38f;
   --info: #50a5f1;
-  --warning: #f1b44c;
-  --danger: #f46a6a;
   --light: #eff2f7;
-  --dark: #343a40;
-  --pink: #e83e8c;
   --light_2: #f8f8fb;
-  --shadow__main: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
-  --shadow__secondary: 0 6px 28px 0 rgba(24, 52, 117, 0.1);
+  
 }
 
 .main__layout__wrapper {
@@ -650,8 +614,5 @@ h4 {
 
 .header__menu__modal {
   color: #000;
-  /* display: flex;
-  justify-content: center;
-  flex-direction: column; */
 }
 

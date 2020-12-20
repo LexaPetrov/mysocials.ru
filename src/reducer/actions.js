@@ -2,7 +2,7 @@
 import {
     REGISTER, LOGIN,
     START_LOADING, STOP_LOADING,
-    SELECT_PROFILE, GET_COUNT
+    SELECT_PROFILE, GET_COUNT, DELETE_USER
 } from './actiontypes'
 
 import { BACKEND_HOST } from '../utils/env'
@@ -100,7 +100,7 @@ export const delete_user = (username, password, dispatch) => {
     fetch(`${BACKEND_HOST}/api/delete?username=` + username + '&password=' + password)
         .then(res => res.json())
         .then((res) => {
-
+            dispatch({ type: DELETE_USER, payload: res })
         })
         .catch(err => {
             // console.log(err)

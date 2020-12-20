@@ -149,10 +149,13 @@ const SettingsScreen = props => {
 
     const onDeleteClickHandler = async () => {
         if (settings.password_delete.length >= 8 && window.confirm(`Удалить аккаунт ${settings.username}? Действие нельзя отменить.`)) {
-            await actions.delete_user(settings.username, settings.password_delete, dispatch);
-            window.location = '/';
+
+            await actions.delete_user(settings.username, settings.password_delete, dispatch)
+            window.location = '/'
         }
     }
+
+    
 
     const upLinkHandler = index => {
         let arr = [...settings.links.data]
@@ -196,7 +199,7 @@ const SettingsScreen = props => {
     if (state.isLoading) return <Loader />;
     return (
         <>
-            <Header profilebg={settings.cover !== null && settings.cover.includes('data') && settings.cover !== '' && settings.cover !== 'null' ? `center / contain url(${settings.cover})` : `${settings.cover}`}/>
+            <Header profilebg={settings.cover !== null && settings.cover.includes('data') && settings.cover !== '' && settings.cover !== 'null' ? `center / contain url(${settings.cover})` : `${settings.cover}`} />
             <div className="main__layout__wrapper-content">
                 <div className="main__layout__wrapper-content__left">
                     <div className='avatar' style={{

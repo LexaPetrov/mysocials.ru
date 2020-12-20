@@ -4,7 +4,8 @@ import {
     REGISTER,
     SELECT_PROFILE,
     LOGIN,
-    GET_COUNT
+    GET_COUNT,
+    DELETE_USER
 } from './actiontypes'
 
 const initialState = {
@@ -32,19 +33,12 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case REGISTER:
-            if (action.payload.data !== undefined && action.payload.data.errno) {
-                return {
-                    ...state,
-                    success: false
-                }
-            } else {
-                return {
-                    ...state,
-                    username: action.payload.username,
-                    email: action.payload.email,
-                    password: action.payload.password,
-                    success: true
-                }
+            return {
+                ...state,
+                username: action.payload.username,
+                email: action.payload.email,
+                password: action.payload.password,
+                success: action.payload.data.success
             }
         case LOGIN:
             if (action.payload.data.data[0]) {
@@ -78,6 +72,11 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false
+            }
+        case DELETE_USER:
+            return{
+                ...state,
+                success_del: action.payload.success
             }
         default:
             return state

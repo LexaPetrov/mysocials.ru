@@ -46,7 +46,6 @@ const MainScreen = props => {
         e.preventDefault();
         await actions.login(formloginstate.username_login, formloginstate.password_login, dispatch)
     }
-    // let bg = backgrounds[Math.floor(Math.random() * (backgrounds.length+1 + 0) - 0)]
 
     useEffect(() => {
         actions.get_count(dispatch)
@@ -57,9 +56,9 @@ const MainScreen = props => {
         }// eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     useEffect(() => {
-        if (state.success) setModal({ ...modal, login: true })
+        if (state.success) setModal({ ...modal, login: true, register: false })
         if (!state.success && state.success !== undefined) setModal({ ...modal, register: true })
-   // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.success])
 
     const onLoadCaptcha = () => {
@@ -83,7 +82,6 @@ const MainScreen = props => {
         { type: 'new', text: 'частые обновления' },
         // { type: 'planet', text: state.count !== undefined ? `Нас уже ${state.count['COUNT(*)']}!` : null }
     ]
-
     if (state.isLoading) return <Loader />;
     return (
         <>
@@ -152,7 +150,7 @@ const MainScreen = props => {
             </div>
             <Modal title='Регистрация' isOpened={modal.register} onModalClose={() => setModal({ ...modal, register: false })}>
                 <div className='modal__form'>
-                    <form onSubmit={onSubmitRegister}>
+                    <form id='submitRegister' onSubmit={onSubmitRegister}>
                         <Input inputplaceholder='username' type='text' required value={formstate.username} onChange={e => onFormChange(e)} name='username' />
                         <Input inputplaceholder='email' type='email' required value={formstate.email} onChange={e => onFormChange(e)} name='email' />
                         <Input inputplaceholder='password' type='password' required value={formstate.password} onChange={e => onFormChange(e)} name='password' minLength='8' />
@@ -168,6 +166,7 @@ const MainScreen = props => {
                             {
                                 modal.register && (
                                     <Recaptcha
+                                        elementID='register-captcha'
                                         sitekey="6Lcsc90ZAAAAABI13YttPvIZDEyXZ-ij36rg5W7F"
                                         render="explicit"
                                         verifyCallback={verifyCallback}
@@ -184,7 +183,7 @@ const MainScreen = props => {
             </Modal>
             <Modal title='Авторизация' isOpened={modal.login} onModalClose={() => setModal({ ...modal, login: false })}>
                 <div className='modal__form'>
-                    <form onSubmit={onSubmitLogin}>
+                    <form id='submitLogin' onSubmit={onSubmitLogin}>
                         <Input inputplaceholder='username' type='text' required value={formloginstate.username_login} onChange={e => onFormLoginChange(e)} name='username_login' />
                         <Input inputplaceholder='password' type='password' required value={formloginstate.password_login} onChange={e => onFormLoginChange(e)} name='password_login' minLength='8' />
                         <button type='submit' className='button button-success register_login' disabled={captcha === false || [formloginstate.username_login, formloginstate.password_login].some(v => v.length === 0)} >Войти</button>
@@ -199,6 +198,7 @@ const MainScreen = props => {
                             {
                                 modal.login && (
                                     <Recaptcha
+                                        elementID='login-captcha'
                                         sitekey="6Lcsc90ZAAAAABI13YttPvIZDEyXZ-ij36rg5W7F"
                                         render="explicit"
                                         verifyCallback={verifyCallback}

@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react"
+import { useEffect, useReducer, useState, createRef } from "react"
 import * as actions from '../reducer/actions'
 import reducer from '../reducer/reducer'
 import Loader from './Loader'
@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom"
 import Icon from "./Icon"
 import Recaptcha from 'react-recaptcha'
 import Header from "./Header"
+import NotificationSystem from 'react-notification-system';
 
 const MainScreen = props => {
     const [state, dispatch] = useReducer(reducer, {})
@@ -58,8 +59,17 @@ const MainScreen = props => {
     useEffect(() => {
         if (state.success) setModal({ ...modal, login: true, register: false })
         if (!state.success && state.success !== undefined) setModal({ ...modal, register: true })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state.success])
+       // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state.success, state.isLoading])
+
+    useEffect(() => {
+        if (state.notificationmessage && !state.isLoading) {
+            notificationSystem.current.addNotification({
+                message: state.notificationmessage,
+                level: state.success ? 'success' : 'error'
+            });
+        }// eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state])
 
     const onLoadCaptcha = () => {
         setCaptcha(false)
@@ -80,12 +90,15 @@ const MainScreen = props => {
         { type: 'wow', text: '50+ вариантов иконок' },
         { type: 'paint', text: '20+ градиентов для профиля' },
         { type: 'new', text: 'частые обновления' },
-        // { type: 'planet', text: state.count !== undefined ? `Нас уже ${state.count['COUNT(*)']}!` : null }
     ]
+
+    let notificationSystem = createRef();
+
     if (state.isLoading) return <Loader />;
     return (
         <>
             <Header />
+            <NotificationSystem ref={notificationSystem} />
             <div className="main__layout__wrapper-content" >
                 <div className="main__layout__wrapper-content__left" >
                     {/* <img style={{
@@ -155,13 +168,6 @@ const MainScreen = props => {
                         <Input inputplaceholder='email' type='email' required value={formstate.email} onChange={e => onFormChange(e)} name='email' />
                         <Input inputplaceholder='password' type='password' required value={formstate.password} onChange={e => onFormChange(e)} name='password' minLength='8' />
                         <button type='submit' className='button button-success register_login' disabled={captcha === false || [formstate.username, formstate.email, formstate.password].some(v => v.length === 0)} >Создать аккаунт</button>
-                        {
-                            state.success !== undefined && !state.success && <Icon size='14' style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                            }} type='cross' text='данный username занят' />
-                        }
                         <div style={{ alignSelf: 'center' }}>
                             {
                                 modal.register && (
@@ -187,13 +193,6 @@ const MainScreen = props => {
                         <Input inputplaceholder='username' type='text' required value={formloginstate.username_login} onChange={e => onFormLoginChange(e)} name='username_login' />
                         <Input inputplaceholder='password' type='password' required value={formloginstate.password_login} onChange={e => onFormLoginChange(e)} name='password_login' minLength='8' />
                         <button type='submit' className='button button-success register_login' disabled={captcha === false || [formloginstate.username_login, formloginstate.password_login].some(v => v.length === 0)} >Войти</button>
-                        {
-                            state.success !== undefined && !state.success && <Icon size='14' style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                            }} type='cross' text='неверный логин или пароль' />
-                        }
                         <div style={{ alignSelf: 'center' }}>
                             {
                                 modal.login && (

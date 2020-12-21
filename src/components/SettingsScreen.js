@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react'
+import { useEffect, useReducer, useState, createRef } from 'react'
 import Icon from './Icon'
 import Input from './Input'
 import Loader from './Loader'
@@ -6,7 +6,7 @@ import * as actions from '../reducer/actions'
 import reducer from '../reducer/reducer'
 import { backgrounds } from '../utils/backgrounds.js'
 import Header from './Header';
-
+import NotificationSystem from 'react-notification-system';
 
 const SettingsScreen = props => {
     const [state, dispatch] = useReducer(reducer, { ...props.location.state })
@@ -149,13 +149,10 @@ const SettingsScreen = props => {
 
     const onDeleteClickHandler = async () => {
         if (settings.password_delete.length >= 8 && window.confirm(`Удалить аккаунт ${settings.username}? Действие нельзя отменить.`)) {
-
             await actions.delete_user(settings.username, settings.password_delete, dispatch)
-            window.location = '/'
+
         }
     }
-
-    
 
     const upLinkHandler = index => {
         let arr = [...settings.links.data]
@@ -196,9 +193,41 @@ const SettingsScreen = props => {
         })
     }
 
+    useEffect(() => {
+        if (state.notificationmessage && !state.isLoading) {
+            notificationSystem.current.addNotification({
+                message: state.notificationmessage,
+                level: state.success ? 'success' : 'error'
+            });
+        }// eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state])
+
+    useEffect(() => {
+        if (state.success_del !== undefined) {
+            if (!state.success_del && !state.isLoading) {
+                notificationSystem.current.addNotification({
+                    message: state.notificationmessage_del,
+                    level: 'error'
+                });
+            }
+            if (state.success_del && !state.isLoading) {
+                notificationSystem.current.addNotification({
+                    message: state.notificationmessage_del,
+                    level: 'success'
+                });
+                setTimeout(() => {
+                    window.location = '/'
+                }, 3000)
+            }
+        }// eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state.success_del])
+
+    console.log(state);
+    let notificationSystem = createRef();
     if (state.isLoading) return <Loader />;
     return (
         <>
+            <NotificationSystem ref={notificationSystem} />
             <Header profilebg={settings.cover !== null && settings.cover.includes('data') && settings.cover !== '' && settings.cover !== 'null' ? `center / contain url(${settings.cover})` : `${settings.cover}`} />
             <div className="main__layout__wrapper-content">
                 <div className="main__layout__wrapper-content__left">

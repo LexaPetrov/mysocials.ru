@@ -2,7 +2,7 @@
 import {
     REGISTER, LOGIN,
     START_LOADING, STOP_LOADING,
-    SELECT_PROFILE, GET_COUNT, DELETE_USER
+    SELECT_PROFILE, GET_COUNT, DELETE_USER, SAVE_PROFILE
 } from './actiontypes'
 
 import { BACKEND_HOST } from '../utils/env'
@@ -79,7 +79,7 @@ export const save_profile = (data, dispatch) => {
     }).then(res => {
         return res.json()
     }).then(res => {
-        // dispatch({type: SAVE_PROFILE, payload: res.data})
+        dispatch({type: SAVE_PROFILE, payload: res})
     }).finally(() => {
         dispatch({ type: STOP_LOADING })
     })

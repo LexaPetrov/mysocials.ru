@@ -5,7 +5,8 @@ import {
     SELECT_PROFILE,
     LOGIN,
     GET_COUNT,
-    DELETE_USER
+    DELETE_USER,
+    SAVE_PROFILE
 } from './actiontypes'
 
 const initialState = {
@@ -38,25 +39,27 @@ export const reducer = (state = initialState, action) => {
                 username: action.payload.username,
                 email: action.payload.email,
                 password: action.payload.password,
+                notificationmessage: action.payload.data.notificationmessage,
                 success: action.payload.data.success
             }
         case LOGIN:
-            if (action.payload.data.data[0]) {
-                return {
-                    ...state,
-                    ...action.payload.data.data[0],
-                    success: true
-                }
-            } else {
-                return {
-                    ...state, success: false
-                }
+            return {
+                ...state,
+                ...action.payload.data[0],
+                success: action.payload.data.success,
+                notificationmessage: action.payload.data.notificationmessage
             }
         case SELECT_PROFILE:
             return {
                 ...state,
                 ...action.payload[0],
                 links: JSON.parse(action.payload[0].links)
+            }
+        case SAVE_PROFILE:
+            return {
+                ...state,
+                success: action.payload.success,
+                notificationmessage: action.payload.notificationmessage
             }
         case GET_COUNT:
             return {
@@ -74,9 +77,10 @@ export const reducer = (state = initialState, action) => {
                 isLoading: false
             }
         case DELETE_USER:
-            return{
+            return {
                 ...state,
-                success_del: action.payload.success
+                success_del: action.payload.success,
+                notificationmessage_del: action.payload.notificationmessage
             }
         default:
             return state

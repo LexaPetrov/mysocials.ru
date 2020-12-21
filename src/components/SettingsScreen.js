@@ -222,7 +222,6 @@ const SettingsScreen = props => {
         }// eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.success_del])
 
-    console.log(state);
     let notificationSystem = createRef();
     if (state.isLoading) return <Loader />;
     return (

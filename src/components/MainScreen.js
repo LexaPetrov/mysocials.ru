@@ -93,6 +93,7 @@ const MainScreen = props => {
     ]
 
     let notificationSystem = createRef();
+    // actions.is_auth()
 
     if (state.isLoading) return <Loader />;
     return (
@@ -210,7 +211,7 @@ const MainScreen = props => {
                             }
                         </div>
                         {
-                            state.success && state.id !== undefined && <Redirect to={{
+                            state.auth && state.success && state.id !== undefined && <Redirect to={{
                                 pathname: "/settings",
                                 state
                             }} />

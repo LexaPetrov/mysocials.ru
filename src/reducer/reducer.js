@@ -6,7 +6,8 @@ import {
     LOGIN,
     GET_COUNT,
     DELETE_USER,
-    SAVE_PROFILE
+    SAVE_PROFILE,
+    NOT_AUTHTORIZED
 } from './actiontypes'
 
 const initialState = {
@@ -43,10 +44,13 @@ export const reducer = (state = initialState, action) => {
                 success: action.payload.data.success
             }
         case LOGIN:
+            localStorage.setItem('token', action.payload.data.token)
             return {
                 ...state,
                 ...action.payload.data[0],
                 success: action.payload.data.success,
+                token: action.payload.data.token,
+                auth: action.payload.data.auth,
                 notificationmessage: action.payload.data.notificationmessage
             }
         case SELECT_PROFILE:
@@ -81,6 +85,12 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 success_del: action.payload.success,
                 notificationmessage_del: action.payload.notificationmessage
+            }
+        case NOT_AUTHTORIZED:
+            return {
+                ...state,
+                success: false,
+                notificationmessage: 'Не авторизован'
             }
         default:
             return state

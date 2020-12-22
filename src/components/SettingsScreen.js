@@ -6,7 +6,6 @@ import * as actions from '../reducer/actions'
 import reducer from '../reducer/reducer'
 import { backgrounds } from '../utils/backgrounds.js'
 import Header from './Header';
-import { Chart } from 'react-charts'
 import NotificationSystem from 'react-notification-system';
 import Statistics from './Statistics'
 

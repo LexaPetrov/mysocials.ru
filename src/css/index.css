@@ -225,7 +225,7 @@ a:visited {
   margin-bottom: 30px;
 }
 
-.profile__birthday {
+.profile__birthday, .stat {
   font-size: 12px;
   color: var(--main_gray);
   margin-top: 10px;

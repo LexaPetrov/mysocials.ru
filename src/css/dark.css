@@ -102,7 +102,7 @@
   .dropdown-content a {
     text-decoration-color: initial;
   }
-  .profile__birthday {
+  .profile__birthday, .stat {
     color: rgba(232, 230, 227, 0.6);
   }
   .link__wrapper {

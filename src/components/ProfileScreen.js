@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import reducer from '../reducer/reducer';
 import Icon from './Icon';
 import Loader from './Loader'
@@ -7,7 +7,7 @@ import Header from './Header';
 
 const ProfileScreen = props => {
     const [state, dispatch] = useReducer(reducer, {})
-
+    const [stat, setStat] = useState({ count: 0, all_count: 0 })
 
     useEffect(() => {
         let username = window.location.pathname.replace('/', '')
@@ -16,6 +16,16 @@ const ProfileScreen = props => {
             actions.visit(new Date(), username)
         }, 5000)
     }, [])
+
+    useEffect(() => {
+        state.statistics && JSON.parse(state.statistics).data.map(val => {
+            return setStat({
+                ...stat,
+                count: stat.count + val.count,
+                all_count: stat.all_count + val.all_count,
+            })
+        })
+    }, [state.statistics])
 
     const copyToClipboard = () => {
         let textField = document.createElement('textarea')
@@ -110,6 +120,18 @@ const ProfileScreen = props => {
                                 }} />
                             </div>
                         }
+                        <div className='stat'>
+                            <Icon type='eye2' size='16' text={stat.count + ' / ' + stat.all_count + ' (уникальные / все посетители)'} style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center'
+                            }} />
+                            {/* <Icon type='eye2' size='16' text={stat.all_count} style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center'
+                            }} /> */}
+                        </div>
                     </div>
                 </div>
                 <div style={{ marginRight: '20px', height: '20px' }}></div>

@@ -129,3 +129,13 @@ export const is_auth = () => {
         }
     })
 }
+
+export const visit = (date, username) => {//62.76.152.151
+    return fetch(`${BACKEND_HOST}/api/visit/`, {
+        method: 'post',
+        mode: 'cors', headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ date: date.toLocaleDateString(), username })
+    })
+}

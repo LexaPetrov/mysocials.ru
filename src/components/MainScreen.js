@@ -59,7 +59,7 @@ const MainScreen = props => {
     useEffect(() => {
         if (state.success) setModal({ ...modal, login: true, register: false })
         if (!state.success && state.success !== undefined) setModal({ ...modal, register: true })
-       // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.success, state.isLoading])
 
     useEffect(() => {
@@ -93,7 +93,14 @@ const MainScreen = props => {
     ]
 
     let notificationSystem = createRef();
-    // actions.is_auth()
+
+    const renderImg = () => {
+        setInterval(() => {
+            setTimeout(() => {
+                return 
+            }, 5000)
+        }, 5000)
+    }
 
     if (state.isLoading) return <Loader />;
     return (
@@ -147,7 +154,7 @@ const MainScreen = props => {
                             text={'Войти'} />
                     </div>
                     <div style={{ textAlign: 'center' }}>
-                        <img style={{
+                        <img className='top' style={{
                             width: '50%'
                         }} src={`/img/${window.matchMedia('(prefers-color-scheme: dark)').matches ? '2' : '1'}.png`} alt='img' />
                     </div>

@@ -7,11 +7,14 @@ import Header from './Header';
 
 const ProfileScreen = props => {
     const [state, dispatch] = useReducer(reducer, {})
-    
+
 
     useEffect(() => {
         let username = window.location.pathname.replace('/', '')
         actions.select_profile(username, dispatch)
+        // setTimeout(() => {
+            actions.visit(new Date(), username)
+        // }, 10000)
     }, [])
 
     const copyToClipboard = () => {

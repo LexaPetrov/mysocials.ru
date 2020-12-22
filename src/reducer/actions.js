@@ -68,30 +68,23 @@ export const select_profile = (username, dispatch) => {
 }
 
 export const save_profile = (data, dispatch) => {
-    is_auth().then(res => {
-        return res.json()
-    }).then(r => {
-        if (r.auth) {
-            dispatch({ type: START_LOADING })
-            fetch(`${BACKEND_HOST}/api/save`, {
-                mode: 'cors',
-                method: 'put',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ data })
-            }).then(res => {
-                return res.json()
-            }).then(res => {
-                dispatch({ type: SAVE_PROFILE, payload: res })
-            }).finally(() => {
-                dispatch({ type: STOP_LOADING })
-            })
-        } else {
-            dispatch({ type: NOT_AUTHTORIZED })
-        }
-    })
 
+    dispatch({ type: START_LOADING })
+    fetch(`${BACKEND_HOST}/api/save`, {
+        mode: 'cors',
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': localStorage.getItem('token')
+        },
+        body: JSON.stringify({ data })
+    }).then(res => {
+        return res.json()
+    }).then(res => {
+        dispatch({ type: SAVE_PROFILE, payload: res })
+    }).finally(() => {
+        dispatch({ type: STOP_LOADING })
+    })
 }
 
 export const get_count = (dispatch) => {
@@ -106,22 +99,26 @@ export const get_count = (dispatch) => {
 }
 
 export const delete_user = (username, password, dispatch) => {
-    is_auth().then(res => {
-        return res.json()
-    }).then(r => {
-        if (r.auth) {
-            fetch(`${BACKEND_HOST}/api/delete?username=` + username + '&password=' + password)
-                .then(res => res.json())
-                .then((res) => {
-                    dispatch({ type: DELETE_USER, payload: res })
-                })
-                .catch(err => {
-                    // console.log(err)
-                })
-        } else {
-            dispatch({ type: NOT_AUTHTORIZED })
+    // is_auth().then(res => {
+    //     return res.json()
+    // }).then(r => {
+    //     if (r.auth) {
+    fetch(`${BACKEND_HOST}/api/delete?username=` + username + '&password=' + password, {
+        headers: {
+            'x-access-token': localStorage.getItem('token')
         }
     })
+        .then(res => res.json())
+        .then((res) => {
+            dispatch({ type: DELETE_USER, payload: res })
+        })
+        .catch(err => {
+            // console.log(err)
+        })
+    //     } else {
+    //         dispatch({ type: NOT_AUTHTORIZED })
+    //     }
+    // })
 }
 
 export const is_auth = () => {

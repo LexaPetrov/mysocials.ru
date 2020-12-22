@@ -149,7 +149,7 @@ const SettingsScreen = props => {
 
     const onDeleteClickHandler = async () => {
         if (settings.password_delete.length >= 8 && window.confirm(`Удалить аккаунт ${settings.username}? Действие нельзя отменить.`)) {
-            await actions.delete_user(settings.username, settings.password_delete, dispatch)
+            await actions.delete_user(settings.username, settings.password_delete, settings.id, dispatch)
 
         }
     }
@@ -192,6 +192,7 @@ const SettingsScreen = props => {
             }
         })
     }
+
 
     useEffect(() => {
         if (state.notificationmessage && !state.isLoading) {

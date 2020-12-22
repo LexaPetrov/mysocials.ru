@@ -98,12 +98,12 @@ export const get_count = (dispatch) => {
         })
 }
 
-export const delete_user = (username, password, dispatch) => {
+export const delete_user = (username, password, id, dispatch) => {
     // is_auth().then(res => {
     //     return res.json()
     // }).then(r => {
     //     if (r.auth) {
-    fetch(`${BACKEND_HOST}/api/delete?username=` + username + '&password=' + password, {
+    fetch(`${BACKEND_HOST}/api/delete?username=` + username + '&password=' + password + '&id=' + id, {
         headers: {
             'x-access-token': localStorage.getItem('token')
         }

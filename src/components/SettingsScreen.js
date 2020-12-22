@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState, createRef } from 'react'
+import { useEffect, useReducer, useState, createRef, useMemo } from 'react'
 import Icon from './Icon'
 import Input from './Input'
 import Loader from './Loader'
@@ -6,9 +6,12 @@ import * as actions from '../reducer/actions'
 import reducer from '../reducer/reducer'
 import { backgrounds } from '../utils/backgrounds.js'
 import Header from './Header';
+import { Chart } from 'react-charts'
 import NotificationSystem from 'react-notification-system';
+import Statistics from './Statistics'
 
 const SettingsScreen = props => {
+    const [stat, setStat] = useState({ data: [] })
     const [state, dispatch] = useReducer(reducer, { ...props.location.state })
     const [tabs, setTabs] = useState({
         tabs: [
@@ -51,6 +54,30 @@ const SettingsScreen = props => {
         // eslint-disable-next-line
     }, [])
 
+    useEffect(() => {
+        if (settings.username) {
+            actions.visit(new Date(), settings.username).then(r => r.json()).then(r => {
+                let obj = { ...r }
+                obj.stat1 = []
+                obj.stat2 = []
+                obj.data.map(v => {
+                    v.date = new Date(v.date.replace(/(\d{2}).(\d{2}).(\d{4})/, "$2/$1/$3"))
+                    obj.stat1.push({
+                        primary: v.date,
+                        secondary: v.all_count
+                    })
+                    obj.stat2.push({
+                        primary: v.date,
+                        secondary: v.count
+                    })
+
+                    return ''
+                })
+                setStat(obj)
+            })
+        }
+    }, [settings.username])
+
     const onInputChange = e => {
         setSettings({
             ...settings,
@@ -89,7 +116,6 @@ const SettingsScreen = props => {
             links: { data: arr }
         })
     }
-
     const addLinkHandler = () => {
         let obj = { data: [] }
         if (settings.links === null || settings.links === 'null') {
@@ -224,6 +250,41 @@ const SettingsScreen = props => {
     }, [state.success_del])
 
     let notificationSystem = createRef();
+
+    const data = useMemo(() => [
+        {
+            label: 'Просмотры (все)',
+            data: stat.stat1
+        },
+        {
+            label: 'Просмотры (уникальные)',
+            data: stat.stat2
+        }
+    ], [stat.stat2, stat.stat1])
+
+    const axes = useMemo(() => [
+        {
+            primary: true,
+            type: "time",
+            position: "bottom"
+        },
+        { type: "linear", position: "left" },
+    ], []);
+
+    const options = useMemo(() => [
+        {
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                }]
+            }
+        }
+    ], [])
+
+    const series = useMemo(() => ({
+        type: "bar"
+    }), []);
+
     if (state.isLoading) return <Loader />;
     return (
         <>
@@ -445,6 +506,11 @@ const SettingsScreen = props => {
 
                     <div className={`settings_tab-statistics ${tabs.active === 'statistics' ? 'active-tab' : 'not-active-tab'}`}>
                         <h3>Статистика</h3>
+                        <hr />
+                        <h4>Все просмотры и уникальные просмотры</h4>
+                        {
+                            stat.stat1 && stat.stat2 && <Statistics data={data} axes={axes} options={options} series={series} tooltip />
+                        }
                     </div>
                     <div className={`settings_tab-settings ${tabs.active === 'settings' ? 'active-tab' : 'not-active-tab'}`}>
                         <h3>Настройки</h3>

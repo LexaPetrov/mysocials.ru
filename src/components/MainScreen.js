@@ -89,18 +89,11 @@ const MainScreen = props => {
         { type: 'moon', text: 'светлая и тёмная тема' },
         { type: 'wow', text: '50+ вариантов иконок' },
         { type: 'paint', text: '20+ градиентов для профиля' },
+        { type: 'chart', text: 'статистика посещений' },
         { type: 'new', text: 'частые обновления' },
     ]
 
     let notificationSystem = createRef();
-
-    const renderImg = () => {
-        setInterval(() => {
-            setTimeout(() => {
-                return 
-            }, 5000)
-        }, 5000)
-    }
 
     if (state.isLoading) return <Loader />;
     return (

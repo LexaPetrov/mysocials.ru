@@ -46,7 +46,7 @@ const SettingsScreen = props => {
                 links: props.location.state.links !== undefined && JSON.parse(props.location.state.links),
             })
         } catch {
-            window.location = '/'
+            window.location = '/#login'
         }
         // eslint-disable-next-line
     }, [])

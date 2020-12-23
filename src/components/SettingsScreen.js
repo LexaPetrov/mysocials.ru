@@ -318,9 +318,6 @@ const SettingsScreen = props => {
                                 value={settings.username !== null ? settings.username : ''}
                             />
                         </div>
-                        <div className='button settings_link'>
-                            <a href={'https://mysocials.ru/' + settings.username}>{'https://mysocials.ru/' + settings.username}</a>
-                        </div>
                         <div className="profile__bio profile__bio__settings">
                             <Input
                                 type='textarea'
@@ -347,6 +344,16 @@ const SettingsScreen = props => {
                                 onChange={onInputChange}
                                 value={settings.birthday}
                             />
+                        </div>
+                        <div className='button settings_link'>
+                            {/* <Input
+                                type='text'
+                                inputplaceholder='@username'
+                                disabled
+                                onClick={() => window.open('https://mysocials.ru/' + settings.username, '_self')}
+                                value={'https://mysocials.ru/' + settings.username}
+                            /> */}
+                            <a href={'https://mysocials.ru/' + settings.username}>{'mysocials.ru/' + settings.username}</a>
                         </div>
                     </div>
 

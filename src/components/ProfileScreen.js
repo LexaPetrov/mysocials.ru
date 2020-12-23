@@ -18,13 +18,17 @@ const ProfileScreen = props => {
     }, [])
 
     useEffect(() => {
+        let c = 0, a_c = 1
         state.statistics && JSON.parse(state.statistics).data.map(val => {
-            return setStat({
-                ...stat,
-                count: stat.count + val.count,
-                all_count: stat.all_count + val.all_count,
-            })
-        })
+            c += val.count
+            a_c += val.all_count
+            return null
+        }) 
+        setStat({
+            ...stat,
+            count: c,
+            all_count: a_c
+        })// eslint-disable-next-line
     }, [state.statistics])
 
     const copyToClipboard = () => {
@@ -35,7 +39,6 @@ const ProfileScreen = props => {
         document.execCommand('copy')
         textField.remove()
     }
-
 
     const formatLink = (type, link) => {
         switch (type) {
@@ -126,11 +129,6 @@ const ProfileScreen = props => {
                                 flexDirection: 'row',
                                 alignItems: 'center'
                             }} />
-                            {/* <Icon type='eye2' size='16' text={stat.all_count} style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center'
-                            }} /> */}
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   height: 0;
@@ -21,7 +21,7 @@
 }
 
 .modal__body {
-  max-width: 900px;
+  max-width: 500px;
   margin: auto;
   background: white;
   margin-top: 10%;
@@ -35,16 +35,30 @@
 .modal__close {
   width: 100%;
   margin: auto;
-  text-align: center;
-  font-size: 30px;
+  /* text-align: center; */
+  /* font-size: 30px; */
   padding: 0;
   margin-top: -15px;
-  cursor: pointer;
+  /* cursor: pointer;
   transform: rotate(180deg);
-  color: #000;
+  color: #000; */
 }
 
 .modal__body h2 {
   color: #000;
   text-align: left;
 }
+
+.modal__close span::after {
+  content: ' ';
+  position: relative;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  background: lightgray;
+  height: 5px;
+  width: 60px;
+  margin: auto;
+  cursor: pointer;
+}
+

@@ -9,6 +9,7 @@ import Icon from "./Icon"
 import Recaptcha from 'react-recaptcha'
 import Header from "./Header"
 import NotificationSystem from 'react-notification-system';
+import News from "./News"
 
 const MainScreen = props => {
     const [state, dispatch] = useReducer(reducer, {})
@@ -149,7 +150,8 @@ const MainScreen = props => {
                     <div style={{ textAlign: 'center' }}>
                         <img className='top' style={{
                             width: '50%'
-                        }} src={`/img/${window.matchMedia('(prefers-color-scheme: dark)').matches ? '2' : '1'}.png`} alt='img' />
+                        }} src={`/img/1.png`} alt='img' />
+                        {/* }} src={`/img/${window.matchMedia('(prefers-color-scheme: dark)').matches ? '2' : '1'}.png`} alt='img' /> */}
                     </div>
                     <div className="left-links main__screen">
                         <p><a href='/privacy'>Конфиденциальность</a></p>
@@ -160,7 +162,6 @@ const MainScreen = props => {
                         <br></br>
                     </div>
                 </div>
-
             </div>
             <Modal title='Регистрация' isOpened={modal.register} onModalClose={() => setModal({ ...modal, register: false })}>
                 <div className='modal__form'>
@@ -178,7 +179,7 @@ const MainScreen = props => {
                                         render="explicit"
                                         verifyCallback={verifyCallback}
                                         onloadCallback={onLoadCaptcha}
-                                        theme={window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'}
+                                        // theme={window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'}
                                         size='compact'
                                         hl='ru'
                                     />
@@ -203,7 +204,7 @@ const MainScreen = props => {
                                         render="explicit"
                                         verifyCallback={verifyCallback}
                                         onloadCallback={onLoadCaptcha}
-                                        theme={window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'}
+                                        // theme={window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'}
                                         size='compact'
                                         hl='ru'
                                     />
@@ -219,6 +220,7 @@ const MainScreen = props => {
                     </form>
                 </div>
             </Modal>
+            <News />    
         </>
     )
 }

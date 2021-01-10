@@ -77,6 +77,15 @@ a:visited {
   flex-direction: column;
 }
 
+.container {
+  width: 100%;
+  max-width: 900px;
+  align-self: center;
+  margin: auto;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
 .main__layout__wrapper-content {
   max-width: 900px;
   width: 100%;

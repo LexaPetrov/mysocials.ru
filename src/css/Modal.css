@@ -11,6 +11,7 @@
 }
 
 .modal__wrapper.open {
+  /* display: block; */
   height: 100%;
   transition: all 0.3s ease;
 }
@@ -18,6 +19,7 @@
 .modal__wrapper.close {
   height: 0;
   transition: all 0.3s ease;
+  /* display: none; */
 }
 
 .modal__body {
@@ -56,7 +58,7 @@
   border-radius: 10px;
   border: 1px solid lightgray;
   background: lightgray;
-  height: 5px;
+  height: 4px;
   width: 60px;
   margin: auto;
   cursor: pointer;

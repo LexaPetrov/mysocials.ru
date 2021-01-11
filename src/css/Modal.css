@@ -49,6 +49,9 @@
 .modal__body h2 {
   color: #000;
   text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
 }
 
 .modal__close span::after {

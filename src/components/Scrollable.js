@@ -49,6 +49,7 @@ const Scrollable = props => {
     };
 
 
+
     useEffect(() => {
         document.addEventListener("mousedown", onMouseDown)
         document.addEventListener("mousemove", onMouseMove)
@@ -59,6 +60,21 @@ const Scrollable = props => {
             document.removeEventListener("mousemove", onMouseUp)
         }
     })
+
+    useEffect(() => {
+      const el = ref.current;
+      if (el) {
+        const onWheel = e => {
+          e.preventDefault();
+          el.scrollTo({
+            left: el.scrollLeft + e.deltaY * 2,
+            behavior: "smooth"
+          });
+        };
+        el.addEventListener("wheel", onWheel);
+        return () => el.removeEventListener("wheel", onWheel);
+      }
+    }, []);
 
     //https://valtism.com/src/use-drag-scroll.html
 

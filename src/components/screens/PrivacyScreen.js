@@ -1,5 +1,5 @@
-import { backgrounds } from '../utils/backgrounds'
-import Logo from './Logo'
+import { backgrounds } from '../../utils/backgrounds'
+import Logo from '../dumb_components/Logo'
 
 const PrivacyScreen = props => {
     return (

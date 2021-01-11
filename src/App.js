@@ -1,9 +1,9 @@
 import { Switch, Route } from 'react-router-dom';
-import Layout from './components/Layout'
-import ProfileScreen from './components/ProfileScreen'
-import MainScreen from './components/MainScreen'
-import SettingsScreen from './components/SettingsScreen'
-import PrivacyScreen from './components/PrivacyScreen';
+import Layout from './components/hoc/Layout'
+import ProfileScreen from './components/screens/ProfileScreen'
+import MainScreen from './components/screens/MainScreen'
+import SettingsScreen from './components/screens/SettingsScreen'
+import PrivacyScreen from './components/screens/PrivacyScreen';
 
 const App = (props) => {
   return (
@@ -15,8 +15,6 @@ const App = (props) => {
         <Route path={process.env.PUBLIC_URL + '/:username'} component={ProfileScreen} />
       </Switch>
     </Layout>
-
-
   )
 }
 

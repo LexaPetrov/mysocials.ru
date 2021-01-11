@@ -1,15 +1,15 @@
 import { useEffect, useReducer, useState, createRef } from "react"
-import * as actions from '../reducer/actions'
-import reducer from '../reducer/reducer'
-import Loader from './Loader'
-import Input from './Input'
-import Modal from './Modal'
+import * as actions from '../../reducer/actions'
+import reducer from '../../reducer/reducer'
+import Loader from '../dumb_components/Loader'
+import Input from '../dumb_components/Input'
+import Modal from '../dumb_components/Modal'
 import { Redirect } from "react-router-dom"
-import Icon from "./Icon"
+import Icon from "../dumb_components/Icon"
 import Recaptcha from 'react-recaptcha'
-import Header from "./Header"
+import Header from "../smart_components/Header"
 import NotificationSystem from 'react-notification-system';
-import News from "./News"
+import News from "../smart_components/News"
 
 const MainScreen = props => {
     const [state, dispatch] = useReducer(reducer, {})
@@ -87,7 +87,6 @@ const MainScreen = props => {
         { type: 'infinity', text: 'любое количество ссылок' },
         { type: 'like', text: 'удобный редактор профиля' },
         { type: 'phone_off', text: 'нет рекламы' },
-        { type: 'moon', text: 'светлая и тёмная тема' },
         { type: 'wow', text: '50+ вариантов иконок' },
         { type: 'paint', text: '20+ градиентов для профиля' },
         { type: 'chart', text: 'статистика посещений' },

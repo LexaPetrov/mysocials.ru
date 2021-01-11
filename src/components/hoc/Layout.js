@@ -1,4 +1,4 @@
-import * as actions from '../reducer/actions'
+import * as actions from '../../reducer/actions'
 const Layout = props => {
     setInterval(() => {
         if(window.location.pathname === '/settings') {

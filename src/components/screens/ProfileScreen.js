@@ -1,9 +1,9 @@
 import { useEffect, useReducer, useState } from 'react'
-import reducer from '../reducer/reducer';
-import Icon from './Icon';
-import Loader from './Loader'
-import * as actions from '../reducer/actions'
-import Header from './Header';
+import reducer from '../../reducer/reducer';
+import Icon from '../dumb_components/Icon';
+import Loader from '../dumb_components/Loader'
+import * as actions from '../../reducer/actions'
+import Header from '../smart_components/Header';
 
 const ProfileScreen = props => {
     const [state, dispatch] = useReducer(reducer, {})

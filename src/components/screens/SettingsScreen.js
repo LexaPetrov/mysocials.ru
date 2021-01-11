@@ -1,13 +1,13 @@
 import { useEffect, useReducer, useState, createRef, useMemo } from 'react'
-import Icon from './Icon'
-import Input from './Input'
-import Loader from './Loader'
-import * as actions from '../reducer/actions'
-import reducer from '../reducer/reducer'
-import { backgrounds } from '../utils/backgrounds.js'
-import Header from './Header';
+import Icon from '../dumb_components/Icon'
+import Input from '../dumb_components/Input'
+import Loader from '../dumb_components/Loader'
+import * as actions from '../../reducer/actions'
+import reducer from '../../reducer/reducer'
+import { backgrounds } from '../../utils/backgrounds.js'
+import Header from '../smart_components/Header';
 import NotificationSystem from 'react-notification-system';
-import Statistics from './Statistics'
+import Statistics from '../dumb_components/Statistics'
 
 const SettingsScreen = props => {
     const [stat, setStat] = useState({ data: [] })

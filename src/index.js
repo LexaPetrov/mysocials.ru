@@ -9,7 +9,6 @@ import './css/News.css'
 import './css/loader.css'
 import './css/input.css'
 import './css/media.css'
-// import './css/dark.css'
 
 ReactDOM.render(
   <Router basename={process.env.PUBLIC_URL}>

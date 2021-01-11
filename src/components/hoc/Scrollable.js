@@ -67,7 +67,7 @@ const Scrollable = props => {
         const onWheel = e => {
           e.preventDefault();
           el.scrollTo({
-            left: el.scrollLeft + e.deltaY * 2,
+            left: el.scrollLeft + e.deltaY * 4,
             behavior: "smooth"
           });
         };
@@ -77,7 +77,6 @@ const Scrollable = props => {
     }, []);
 
     //https://valtism.com/src/use-drag-scroll.html
-
     return (
         <div
             ref={ref}

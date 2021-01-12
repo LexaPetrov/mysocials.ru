@@ -9,9 +9,6 @@ const Icon = props => {
                 'alignSelf': 'center',
                 verticalAlign: 'middle',
                 cursor: 'pointer',
-                // display: 'flex',
-                // flexDirection: 'row',
-                // alignItems: 'center',
                 ...props.style
             }}
             onClick={props.onClick}
@@ -26,7 +23,7 @@ const Icon = props => {
                     alt='icon'
                 />
             }
-            <span style={{ marginLeft:  props.type && '10px' }}>{props.text}</span>
+            <span style={{ marginLeft:  props.type && '10px', fontSize: props.fz+'px' || '16px' }}>{props.text}</span>
         </span>
     )
 }

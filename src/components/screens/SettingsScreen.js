@@ -359,11 +359,7 @@ const SettingsScreen = props => {
 
                     <div className={`settings ${tabs.active === 'appearance' ? 'active' : null} no__sticky`}>
                         <Icon
-                            type='picture' size='17' text='Внешний вид' style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                            }}
+                            type='picture' size='17' className='center__icon' text='Внешний вид' 
                             onClick={() => {
                                 setTabs({
                                     ...tabs, active: 'appearance'
@@ -373,11 +369,7 @@ const SettingsScreen = props => {
                     </div>
                     <div className={`settings ${tabs.active === 'links' ? 'active' : null} no__sticky`}>
                         <Icon
-                            type='link' size='17' text='Ссылки' style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                            }}
+                            type='link' size='17' className='center__icon' text='Ссылки' 
                             onClick={() => {
                                 setTabs({
                                     ...tabs, active: 'links'
@@ -387,11 +379,7 @@ const SettingsScreen = props => {
                     </div>
                     <div className={`settings ${tabs.active === 'statistics' ? 'active' : null} no__sticky`}>
                         <Icon
-                            type='chart' size='17' text='Статистика' style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                            }}
+                            type='chart' size='17' className='center__icon' text='Статистика' 
                             onClick={() => {
                                 setTabs({
                                     ...tabs, active: 'statistics'
@@ -401,11 +389,7 @@ const SettingsScreen = props => {
                     </div>
                     <div className={`settings ${tabs.active === 'settings' ? 'active' : null} no__sticky`}>
                         <Icon
-                            type='settings' size='17' text='Настройки' style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                            }}
+                            type='settings' size='17' text='Настройки' className='center__icon' 
                             onClick={() => {
                                 setTabs({
                                     ...tabs, active: 'settings'
@@ -415,24 +399,12 @@ const SettingsScreen = props => {
                     </div>
 
                     <div className='settings__buttons no__sticky'>
-                        <div className='settings button button-success'>
-                            <Icon type='save' size='17' text='Сохранить' onClick={e => onSaveClickHandler(e)} style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                color: 'white',
-                                fontWeight: 'bold'
-                            }} />
+                        <div className='settings button button-success hover center'>
+                            <Icon type='save' size='17' text='Сохранить' className='center__icon' onClick={e => onSaveClickHandler(e)} />
                         </div>
 
-                        <div className='settings button button-danger'>
-                            <Icon type='cross' size='17' text='Отмена' onClick={() => window.location = `/${settings.username}`} style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                color: 'white',
-                                fontWeight: 'bold'
-                            }} />
+                        <div className='settings button button-danger hover center'>
+                            <Icon type='cross' size='17' text='Отмена' className='center__icon' onClick={() => window.location = `/${settings.username}`} />
                         </div>
                     </div>
 
@@ -451,11 +423,7 @@ const SettingsScreen = props => {
                         <hr />
                         <div className='appearance-wrapper'>
                             <label className='change__cover' htmlFor='img__Cover'>
-                                <Icon style={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    alignItems: 'center'
-                                }} type='camera' size='20' text='загрузить фото' />
+                                <Icon className='center__icon' type='camera' size='20' text='загрузить фото' />
                                 <input type="file" id="img__Cover" name='img__Cover' style={{ display: 'none' }} onChange={(e) => encodeImageFileAsURL(e, 'cover')} />
                             </label>
                             <small>(рекомендуемый размер: высота 180px, ширина 1920px и выше)</small>
@@ -470,11 +438,7 @@ const SettingsScreen = props => {
                                 }
                             </select>
                             <label className='change__cover' onClick={() => setSettings({ ...settings, cover: '' })}>
-                                <Icon style={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    alignItems: 'center'
-                                }} type='stop' size='20' text='удалить обложку' />
+                                <Icon className='center__icon' type='stop' size='20' text='удалить обложку' />
                             </label>
                         </div>
 
@@ -483,11 +447,7 @@ const SettingsScreen = props => {
                         <div className='appearance-wrapper'>
 
                             <label className='change__avatar' htmlFor='img__avatar'>
-                                <Icon style={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    alignItems: 'center'
-                                }} type='camera' size='20' text='загрузить фото' />
+                                <Icon className='center__icon' type='camera' size='20' text='загрузить фото' />
                                 <input type="file" id="img__avatar" name='img__avatar' style={{ display: 'none' }} onChange={(e) => encodeImageFileAsURL(e, 'avatar')} />
                             </label>
                             <select className='avatar__background__select' name='avatar' value='цвет' onChange={e => changeBackground(e)}>
@@ -501,11 +461,7 @@ const SettingsScreen = props => {
                                 }
                             </select>
                             <label className='change__avatar' onClick={() => setSettings({ ...settings, avatar: '' })}>
-                                <Icon style={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    alignItems: 'center'
-                                }} type='stop' size='20' text='удалить аватар' />
+                                <Icon className='center__icon' type='stop' size='20' text='удалить аватар' />
                             </label>
                         </div>
                     </div>
@@ -542,29 +498,14 @@ const SettingsScreen = props => {
                             name='password_delete'
                             onChange={onInputChange}
                         />
-                        <div className='settings button button-danger'>
+                        <div className='settings button button-danger hover center'>
 
-                            <Icon type='cross' size='17' text='Удалить страницу' onClick={onDeleteClickHandler} style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                color: 'white',
-                                fontWeight: 'bold'
-                            }} />
+                            <Icon type='cross' size='17' text='Удалить страницу' className='center__icon' onClick={onDeleteClickHandler} />
                         </div>
                     </div>
                     <div className={`links settings_tab-links ${tabs.active === 'links' ? 'active-tab' : 'not-active-tab'}`}>
                         <h3>Ссылки</h3>
-
-                        <Icon type='plus' className='button button-success' size='20' text='Добавить ссылку' style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            color: 'white',
-                            fontWeight: 'bold'
-                        }}
-                            onClick={addLinkHandler}
-                        />
+                        <Icon type='plus' className='button button-success hover center__icon mt10' size='20' text='Добавить ссылку' onClick={addLinkHandler} />
                         {
                             settings.links !== null && settings.links.data !== undefined && settings.links.data.map((val, index) => {
                                 return (
@@ -656,15 +597,15 @@ const SettingsScreen = props => {
                                                     onChange={e => changeLinkTitleAndLinkAndIcon(e, index)}
                                                 />
                                             </div>
-                                            <Icon className='link__delete' size='24' type='stop' onClick={() => deleteLinkHandler(index)} />
+                                            <Icon className='link__delete hover' size='24' type='stop' onClick={() => deleteLinkHandler(index)} />
                                             {
                                                 index !== 0 && index <= settings.links.data.length - 1 ? (
-                                                    <Icon className='link__up' size='24' type='top' onClick={() => upLinkHandler(index)} />
+                                                    <Icon className='link__up hover' size='24' type='top' onClick={() => upLinkHandler(index)} />
                                                 ) : null
                                             }
                                             {
                                                 index >= 0 && index !== settings.links.data.length - 1 ? (
-                                                    <Icon className='link__down' size='24' type='down' onClick={() => downLinkHandler(index)} />
+                                                    <Icon className='link__down hover' size='24' type='down' onClick={() => downLinkHandler(index)} />
                                                 ) : null
                                             }
                                         </div>

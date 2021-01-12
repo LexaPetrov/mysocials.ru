@@ -16,36 +16,17 @@ const Header = props => {
             {
                 props.menubutton && (
                     <Icon text='☰' style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
                         fontSize: '20px',
-                        fontWeight: 'bold',
                         width: '20px', height: '20px'
-                    }} className='button menu-button' onClick={() => setMenu(!menu)} />
+                    }} className='menu-button hover' onClick={() => setMenu(!menu)} />
 
                 )
             }
             <Modal title='Меню' isOpened={menu} onModalClose={() => setMenu(false)}>
                 <div className="header__menu__modal">
-                    <Icon size='17' type='sparkles' style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        marginTop: '20px'
-                    }} onClick={() => window.open('https://mysocials.ru', '_self')} text='mysocials.ru - на главную' />
-                    <Icon type='darts' size='17' style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        marginTop: '20px',
-                        alignItems: 'center',
-                    }} onClick={() => window.open('https://mysocials.ru/#register', '_self')} text='создать профиль' />
-                    <Icon type='edit' size='17' style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        marginTop: '20px',
-                        alignItems: 'center',
-                    }} onClick={() => window.open('https://mysocials.ru/#login', '_self')} text='редактировать профиль' />
+                    <Icon size='17'  className='center__icon mt10'  type='sparkles' onClick={() => window.open('https://mysocials.ru', '_self')} text='mysocials.ru - на главную' />
+                    <Icon type='darts'  className='center__icon mt10'  size='17'  onClick={() => window.open('https://mysocials.ru/#register', '_self')} text='создать профиль' />
+                    <Icon type='edit' className='center__icon mt10' size='17' onClick={() => window.open('https://mysocials.ru/#login', '_self')} text='редактировать профиль' />
                 </div>
             </Modal>
         </div>

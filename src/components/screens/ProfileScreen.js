@@ -116,19 +116,11 @@ const ProfileScreen = props => {
                         }
                         {
                             state.birthday !== null && state.birthday !== 'null' && <div className="profile__birthday">
-                                <Icon type='birthday' size='16' text={state.birthday} style={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    alignItems: 'center'
-                                }} />
+                                <Icon type='birthday' className='center__icon' size='16' text={state.birthday} />
                             </div>
                         }
                         <div className='stat'>
-                            <Icon type='eye2' size='16' text={stat.count + ' / ' + stat.all_count + ' (уникальные / все посетители)'} style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center'
-                            }} />
+                            <Icon type='eye2'className='center__icon' size='16' text={stat.count + ' / ' + stat.all_count + ' (уникальные / все посетители)'} />
                         </div>
                     </div>
                 </div>

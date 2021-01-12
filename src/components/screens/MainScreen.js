@@ -102,9 +102,6 @@ const MainScreen = props => {
             <NotificationSystem ref={notificationSystem} />
             <div className="main__layout__wrapper-content" >
                 <div className="main__layout__wrapper-content__left" >
-                    {/* <img style={{
-                        width: '100%'
-                    }} src={`/img/${window.matchMedia('(prefers-color-scheme: dark)').matches ? '2' : '1'}.png`} alt='img' /> */}
                     <div style={{ alignItems: 'center', padding: '20px' }}>
                         <h1>Добро пожаловать на MYSOCIALS.RU!</h1>
                         <br />
@@ -112,11 +109,8 @@ const MainScreen = props => {
                         <br />
                         <br />
                         {
-                            list.map((v, k) => <Icon key={k} type={v.type} size='26' style={{
-                                fontSize: '16px', display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                marginTop: '10px', pointerEvents: 'none'
+                            list.map((v, k) => <Icon key={k} className='center__icon' type={v.type} size='26' style={{
+                                fontSize: '16px', marginTop: '10px', pointerEvents: 'none'
                             }} text={v.text} />)
                         }
                     </div>
@@ -125,37 +119,16 @@ const MainScreen = props => {
                 </div>
                 <div className='mainscreen__content'>
                     <div className='register_login__wrapper'>
-                        <Icon size='14' className='button' style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            alignSelf: 'center',
-                            background: 'var(--green)',
-                            color: 'white',
-                            fontWeight: 'bold'
-                        }} onClick={() => { setModal({ ...modal, register: true }) }}
-                            text={'Создать страницу'} />
-                        <Icon size='14' className='button' style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            alignSelf: 'center',
-                            background: 'var(--info)',
-                            color: 'white',
-                            fontWeight: 'bold'
-                        }} onClick={() => { setModal({ ...modal, login: true }) }}
-                            text={'Войти'} />
+                        <Icon size='14' fz='18' className='button hover button-success center__icon'  onClick={() => { setModal({ ...modal, register: true }) }}text={'Создать страницу'} />
+                        <Icon size='14' fz='18' className='button hover button-info center__icon' onClick={() => { setModal({ ...modal, login: true }) }}text={'Войти'} />
                     </div>
-                    <div style={{ textAlign: 'center' }}>
+                    <div className='center'>
                         <img className='top' style={{
                             width: '50%'
                         }} src={`/img/1.png`} alt='img' />
-                        {/* }} src={`/img/${window.matchMedia('(prefers-color-scheme: dark)').matches ? '2' : '1'}.png`} alt='img' /> */}
                     </div>
                     <div className="left-links main__screen">
                         <p><a href='/privacy'>Конфиденциальность</a></p>
-                        {/* <p><a href='/'>v1.0.5</a></p> */}
-                        {/* <p><a href='/'><img style={{ width: '170px', height: '50px' }} src='https://www.centrinvest.ru/images/mirpay/mp-gp.png' alt='img' /></a></p> */}
                         <br></br>
                         <br></br>
                         <br></br>
@@ -168,8 +141,8 @@ const MainScreen = props => {
                         <Input inputplaceholder='username' type='text' required value={formstate.username} onChange={e => onFormChange(e)} name='username' />
                         <Input inputplaceholder='email' type='email' required value={formstate.email} onChange={e => onFormChange(e)} name='email' />
                         <Input inputplaceholder='password' type='password' required value={formstate.password} onChange={e => onFormChange(e)} name='password' minLength='8' />
-                        <button type='submit' className='button button-success register_login' disabled={captcha === false || [formstate.username, formstate.email, formstate.password].some(v => v.length === 0)} >Создать аккаунт</button>
-                        <div style={{ alignSelf: 'center' }}>
+                        <button type='submit' className='button button-success register_login hover' disabled={captcha === false || [formstate.username, formstate.email, formstate.password].some(v => v.length === 0)} >Создать аккаунт</button>
+                        <div>
                             {
                                 modal.register && (
                                     <Recaptcha
@@ -193,8 +166,8 @@ const MainScreen = props => {
                     <form id='submitLogin' onSubmit={onSubmitLogin}>
                         <Input inputplaceholder='username' type='text' required value={formloginstate.username_login} onChange={e => onFormLoginChange(e)} name='username_login' />
                         <Input inputplaceholder='password' type='password' required value={formloginstate.password_login} onChange={e => onFormLoginChange(e)} name='password_login' minLength='8' />
-                        <button type='submit' className='button button-success register_login' disabled={captcha === false || [formloginstate.username_login, formloginstate.password_login].some(v => v.length === 0)} >Войти</button>
-                        <div style={{ alignSelf: 'center' }}>
+                        <button type='submit' className='button button-success register_login hover' disabled={captcha === false || [formloginstate.username_login, formloginstate.password_login].some(v => v.length === 0)} >Войти</button>
+                        <div>
                             {
                                 modal.login && (
                                     <Recaptcha

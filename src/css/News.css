@@ -1,6 +1,7 @@
 .news__wrapper {
   text-align: left;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .news__items {

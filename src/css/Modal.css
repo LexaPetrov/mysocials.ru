@@ -61,22 +61,6 @@
   width: 100%;
 }
 
-/* .modal__close span::after {
-  content: ' ';
-  position: relative;
-  display: block;
-  border-radius: 10px;
-  border: 1px solid lightgray;
-  background: lightgray;
-  height: 4px;
-  width: 60px;
-  margin: auto;
-  cursor: pointer;
-  margin-right: 0px;
-  margin-top: 10px;
-} */
-
-
 .scroll__wrapper {
   margin-top: 5px;
   display: flex;

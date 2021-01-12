@@ -98,7 +98,7 @@ const MainScreen = props => {
     if (state.isLoading) return <Loader />;
     return (
         <>
-            <Header />
+            <Header main />
             <NotificationSystem ref={notificationSystem} />
             <div className="main__layout__wrapper-content" >
                 <div className="main__layout__wrapper-content__left" >
@@ -122,7 +122,7 @@ const MainScreen = props => {
                         <Icon size='14' fz='18' className='button hover button-success center__icon'  onClick={() => { setModal({ ...modal, register: true }) }}text={'Создать страницу'} />
                         <Icon size='14' fz='18' className='button hover button-info center__icon' onClick={() => { setModal({ ...modal, login: true }) }}text={'Войти'} />
                     </div>
-                    <div className='center'>
+                    <div style={{ textAlign: 'center' }}>
                         <img className='top' style={{
                             width: '50%'
                         }} src={`/img/1.png`} alt='img' />

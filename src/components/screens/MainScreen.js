@@ -58,10 +58,13 @@ const MainScreen = props => {
         }// eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     useEffect(() => {
-        if (state.success) setModal({ ...modal, login: true, register: false })
+        if (state.success_register) {
+            actions.login(formstate.username, formstate.password, dispatch)
+        }
+        // if (state.success) setModal({ ...modal, login: true, register: false })
         if (!state.success && state.success !== undefined) setModal({ ...modal, register: true })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state.success, state.isLoading])
+    }, [state.success, state.isLoading, state.success_register])
 
     useEffect(() => {
         if (state.notificationmessage && !state.isLoading) {
@@ -94,7 +97,6 @@ const MainScreen = props => {
     ]
 
     let notificationSystem = createRef();
-
     if (state.isLoading) return <Loader />;
     return (
         <>
@@ -118,20 +120,18 @@ const MainScreen = props => {
 
                 </div>
                 <div className='mainscreen__content'>
-                    <div className='register_login__wrapper'>
-                        <Icon size='14' fz='18' className='button hover button-success center__icon'  onClick={() => { setModal({ ...modal, register: true }) }}text={'Создать страницу'} />
-                        <Icon size='14' fz='18' className='button hover button-info center__icon' onClick={() => { setModal({ ...modal, login: true }) }}text={'Войти'} />
-                    </div>
                     <div style={{ textAlign: 'center' }}>
                         <img className='top' style={{
                             width: '50%'
                         }} src={`/img/1.png`} alt='img' />
                     </div>
+                    <div className='register_login__wrapper'>
+                        <Icon size='14' fz='18' className='button hover button-success center__icon' onClick={() => { setModal({ ...modal, register: true }) }} text={'Создать страницу'} />
+                        <Icon size='14' fz='18' className='button hover button-info center__icon' onClick={() => { setModal({ ...modal, login: true }) }} text={'Войти'} />
+                    </div>
+
                     <div className="left-links main__screen">
                         <p><a href='/privacy'>Конфиденциальность</a></p>
-                        <br></br>
-                        <br></br>
-                        <br></br>
                     </div>
                 </div>
             </div>
@@ -141,7 +141,6 @@ const MainScreen = props => {
                         <Input inputplaceholder='username' type='text' required value={formstate.username} onChange={e => onFormChange(e)} name='username' />
                         <Input inputplaceholder='email' type='email' required value={formstate.email} onChange={e => onFormChange(e)} name='email' />
                         <Input inputplaceholder='password' type='password' required value={formstate.password} onChange={e => onFormChange(e)} name='password' minLength='8' />
-                        <button type='submit' className='button button-success register_login hover' disabled={captcha === false || [formstate.username, formstate.email, formstate.password].some(v => v.length === 0)} >Создать аккаунт</button>
                         <div>
                             {
                                 modal.register && (
@@ -151,13 +150,13 @@ const MainScreen = props => {
                                         render="explicit"
                                         verifyCallback={verifyCallback}
                                         onloadCallback={onLoadCaptcha}
-                                        // theme={window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'}
                                         size='compact'
                                         hl='ru'
                                     />
                                 )
                             }
                         </div>
+                        <button type='submit' className='button button-success register_login hover mt10' disabled={captcha === false || [formstate.username, formstate.email, formstate.password].some(v => v.length === 0)} >Создать аккаунт</button>
                     </form>
                 </div>
             </Modal>
@@ -166,7 +165,6 @@ const MainScreen = props => {
                     <form id='submitLogin' onSubmit={onSubmitLogin}>
                         <Input inputplaceholder='username' type='text' required value={formloginstate.username_login} onChange={e => onFormLoginChange(e)} name='username_login' />
                         <Input inputplaceholder='password' type='password' required value={formloginstate.password_login} onChange={e => onFormLoginChange(e)} name='password_login' minLength='8' />
-                        <button type='submit' className='button button-success register_login hover' disabled={captcha === false || [formloginstate.username_login, formloginstate.password_login].some(v => v.length === 0)} >Войти</button>
                         <div>
                             {
                                 modal.login && (
@@ -176,13 +174,13 @@ const MainScreen = props => {
                                         render="explicit"
                                         verifyCallback={verifyCallback}
                                         onloadCallback={onLoadCaptcha}
-                                        // theme={window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'}
                                         size='compact'
                                         hl='ru'
                                     />
                                 )
                             }
                         </div>
+                        <button type='submit' className='button button-success register_login hover mt10' disabled={captcha === false || [formloginstate.username_login, formloginstate.password_login].some(v => v.length === 0)} >Войти</button>
                         {
                             state.auth && state.success && state.id !== undefined && <Redirect to={{
                                 pathname: "/settings",
@@ -192,7 +190,7 @@ const MainScreen = props => {
                     </form>
                 </div>
             </Modal>
-            <News />    
+            <News />
         </>
     )
 }

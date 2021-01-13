@@ -33,7 +33,7 @@ const News = props => {
                                         }
                                     </div>
 
-                                    <Modal style={{ position: 'fixed', bottom: 0, left: 0 }} title={v.title} isOpened={modal.index === k && modal.opened} onModalClose={() => setModal({ index: k, opened: false })}>
+                                    <Modal closeButton style={{ position: 'fixed', bottom: 0, left: 0 }} title={v.title} isOpened={modal.index === k && modal.opened} onModalClose={() => setModal({ index: k, opened: false })}>
                                         {v.text}
                                     </Modal>
                                 </div>

@@ -41,7 +41,8 @@ export const reducer = (state = initialState, action) => {
                 email: action.payload.email,
                 password: action.payload.password,
                 notificationmessage: action.payload.data.notificationmessage,
-                success: action.payload.data.success
+                success: action.payload.data.success,
+                success_register: action.payload.data.success
             }
         case LOGIN:
             localStorage.setItem('token', action.payload.data.token)

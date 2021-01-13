@@ -8,7 +8,6 @@ const Header = props => {
     const [menu, setMenu] = useState(false)
     let bg = props.profilebg ? props.profilebg : backgrounds[12]
 
-
     return (
         <div className={props.main ? 'header2' : "main__layout__wrapper-header main__header"} style={{
             background: bg
@@ -21,7 +20,7 @@ const Header = props => {
                     </p>
                 )
             }
-            <Modal title='Меню' isOpened={menu} onModalClose={() => setMenu(false)}>
+            <Modal title='Меню' closeButton isOpened={menu} onModalClose={() => setMenu(false)}>
                 <div className="header__menu__modal">
                     <Icon size='17' className='center__icon mt10' type='sparkles' onClick={() => window.open('https://mysocials.ru', '_self')} text='mysocials.ru - на главную' />
                     <Icon type='darts' className='center__icon mt10' size='17' onClick={() => window.open('https://mysocials.ru/#register', '_self')} text='создать профиль' />

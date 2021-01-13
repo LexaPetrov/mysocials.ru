@@ -19,15 +19,18 @@ const Modal = props => {
     }, []);
 
     return (
-        <div className={`modal__wrapper ${props.isOpened ? 'open' : 'close'}`}   style={{ ...props.style }}>
+        <div className={`modal__wrapper ${props.isOpened ? 'open' : 'close'}`} style={{ ...props.style }}>
             <div className='modal__body' ref={ref}>
                 <div className='modal__close hover' onClick={props.onModalClose}>×</div>
                 <h2>{props.title}</h2>
                 <hr />
                 {props.children}
-                <div className='center'>
-                    <Icon text='Закрыть' className='button m0 w100p mt10 hover button-warning' onClick={props.onModalClose} />
-                </div>
+                {
+                    props.closeButton && <div className='center'>
+                        <Icon text='Закрыть' className='button m0 w100p mt10 hover button-warning' onClick={props.onModalClose} />
+                    </div>
+                }
+
             </div>
         </div>
     )

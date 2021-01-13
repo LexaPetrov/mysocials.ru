@@ -46,7 +46,7 @@ export const login = (username, password, dispatch) => {
     }).then(r => {
         return r.json()
     }).then(r => {
-        dispatch({ type: LOGIN, payload: { username, password, data: r } })
+        dispatch({ type: LOGIN, payload: { username, password, data: r, success: true, success_login: true } })
     }).catch(e => {
         // console.log('register error - ', e)
         dispatch({ type: LOGIN, payload: { success: false, username, password } })

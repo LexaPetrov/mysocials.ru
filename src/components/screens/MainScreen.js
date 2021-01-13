@@ -86,6 +86,7 @@ const MainScreen = props => {
     }
 
     const list = [
+        { type: 'medal', text: 'наши достоинства:' },
         { type: 'free', text: 'полностью бесплатно' },
         { type: 'infinity', text: 'любое количество ссылок' },
         { type: 'like', text: 'удобный редактор профиля' },
@@ -191,6 +192,11 @@ const MainScreen = props => {
                 </div>
             </Modal>
             <News />
+            <div className='container center' style={{
+                color: 'var(--main_gray)', fontSize: '10px'
+            }}>
+                © 2020-2021<span className={state.count ? 'online' : 'offline'}>•</span>
+            </div>
         </>
     )
 }

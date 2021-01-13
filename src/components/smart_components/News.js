@@ -43,6 +43,7 @@ const News = props => {
                     {/* </div> */}
                 </Scrollable>
             </div>
+            
         </div>
     )
 }

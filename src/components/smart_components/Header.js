@@ -7,12 +7,12 @@ import Modal from '../dumb_components/Modal';
 const Header = props => {
     const [menu, setMenu] = useState(false)
     let bg = props.profilebg ? props.profilebg : backgrounds[12]
-
     return (
         <div className={props.main ? 'header2' : "main__layout__wrapper-header main__header"} style={{
             background: bg
         }}>
-            <Logo bg={props.main ? backgrounds[12] : 'transparent'} absolute={!props.main ? ' absolute' : ''} onClick={() => window.location = 'http://mysocials.ru/'} />
+            <Logo main={props.main} bg={props.main ? backgrounds[12] : 'transparent'} absolute={!props.main ? ' absolute' : ''} onClick={() => window.location = 'http://mysocials.ru/'} />
+           
             {
                 props.menubutton && (
                     <p className='menu-button hover' onClick={() => setMenu(!menu)}  >

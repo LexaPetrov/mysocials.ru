@@ -48,4 +48,14 @@ span.offline {
   display: flex;
   justify-content: space-around;
   margin: 0px 10px ;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user_is_auth-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  color: var(--info);
 }

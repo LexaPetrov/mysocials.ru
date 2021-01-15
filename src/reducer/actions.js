@@ -122,13 +122,23 @@ export const delete_user = (username, password, id, dispatch) => {
     // })
 }
 
-export const is_auth = () => {
-    return fetch(`${BACKEND_HOST}/api/me`, {
+export const is_auth = async () => {
+    return await fetch(`${BACKEND_HOST}/api/me`, {
         method: 'get',
         headers: {
             'x-access-token': localStorage.getItem('token')
         }
     })
+}
+
+export const user_is_auth = async (dispatch) => {
+    dispatch({ type: 'START_LOADING' })
+    await fetch(`${BACKEND_HOST}/api/me`, {
+        method: 'get',
+        headers: {
+            'x-access-token': localStorage.getItem('token')
+        }
+    }).then(r => r.json()).then(r => dispatch({ type: 'user_is_auth', payload: r })).finally(() => dispatch({ type: 'STOP_LOADING' }))
 }
 
 export const visit = (date, username) => {//62.76.152.151
@@ -138,5 +148,28 @@ export const visit = (date, username) => {//62.76.152.151
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ date: date.toLocaleDateString(), username })
+    })
+}
+
+export const login_from_header = (username, dispatch) => {
+    dispatch({ type: 'START_LOADING' })
+    fetch(`${BACKEND_HOST}/api/login_from_header/`, {
+        method: 'post',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': localStorage.getItem('token')
+        },
+        body: JSON.stringify({
+            username
+        })
+    }).then(r => {
+        return r.json()
+    }).then(r => {
+        dispatch({ type: 'LOGIN_FROM_HEADER', payload: { username, data: r, success: true, success_login: true } })
+    }).catch(e => {
+        dispatch({ type: 'LOGIN_FROM_HEADER', payload: { success: false, username } })
+    }).finally(() => {
+        dispatch({ type: 'STOP_LOADING' })
     })
 }

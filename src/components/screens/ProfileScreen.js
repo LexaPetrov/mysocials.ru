@@ -91,10 +91,10 @@ const ProfileScreen = props => {
 
             <div className="main__layout__wrapper-content">
                 <div className="main__layout__wrapper-content__left">
-                    <div className='avatar' style={{
+                    <div className={`avatar ${state.isLoading && 'shine'}`} style={{
                         background: state.avatar !== null && state.avatar !== undefined && state.avatar.includes('data') && state.avatar !== '' && state.avatar !== 'null' ? `url(${state.avatar})` : `${state.avatar}`,
                     }}></div>
-                    <div className="profile">
+                    <div className={`profile ${state.isLoading && 'shine'}`}>
                         <div className="profile__name">
                             <div className="profile__name-name">
                                 {state.name} {state.verified ? <Icon type='verified' size='20' /> : null}
@@ -130,7 +130,7 @@ const ProfileScreen = props => {
                         {
                             state.links !== 'null' && state.links !== null && state.links !== undefined && state.links.data.map((v, index) => {
                                 return (
-                                    <div className='link__wrapper profile__link__wrapper' key={index}>
+                                    <div className={`link__wrapper profile__link__wrapper ${state.isLoading && 'shine'}` } key={index}>
                                         <div className='link__icon profile__link__icon'>
                                             <img src={`img/${state.links.data[index].type}.png`} alt='icon' />
                                         </div>

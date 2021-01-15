@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { news } from '../../utils/news'
 import Modal from '../dumb_components/Modal'
 import Scrollable from '../hoc/Scrollable'
+// import AdComponent from '../dumb_components/AdComponent'
 
 const News = props => {
     const [modal, setModal] = useState({})
@@ -19,10 +20,13 @@ const News = props => {
                 <h2>Последние новости</h2>
                 <Scrollable rootClass='news__items'>
                     {/* <div className='news__items'> */}
+                    {/* <div className='news__items-item' key={0}>
+                        <AdComponent currentPath='main'/>
+                    </div> */}
                     {
                         news.map((v, k) => {
                             return (
-                                <div key={k} className='news__items-item'>
+                                <div key={k+1} className='news__items-item'>
 
                                     <h3 className='news__items-item__title'>{v.title}</h3>
                                     <p className='news__items-item__text'>{v.text.length > 85 ? v.text.substring(0, 85).trim() + '...' : v.text}</p>
@@ -43,7 +47,7 @@ const News = props => {
                     {/* </div> */}
                 </Scrollable>
             </div>
-            
+
         </div>
     )
 }

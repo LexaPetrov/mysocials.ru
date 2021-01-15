@@ -10,7 +10,7 @@ const Scrollable = props => {
     })
 
     const onMouseDown = e => {
-        if (!ref.current.contains(e.target)) {
+        if (ref && ref.current && !ref.current.contains(e.target)) {
             return
         }
         e.preventDefault()
@@ -22,7 +22,7 @@ const Scrollable = props => {
     };
 
     const onMouseUp = e => {
-        if (!ref.current.contains(e.target)) {
+        if (ref && ref.current && !ref.current.contains(e.target)) {
             return
         }
         e.preventDefault()
@@ -31,7 +31,7 @@ const Scrollable = props => {
     };
 
     const onMouseMove = e => {
-        if (!ref.current.contains(e.target)) {
+        if (ref && ref.current && !ref.current.contains(e.target)) {
             return
         }
         e.preventDefault()
@@ -62,18 +62,18 @@ const Scrollable = props => {
     })
 
     useEffect(() => {
-      const el = ref.current;
-      if (el) {
-        const onWheel = e => {
-          e.preventDefault();
-          el.scrollTo({
-            left: el.scrollLeft + e.deltaY * 4,
-            behavior: "smooth"
-          });
-        };
-        el.addEventListener("wheel", onWheel);
-        return () => el.removeEventListener("wheel", onWheel);
-      }
+        const el = ref.current;
+        if (el) {
+            const onWheel = e => {
+                e.preventDefault();
+                el.scrollTo({
+                    left: el.scrollLeft + e.deltaY * 4,
+                    behavior: "smooth"
+                });
+            };
+            el.addEventListener("wheel", onWheel);
+            return () => el.removeEventListener("wheel", onWheel);
+        }
     }, []);
 
     //https://valtism.com/src/use-drag-scroll.html

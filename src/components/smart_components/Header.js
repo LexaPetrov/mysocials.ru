@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { backgrounds } from "../../utils/backgrounds"
-import Logo from "../dumb_components/Logo"
+import Logo from "./Logo"
 import Icon from '../dumb_components/Icon';
 import Modal from '../dumb_components/Modal';
 

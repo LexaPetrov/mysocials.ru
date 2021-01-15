@@ -50,12 +50,15 @@ const MainScreen = props => {
     }
 
     useEffect(() => {
-        actions.get_count(dispatch)
         if (window.location.hash === '#login') {
             setModal({ ...modal, login: true })
         } else if (window.location.hash === '#register') {
             setModal({ ...modal, register: true })
         }// eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [window.location.hash])
+
+    useEffect(() => {
+        actions.get_count(dispatch)
     }, [])
     useEffect(() => {
         if (state.success_register) {
@@ -101,7 +104,7 @@ const MainScreen = props => {
     if (state.isLoading) return <Loader />;
     return (
         <>
-            <Header main />
+            <Header main  />
             <NotificationSystem ref={notificationSystem} />
             <div className="main__layout__wrapper-content" >
                 <div className="main__layout__wrapper-content__left" >
@@ -121,8 +124,8 @@ const MainScreen = props => {
 
                 </div>
                 <div className='mainscreen__content'>
-                    <div style={{ textAlign: 'center' }}>
-                        <img className='top' style={{
+                    <div style={{ textAlign: 'center' }} className={`${state.isLoading && 'shine'}`}>
+                        <img className={`top ${state.isLoading && 'shine'}`} style={{
                             width: '50%'
                         }} src={`/img/1.png`} alt='img' />
                     </div>
@@ -136,7 +139,7 @@ const MainScreen = props => {
                     </div>
                 </div>
             </div>
-            <Modal title='Регистрация' isOpened={modal.register} onModalClose={() => setModal({ ...modal, register: false })}>
+            <Modal title='Регистрация' isOpened={modal.register} onModalClose={() => { window.location.hash = ''; setModal({ ...modal, register: false }) }}>
                 <div className='modal__form'>
                     <form id='submitRegister' onSubmit={onSubmitRegister}>
                         <Input inputplaceholder='username' type='text' required value={formstate.username} onChange={e => onFormChange(e)} name='username' />
@@ -161,7 +164,7 @@ const MainScreen = props => {
                     </form>
                 </div>
             </Modal>
-            <Modal title='Авторизация' isOpened={modal.login} onModalClose={() => setModal({ ...modal, login: false })}>
+            <Modal title='Авторизация' isOpened={modal.login} onModalClose={() => { window.location.hash = ''; setModal({ ...modal, login: false }) }}>
                 <div className='modal__form'>
                     <form id='submitLogin' onSubmit={onSubmitLogin}>
                         <Input inputplaceholder='username' type='text' required value={formloginstate.username_login} onChange={e => onFormLoginChange(e)} name='username_login' />

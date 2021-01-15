@@ -39,7 +39,7 @@ const SettingsScreen = props => {
         cover: '',
         password_delete: ''
     })
-
+    
     useEffect(() => {
         try {
             setSettings({

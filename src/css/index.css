@@ -14,7 +14,13 @@ body {
 
 @font-face {
   font-family: "GolosTextRegular";
-  src: url("../fonts/Golos_Text_Regular.ttf");
+  src: url("../fonts/Golos_Text_Regular.eot"); /* IE9 Compat Modes */
+  src: url("../fonts/Golos_Text_Regular.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/Golos_Text_Regular.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/Golos_Text_Regular.woff")
+      format("woff"),
+    /* Pretty Modern Browsers */ url("../fonts/Golos_Text_Regular.ttf")
+      format("truetype"); /* Safari, Android, iOS */
 }
 
 * {
@@ -639,6 +645,10 @@ h4 {
   align-items: center;
 }
 
+.fdc {
+  flex-direction: column;
+}
+
 .header2 {
   max-width: 100%;
   box-shadow: var(--NOT_ACTIVE_SHADOW_2);
@@ -647,4 +657,36 @@ h4 {
   max-height: 70px;
   color: white;
   background: white !important;
+}
+
+.shine {
+  background: #f6f7f8;
+  background-image: linear-gradient(
+    to right,
+    #f6f7f8 0%,
+    #edeef1 20%,
+    #f6f7f8 40%,
+    #f6f7f8 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  position: relative;
+
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeholderShimmer;
+  animation-timing-function: linear;
+}
+
+
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  
+  100% {
+    background-position: 468px 0; 
+  }
 }

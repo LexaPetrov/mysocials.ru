@@ -15,7 +15,6 @@ const StateProvider = ({ children }) => {
                     }
                 } else return initialState
             case 'LOGIN_FROM_HEADER':
-                console.log(action);
                 return {
                     ...state,
                     ...action.payload.data[0],

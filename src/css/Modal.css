@@ -61,10 +61,3 @@
   overflow: hidden;
   width: 100%;
 }
-
-.scroll__wrapper {
-  margin-top: 5px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}

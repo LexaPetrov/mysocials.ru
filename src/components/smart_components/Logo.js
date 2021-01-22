@@ -18,7 +18,7 @@ const Logo = props => {
     }, [])
 
     const settingsFromHeader = () => {
-        login_from_header(state.who.username,dispatch)
+        login_from_header(state.who.username, dispatch)
     }
 
     useEffect(() => {
@@ -45,7 +45,10 @@ const Logo = props => {
                             {
                                 !state.who.username
                                     ? (
-                                        <a className={`hover`} href='https://mysocials.ru/#login' >войти</a>
+                                        state.isLoading ? <img style={{
+                                            height: '40px', width: '40px', minWidth: '40px'
+                                        }} src={'/img/loading.gif'} alt='loader' /> :
+                                            <a className={`hover`} href='https://mysocials.ru/#login' >{state.isLoading ? 'загзузка...' : 'войти'}</a>
                                     )
                                     : (
 

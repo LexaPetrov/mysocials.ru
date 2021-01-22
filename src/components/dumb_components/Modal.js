@@ -25,6 +25,7 @@ const Modal = props => {
                 <h2>{props.title}</h2>
                 <hr />
                 {props.children}
+                {props.closeButton && <hr />}
                 {
                     props.closeButton && <div className='center'>
                         <Icon text='Закрыть' className='button m0 w100p mt10 hover button-warning' onClick={props.onModalClose} />

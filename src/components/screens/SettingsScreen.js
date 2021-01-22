@@ -39,7 +39,7 @@ const SettingsScreen = props => {
         cover: '',
         password_delete: ''
     })
-    
+
     useEffect(() => {
         try {
             setSettings({
@@ -275,6 +275,11 @@ const SettingsScreen = props => {
             scales: {
                 xAxes: [{
                     type: 'time',
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 90,
+                        minRotation: 90
+                    }
                 }]
             }
         }
@@ -359,7 +364,7 @@ const SettingsScreen = props => {
 
                     <div className={`settings ${tabs.active === 'appearance' ? 'active' : null} no__sticky`}>
                         <Icon
-                            type='picture' size='17' className='center__icon' text='Внешний вид' 
+                            type='picture' size='17' className='center__icon' text='Внешний вид'
                             onClick={() => {
                                 setTabs({
                                     ...tabs, active: 'appearance'
@@ -369,7 +374,7 @@ const SettingsScreen = props => {
                     </div>
                     <div className={`settings ${tabs.active === 'links' ? 'active' : null} no__sticky`}>
                         <Icon
-                            type='link' size='17' className='center__icon' text='Ссылки' 
+                            type='link' size='17' className='center__icon' text='Ссылки'
                             onClick={() => {
                                 setTabs({
                                     ...tabs, active: 'links'
@@ -379,7 +384,7 @@ const SettingsScreen = props => {
                     </div>
                     <div className={`settings ${tabs.active === 'statistics' ? 'active' : null} no__sticky`}>
                         <Icon
-                            type='chart' size='17' className='center__icon' text='Статистика' 
+                            type='chart' size='17' className='center__icon' text='Статистика'
                             onClick={() => {
                                 setTabs({
                                     ...tabs, active: 'statistics'
@@ -389,7 +394,7 @@ const SettingsScreen = props => {
                     </div>
                     <div className={`settings ${tabs.active === 'settings' ? 'active' : null} no__sticky`}>
                         <Icon
-                            type='settings' size='17' text='Настройки' className='center__icon' 
+                            type='settings' size='17' text='Настройки' className='center__icon'
                             onClick={() => {
                                 setTabs({
                                     ...tabs, active: 'settings'
@@ -517,9 +522,9 @@ const SettingsScreen = props => {
                                                 <option value="phone">Телефон</option>
                                                 {/*  */}
                                                 <option value='мессенджеры' disabled="disabled">мессенджеры</option>
-                                                <option value="telegram">Telegram</option>
-                                                <option value="viber">Viber</option>
-                                                <option value="whatsapp">WhatsApp</option>
+                                                <option value="Telegram">Telegram</option>
+                                                <option value="Viber">Viber</option>
+                                                <option value="Whatsapp">WhatsApp</option>
                                                 {/*  */}
                                                 <option value='соцсети' disabled="disabled">соцсети</option>
                                                 <option value="vk">VK</option>
@@ -535,16 +540,20 @@ const SettingsScreen = props => {
                                                 <option value="youtube">YouTube</option>
                                                 {/*  */}
                                                 <option value='соцсети' disabled="disabled">работа, новости, IT</option>
+                                                <option value="habr">Habr</option>
                                                 <option value="hh">Head Hunter</option>
+                                                <option value="Habr Карьера">Habr Карьера</option>
+                                                <option value="Habr Фриланс">Habr Фриланс</option>
                                                 <option value="vc">VC.ru</option>
                                                 <option value="tj">tjournal</option>
+                                                <option value="Tinkoff Journal">Tinkoff Journal</option>
                                                 <option value="dtf">dtf.ru</option>
-                                                <option value="habr">Habr</option>
                                                 <option value="linkedin">LinkedIn</option>
-                                                <option value="github" >Github</option>
-                                                <option value="gitlab">Gitlab</option>
-                                                <option value="devianart">Devianart</option>
-                                                <option value="behance">Behance</option>
+                                                <option value="Github" >Github</option>
+                                                <option value="Gitlab">Gitlab</option>
+                                                <option value="Devianart">Devianart</option>
+                                                <option value="Behance">Behance</option>
+                                                <option value="Udemy">Udemy</option>
                                                 {/*  */}
                                                 <option value='игры' disabled="disabled">игры, стримы, связь</option>
                                                 <option value="steam">Steam</option>
@@ -568,14 +577,14 @@ const SettingsScreen = props => {
                                                 <option value='финансы' disabled="disabled">финансы</option>
                                                 <option value="tinkoff">Tinkoff</option>
                                                 <option value="sberbank">Сбербанк</option>
-                                                <option value="yandexmoney">ЮMoney</option>
-                                                <option value="qiwi">QIWI</option>
-                                                <option value="donationalerts">Donation Alerts</option>
-                                                <option value="patreon">Patreon</option>
+                                                <option value="ЮMoney">ЮMoney</option>
+                                                <option value="Qiwi">QIWI</option>
+                                                <option value="Donationalerts">Donation Alerts</option>
+                                                <option value="Patreon">Patreon</option>
                                                 {/*  */}
                                                 <option value='18+' disabled="disabled">18+</option>
-                                                <option value="pornhub">Pornhub</option>
-                                                <option value="onlyfans">Onlyfans</option>
+                                                <option value="Pornhub">Pornhub</option>
+                                                <option value="Onlyfans">Onlyfans</option>
                                             </select>
                                         </div>
                                         <div className='link__texts'>

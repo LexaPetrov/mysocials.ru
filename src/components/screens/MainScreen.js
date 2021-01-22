@@ -89,7 +89,7 @@ const MainScreen = props => {
     }
 
     const list = [
-        { type: 'medal', text: 'наши достоинства:' },
+        { type: 'medal', text: 'наши преимущества:' },
         { type: 'free', text: 'полностью бесплатно' },
         { type: 'infinity', text: 'любое количество ссылок' },
         { type: 'like', text: 'удобный редактор профиля' },
@@ -99,6 +99,7 @@ const MainScreen = props => {
         { type: 'chart', text: 'статистика посещений' },
         { type: 'new', text: 'частые обновления' },
     ]
+
 
     let notificationSystem = createRef();
     if (state.isLoading) return <Loader />;

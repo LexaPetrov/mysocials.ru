@@ -10,6 +10,7 @@ import Recaptcha from 'react-recaptcha'
 import Header from "../smart_components/Header"
 import NotificationSystem from 'react-notification-system';
 import News from "../smart_components/News"
+import Iframe from "../dumb_components/Iframe"
 
 const MainScreen = props => {
     const [state, dispatch] = useReducer(reducer, {})
@@ -126,15 +127,22 @@ const MainScreen = props => {
                 </div>
                 <div className='mainscreen__content'>
                     <div style={{ textAlign: 'center' }} className={`${state.isLoading && 'shine'}`}>
-                        <img className={`top ${state.isLoading && 'shine'}`} style={{
+                        {/* <img className={`top ${state.isLoading && 'shine'}`} style={{
                             width: '50%'
-                        }} src={`/img/1.png`} alt='img' />
+                        }} src={`/img/1.png`} alt='img' /> */}
+                        <img className={`top ${state.isLoading && 'shine'}`} style={{
+                            width: '70%',
+                           marginTop: '30px',
+                           borderRadius: 'var(--border_radius)',
+                           boxShadow:'var(--NOT_ACTIVE_SHADOW_2)'
+                        }} src={`/img/vibe.gif`} alt='img' />
                     </div>
                     <div className='register_login__wrapper'>
                         <Icon size='14' fz='18' className='button hover button-success center__icon' onClick={() => { setModal({ ...modal, register: true }) }} text={'Создать страницу'} />
                         <Icon size='14' fz='18' className='button hover button-info center__icon' onClick={() => { setModal({ ...modal, login: true }) }} text={'Войти'} />
                     </div>
 
+                      
                     <div className="left-links main__screen">
                         <p><a href='/privacy'>Конфиденциальность</a></p>
                     </div>

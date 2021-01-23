@@ -21,10 +21,10 @@ const Header = props => {
                 )
             }
             <Modal title='Меню' closeButton isOpened={menu} onModalClose={() => setMenu(false)}>
-                <div className="header__menu__modal">
-                    <Icon size='17' className='button hover w100p  button-info center__icon mt10' type='sparkles' onClick={() => window.open('https://mysocials.ru', '_self')} text='mysocials.ru - на главную' />
-                    <Icon type='darts' className='button hover w100p  button-info center__icon mt10' size='17' onClick={() => window.open('https://mysocials.ru/#register', '_self')} text='создать профиль' />
-                    <Icon type='edit' className='button hover w100p  button-info center__icon mt10' size='17' onClick={() => window.open('https://mysocials.ru/#login', '_self')} text='редактировать профиль' />
+                <div className="header__menu__modal center fdc">
+                    <Icon size='17' className='button hover w100p  button-info  mt10'  onClick={() => window.open('https://mysocials.ru', '_self')} text='На главную' />
+                    <Icon  className='button hover w100p  button-info  mt10' size='17' onClick={() => window.open('https://mysocials.ru/#register', '_self')} text='Создать профиль' />
+                    <Icon  className='button hover w100p  button-info  mt10' size='17' onClick={() => window.open('https://mysocials.ru/#login', '_self')} text='Редактировать профиль' />
                 </div>
             </Modal>
         </div>

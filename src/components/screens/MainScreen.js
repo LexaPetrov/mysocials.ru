@@ -10,7 +10,6 @@ import Recaptcha from 'react-recaptcha'
 import Header from "../smart_components/Header"
 import NotificationSystem from 'react-notification-system';
 import News from "../smart_components/News"
-import Iframe from "../dumb_components/Iframe"
 
 const MainScreen = props => {
     const [state, dispatch] = useReducer(reducer, {})
@@ -131,8 +130,9 @@ const MainScreen = props => {
                             width: '50%'
                         }} src={`/img/1.png`} alt='img' /> */}
                         <img className={`top ${state.isLoading && 'shine'}`} style={{
-                            width: '70%',
+                            width: '100%',
                            marginTop: '30px',
+                           marginBottom: '30px',
                            borderRadius: 'var(--border_radius)',
                            boxShadow:'var(--NOT_ACTIVE_SHADOW_2)'
                         }} src={`/img/vibe.gif`} alt='img' />
@@ -143,9 +143,9 @@ const MainScreen = props => {
                     </div>
 
                       
-                    <div className="left-links main__screen">
+                    {/* <div className="left-links main__screen">
                         <p><a href='/privacy'>Конфиденциальность</a></p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <Modal title='Регистрация' isOpened={modal.register} onModalClose={() => { window.location.hash = ''; setModal({ ...modal, register: false }) }}>
@@ -207,7 +207,10 @@ const MainScreen = props => {
             <div className='container center' style={{
                 color: 'var(--main_gray)', fontSize: '10px'
             }}>
-                © 2020-2021<span className={state.count ? 'online' : 'offline'}>•</span>
+                © 2020-2021<span className={state.count ? 'online' : 'offline'}>&nbsp; • &nbsp;</span><p><a href='/privacy'>Конфиденциальность</a></p>
+                <br/>
+                <br/>
+                <br/>
             </div>
         </>
     )

@@ -146,10 +146,10 @@ const ProfileScreen = props => {
                 </div>
 
             </div>
-            <div className="left-links">
+            {/* <div className="left-links">
                 <p><a href='https://mysocials.ru/privacy'>Конфиденциальность</a></p>
                 <p><a href='https://mysocials.ru/'>mysocials.ru</a></p>
-            </div>
+            </div> */}
         </>
     )
 }

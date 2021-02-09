@@ -519,25 +519,25 @@ const SettingsScreen = props => {
                                             <img src={`img/${settings.links.data[index].type}.png`} alt='icon' />
                                             <select name='type' className='link__select' value='иконка' onChange={e => changeLinkTitleAndLinkAndIcon(e, index)}>
                                                 <option value='иконка' disabled="disabled">иконка</option>
-                                                <option value="phone">Телефон</option>
+                                                <option value="Телефон">Телефон</option>
                                                 {/*  */}
                                                 <option value='мессенджеры' disabled="disabled">мессенджеры</option>
                                                 <option value="Telegram">Telegram</option>
                                                 <option value="Viber">Viber</option>
-                                                <option value="Whatsapp">WhatsApp</option>
+                                                <option value="WhatsApp">WhatsApp</option>
                                                 {/*  */}
                                                 <option value='соцсети' disabled="disabled">соцсети</option>
-                                                <option value="vk">VK</option>
-                                                <option value="facebook">Facebook</option>
-                                                <option value="instagram">Instagram</option>
-                                                <option value="ok">Одноклассники</option>
-                                                <option value="tiktok">TikTok</option>
+                                                <option value="VK">VK</option>
+                                                <option value="Facebook">Facebook</option>
+                                                <option value="Instagram">Instagram</option>
+                                                <option value="Одноклассники">Одноклассники</option>
+                                                <option value="TikTok">TikTok</option>
                                                 <option value="askfm">Ask.fm</option>
-                                                <option value="pikabu">Pikabu</option>
-                                                <option value="snapchat">Snapchat</option>
-                                                <option value="twitter">Twitter</option>
+                                                <option value="Pikabu">Pikabu</option>
+                                                <option value="Snapchat">Snapchat</option>
+                                                <option value="Twitter">Twitter</option>
                                                 <option value="f3cool">F3.cool</option>
-                                                <option value="youtube">YouTube</option>
+                                                <option value="YouTube">YouTube</option>
                                                 {/*  */}
                                                 <option value='соцсети' disabled="disabled">работа, новости, IT</option>
                                                 <option value="habr">Habr</option>
@@ -548,7 +548,7 @@ const SettingsScreen = props => {
                                                 <option value="tj">tjournal</option>
                                                 <option value="Tinkoff Journal">Tinkoff Journal</option>
                                                 <option value="dtf">dtf.ru</option>
-                                                <option value="linkedin">LinkedIn</option>
+                                                <option value="LinkedIn">LinkedIn</option>
                                                 <option value="Github" >Github</option>
                                                 <option value="Gitlab">Gitlab</option>
                                                 <option value="Devianart">Devianart</option>
@@ -556,17 +556,17 @@ const SettingsScreen = props => {
                                                 <option value="Udemy">Udemy</option>
                                                 {/*  */}
                                                 <option value='игры' disabled="disabled">игры, стримы, связь</option>
-                                                <option value="steam">Steam</option>
-                                                <option value="epicgames">Epic Games</option>
-                                                <option value="origin">Origin</option>
-                                                <option value="xboxlive">XBox Live</option>
-                                                <option value="psn">PSN</option>
-                                                <option value="battlenet">Battle.net</option>
-                                                <option value="rockstar">RockstarSocial Club</option>
-                                                <option value="uplay">Uplay</option>
-                                                <option value="twitch">Twitch</option>
-                                                <option value="skype">Skype</option>
-                                                <option value="discord">Discord</option>
+                                                <option value="Steam">Steam</option>
+                                                <option value="Epic Games">Epic Games</option>
+                                                <option value="Origin">Origin</option>
+                                                <option value="Xbox Live">XBox Live</option>
+                                                <option value="PSN">PSN</option>
+                                                <option value="Battlenet">Battle.net</option>
+                                                <option value="Rockstar Social Club">Rockstar Social Club</option>
+                                                <option value="Uplay">Uplay</option>
+                                                <option value="Twitch">Twitch</option>
+                                                <option value="Skype">Skype</option>
+                                                <option value="Discord">Discord</option>
                                                 {/*  */}
                                                 <option value='почта' disabled="disabled">почта</option>
                                                 <option value="gmail">G-mail</option>
@@ -575,8 +575,8 @@ const SettingsScreen = props => {
                                                 <option value="email">E-mail</option>
                                                 {/*  */}
                                                 <option value='финансы' disabled="disabled">финансы</option>
-                                                <option value="tinkoff">Tinkoff</option>
-                                                <option value="sberbank">Сбербанк</option>
+                                                <option value="Tinkoff">Tinkoff</option>
+                                                <option value="sberbank">СберБанк</option>
                                                 <option value="ЮMoney">ЮMoney</option>
                                                 <option value="Qiwi">QIWI</option>
                                                 <option value="Donationalerts">Donation Alerts</option>

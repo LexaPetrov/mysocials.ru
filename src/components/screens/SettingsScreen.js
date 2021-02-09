@@ -525,7 +525,7 @@ const SettingsScreen = props => {
                                                 <option value="Telegram">Telegram</option>
                                                 <option value="Viber">Viber</option>
                                                 <option value="WhatsApp">WhatsApp</option>
-                                                {/*  */}
+                                                {/* sss */}
                                                 <option value='соцсети' disabled="disabled">соцсети</option>
                                                 <option value="VK">VK</option>
                                                 <option value="Facebook">Facebook</option>

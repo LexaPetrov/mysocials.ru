@@ -576,7 +576,7 @@ const SettingsScreen = props => {
                                                 {/*  */}
                                                 <option value='финансы' disabled="disabled">финансы</option>
                                                 <option value="Tinkoff">Tinkoff</option>
-                                                <option value="sberbank">СберБанк</option>
+                                                <option value="СберБанк">СберБанк</option>
                                                 <option value="ЮMoney">ЮMoney</option>
                                                 <option value="Qiwi">QIWI</option>
                                                 <option value="Donationalerts">Donation Alerts</option>

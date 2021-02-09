@@ -12,19 +12,19 @@ const Header = props => {
             background: bg
         }}>
             <Logo main={props.main} bg={props.main ? backgrounds[12] : 'transparent'} absolute={!props.main ? ' absolute' : ''} onClick={() => window.location = 'http://mysocials.ru/'} />
-           
+
             {
                 props.menubutton && (
                     <p className='menu-button hover' onClick={() => setMenu(!menu)}  >
-                        ⁝☰
+                        ☰
                     </p>
                 )
             }
             <Modal title='Меню' closeButton isOpened={menu} onModalClose={() => setMenu(false)}>
                 <div className="header__menu__modal center fdc">
-                    <Icon size='17' className='button hover w100p  button-info  mt10'  onClick={() => window.open('https://mysocials.ru', '_self')} text='На главную' />
-                    <Icon  className='button hover w100p  button-info  mt10' size='17' onClick={() => window.open('https://mysocials.ru/#register', '_self')} text='Создать профиль' />
-                    <Icon  className='button hover w100p  button-info  mt10' size='17' onClick={() => window.open('https://mysocials.ru/#login', '_self')} text='Редактировать профиль' />
+                    <Icon size='17' className='button hover w100p  button-info  mt10' onClick={() => window.open('https://mysocials.ru', '_self')} text='На главную' />
+                    <Icon className='button hover w100p  button-info  mt10' size='17' onClick={() => window.open('https://mysocials.ru/#register', '_self')} text='Создать профиль' />
+                    <Icon className='button hover w100p  button-info  mt10' size='17' onClick={() => window.open('https://mysocials.ru/#login', '_self')} text='Редактировать профиль' />
                 </div>
             </Modal>
         </div>

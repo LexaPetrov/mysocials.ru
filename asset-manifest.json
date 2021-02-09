@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.f65fbd78.chunk.css",
-    "main.js": "/static/js/main.796eb355.chunk.js",
+    "main.css": "/static/css/main.63c84a86.chunk.css",
+    "main.js": "/static/js/main.7ac7b9c1.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.22b099da.js",
-    "static/js/2.b58434b5.chunk.js": "/static/js/2.b58434b5.chunk.js",
+    "static/js/2.0cbd2892.chunk.js": "/static/js/2.0cbd2892.chunk.js",
     "index.html": "/index.html",
-    "static/js/2.b58434b5.chunk.js.LICENSE.txt": "/static/js/2.b58434b5.chunk.js.LICENSE.txt",
+    "static/js/2.0cbd2892.chunk.js.LICENSE.txt": "/static/js/2.0cbd2892.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/Golos_Text_Regular.7695e9fd.eot"
   },
   "entrypoints": [
     "static/js/runtime-main.22b099da.js",
-    "static/js/2.b58434b5.chunk.js",
-    "static/css/main.f65fbd78.chunk.css",
-    "static/js/main.796eb355.chunk.js"
+    "static/js/2.0cbd2892.chunk.js",
+    "static/css/main.63c84a86.chunk.css",
+    "static/js/main.7ac7b9c1.chunk.js"
   ]
 }

@@ -123,7 +123,7 @@ const SettingsScreen = props => {
         if (!obj.data) {
             obj = { data: [] }
         }
-        obj.data.push({
+        obj.data.unshift({
             title: '',
             link: '',
             type: 'link'

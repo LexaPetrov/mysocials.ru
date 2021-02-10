@@ -19,8 +19,8 @@ const Modal = props => {
     }, []);
 
     return (
-        <div className={`modal__wrapper ${props.isOpened ? 'open' : 'close'}`} style={{ ...props.style }}>
-            <div className='modal__body' ref={ref}>
+        <div onClick={props.onModalClose} className={`modal__wrapper ${props.isOpened ? 'open' : 'close'}`} style={{ ...props.style }}>
+            <div className='modal__body' onClick={e => e.stopPropagation()} ref={ref}>
                 <div className='modal__close hover' onClick={props.onModalClose}>×</div>
                 <h2>{props.title}</h2>
                 <hr />

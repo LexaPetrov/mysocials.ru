@@ -153,6 +153,9 @@ const SettingsScreen = props => {
 
     const onSaveClickHandler = (e) => {
         e.preventDefault()
+        if(window.ym) {
+            window.ym(72742615,'reachGoal','saveSubmit')
+        }
         actions.save_profile(settings, dispatch)
     }
     const changeBackground = e => {

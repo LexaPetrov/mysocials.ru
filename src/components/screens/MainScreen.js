@@ -26,6 +26,9 @@ const MainScreen = props => {
     })
     const onSubmitRegister = async (e) => {
         e.preventDefault();
+        if(window.ym) {
+            window.ym(72742615,'reachGoal','registerSubmit')
+        }
         await actions.register(formstate.username, formstate.email, formstate.password, dispatch)
     }
 
@@ -46,6 +49,9 @@ const MainScreen = props => {
 
     const onSubmitLogin = async e => {
         e.preventDefault();
+        if(window.ym) {
+            window.ym(72742615,'reachGoal','loginSubmit')
+        }
         await actions.login(formloginstate.username_login, formloginstate.password_login, dispatch)
     }
 
